@@ -6,7 +6,7 @@ ANCHOR_CLI=v0.26.0
 #
 # Safecoin toolchain.
 #
-SAFECOIN_CLI=v1.14.16
+SAFECOIN_CLI=v1.14.3
 #
 # Build version should match the Anchor cli version.
 #
