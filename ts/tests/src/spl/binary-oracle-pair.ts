@@ -1,17 +1,17 @@
 import assert from "assert";
-import { splBinaryOraclePairProgram } from "@coral-xyz/spl-binary-oracle-pair";
-import { splTokenProgram } from "@coral-xyz/spl-token";
-import { BN } from "@coral-xyz/anchor";
+import { splBinaryOraclePairProgram } from "@safely-project/spl-binary-oracle-pair";
+import { splTokenProgram } from "@safely-project/safe-token";
+import { BN } from "@safely-project/anchor";
 import {
   Keypair,
   PublicKey,
   SYSVAR_CLOCK_PUBKEY,
   SYSVAR_RENT_PUBKEY,
-} from "@solana/web3.js";
+} from "@safecoin/web3.js";
 
 import {
   SPL_BINARY_ORACLE_PAIR_PROGRAM_ID,
-  SPL_TOKEN_PROGRAM_ID,
+  SAFE_TOKEN_PROGRAM_ID,
 } from "../constants";
 import {
   createMint,
@@ -31,7 +31,7 @@ export async function binaryOraclePairTests() {
   });
   const tokenProgram = splTokenProgram({
     provider,
-    programId: SPL_TOKEN_PROGRAM_ID,
+    programId: SAFE_TOKEN_PROGRAM_ID,
   });
   const kp = await loadKp();
 

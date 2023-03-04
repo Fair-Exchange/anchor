@@ -1,11 +1,11 @@
-import { splStatelessAsksProgram } from "@coral-xyz/spl-stateless-asks";
-import { splTokenProgram } from "@coral-xyz/spl-token";
-import { BN } from "@coral-xyz/anchor";
-import { Keypair, PublicKey } from "@solana/web3.js";
+import { splStatelessAsksProgram } from "@safely-project/spl-stateless-asks";
+import { splTokenProgram } from "@safely-project/safe-token";
+import { BN } from "@safely-project/anchor";
+import { Keypair, PublicKey } from "@safecoin/web3.js";
 
 import {
   SPL_STATELESS_ASKS_PROGRAM_ID,
-  SPL_TOKEN_PROGRAM_ID,
+  SAFE_TOKEN_PROGRAM_ID,
 } from "../constants";
 import {
   createAta,
@@ -24,7 +24,7 @@ export async function statelessAsksTests() {
   });
   const tokenProgram = splTokenProgram({
     provider,
-    programId: SPL_TOKEN_PROGRAM_ID,
+    programId: SAFE_TOKEN_PROGRAM_ID,
   });
   const kp = await loadKp();
 

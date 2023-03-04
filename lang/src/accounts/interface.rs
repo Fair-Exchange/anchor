@@ -6,9 +6,9 @@ use crate::{
     AccountDeserialize, Accounts, AccountsExit, CheckId, Key, Result, ToAccountInfos,
     ToAccountMetas,
 };
-use solana_program::account_info::AccountInfo;
-use solana_program::instruction::AccountMeta;
-use solana_program::pubkey::Pubkey;
+use safecoin_program::account_info::AccountInfo;
+use safecoin_program::instruction::AccountMeta;
+use safecoin_program::pubkey::Pubkey;
 use std::collections::{BTreeMap, BTreeSet};
 use std::ops::Deref;
 
@@ -16,8 +16,8 @@ use std::ops::Deref;
 ///
 /// The `Interface` wraps over the [`Program`](crate::Program), allowing for
 /// multiple possible program ids. Useful for any program that implements an
-/// instruction interface. For example, spl-token and spl-token-2022 both implement
-/// the spl-token interface.
+/// instruction interface. For example, safe-token and safe-token-2022 both implement
+/// the safe-token interface.
 ///
 /// # Table of Contents
 /// - [Basic Functionality](#basic-functionality)
@@ -67,10 +67,10 @@ use std::ops::Deref;
 ///
 /// # Out of the Box Types
 ///
-/// Between the [`anchor_lang`](https://docs.rs/anchor-lang/latest/anchor_lang) and [`anchor_spl`](https://docs.rs/anchor_spl/latest/anchor_spl) crates,
+/// Between the [`anchor_lang`](https://docs.rs/safe-anchor-lang/latest/anchor_lang) and [`anchor_spl`](https://docs.rs/anchor_spl/latest/anchor_spl) crates,
 /// the following `Interface` types are provided out of the box:
 ///
-/// - [`TokenInterface`](https://docs.rs/anchor-spl/latest/anchor_spl/token_interface/struct.TokenInterface.html)
+/// - [`TokenInterface`](https://docs.rs/safe-anchor-spl/latest/anchor_spl/token_interface/struct.TokenInterface.html)
 ///
 #[derive(Clone)]
 pub struct Interface<'info, T>(Program<'info, T>);

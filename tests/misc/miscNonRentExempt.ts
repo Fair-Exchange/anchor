@@ -1,11 +1,11 @@
-import * as anchor from "@coral-xyz/anchor";
-import { Program, AnchorError } from "@coral-xyz/anchor";
+import * as anchor from "@safely-project/anchor";
+import { Program, AnchorError } from "@safely-project/anchor";
 import {
   PublicKey,
   Keypair,
   SystemProgram,
   SYSVAR_RENT_PUBKEY,
-} from "@solana/web3.js";
+} from "@safecoin/web3.js";
 // @ts-expect-error
 import { Misc } from "../../target/types/misc";
 const { assert } = require("chai");

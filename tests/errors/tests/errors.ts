@@ -1,7 +1,7 @@
-import * as anchor from "@coral-xyz/anchor";
-import { Program, AnchorError } from "@coral-xyz/anchor";
-import { Keypair, Transaction, TransactionInstruction } from "@solana/web3.js";
-import { TOKEN_PROGRAM_ID, Token } from "@solana/spl-token";
+import * as anchor from "@safely-project/anchor";
+import { Program, AnchorError } from "@safely-project/anchor";
+import { Keypair, Transaction, TransactionInstruction } from "@safecoin/web3.js";
+import { TOKEN_PROGRAM_ID, Token } from "@safecoin/safe-token";
 import { assert, expect } from "chai";
 import { Errors } from "../target/types/errors";
 
@@ -342,7 +342,7 @@ describe("errors", () => {
     }, [
       "Program log: AnchorError caused by account: wrong_account. Error Code: AccountOwnedByWrongProgram. Error Number: 3007. Error Message: The given account is owned by a different program than expected.",
       "Program log: Left:",
-      "Program log: TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+      "Program log: ToKLx75MGim1d1jRusuVX8xvdvvbSDESVaNXpRA9PHN",
       "Program log: Right:",
       "Program log: Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS",
     ]);

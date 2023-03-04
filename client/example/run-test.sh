@@ -12,7 +12,7 @@
 # Run this script from within the `example/` directory in which it is located.
 # The anchor cli must be installed.
 #
-# cargo install --git https://github.com/coral-xyz/anchor anchor-cli --locked
+# cargo install --git https://github.com/safely-project/anchor anchor-cli --locked
 #
 ################################################################################
 
@@ -31,7 +31,7 @@ main() {
     #
     # Bootup validator.
     #
-    solana-test-validator -r \
+    safecoin-test-validator -r \
 				--bpf-program $composite_pid ../../tests/composite/target/deploy/composite.so \
 				--bpf-program $basic_2_pid ../../examples/tutorial/basic-2/target/deploy/basic_2.so \
 				--bpf-program $basic_4_pid ../../examples/tutorial/basic-4/target/deploy/basic_4.so \
@@ -54,7 +54,7 @@ main() {
     # Restart validator for multithreaded test
     #
     cleanup
-    solana-test-validator -r \
+    safecoin-test-validator -r \
 				--bpf-program $composite_pid ../../tests/composite/target/deploy/composite.so \
 				--bpf-program $basic_2_pid ../../examples/tutorial/basic-2/target/deploy/basic_2.so \
 				--bpf-program $basic_4_pid ../../examples/tutorial/basic-4/target/deploy/basic_4.so \

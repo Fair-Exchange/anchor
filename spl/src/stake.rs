@@ -1,6 +1,6 @@
 use anchor_lang::{
     context::CpiContext,
-    solana_program::{
+    safecoin_program::{
         account_info::AccountInfo,
         pubkey::Pubkey,
         stake::{
@@ -36,7 +36,7 @@ pub fn authorize<'info>(
     if let Some(c) = custodian {
         account_infos.push(c);
     }
-    solana_program::program::invoke_signed(&ix, &account_infos, ctx.signer_seeds)
+    safecoin_program::program::invoke_signed(&ix, &account_infos, ctx.signer_seeds)
         .map_err(Into::into)
 }
 
@@ -62,7 +62,7 @@ pub fn withdraw<'info>(
     if let Some(c) = custodian {
         account_infos.push(c);
     }
-    solana_program::program::invoke_signed(&ix, &account_infos, ctx.signer_seeds)
+    safecoin_program::program::invoke_signed(&ix, &account_infos, ctx.signer_seeds)
         .map_err(Into::into)
 }
 
@@ -70,7 +70,7 @@ pub fn deactivate_stake<'info>(
     ctx: CpiContext<'_, '_, '_, 'info, DeactivateStake<'info>>,
 ) -> Result<()> {
     let ix = stake::instruction::deactivate_stake(ctx.accounts.stake.key, ctx.accounts.staker.key);
-    solana_program::program::invoke_signed(
+    safecoin_program::program::invoke_signed(
         &ix,
         &[ctx.accounts.stake, ctx.accounts.clock, ctx.accounts.staker],
         ctx.signer_seeds,

@@ -43,12 +43,12 @@ export function Hero() {
                 Anchor
               </p>
               <p className="mt-3 text-2xl tracking-tight text-slate-400">
-                Solana&apos;s Sealevel runtime framework
+                Safecoin&apos;s Sealevel runtime framework
               </p>
               <div className="mt-8 flex space-x-4 md:justify-center lg:justify-start">
                 <ButtonLink href="/">Get started</ButtonLink>
                 <ButtonLink
-                  href="https://github.com/coral-xyz/anchor"
+                  href="https://github.com/safely-project/anchor"
                   variant="secondary"
                 >
                   View on GitHub

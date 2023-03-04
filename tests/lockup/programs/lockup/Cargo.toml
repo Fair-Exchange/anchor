@@ -16,5 +16,5 @@ anchor-deprecated-state = []
 default = ["anchor-deprecated-state"]
 
 [dependencies]
-anchor-lang = { path = "../../../../lang" }
-anchor-spl = { path = "../../../../spl" }
+safe-anchor-lang = { path = "../../../../lang" }
+safe-anchor-spl = { path = "../../../../spl" }

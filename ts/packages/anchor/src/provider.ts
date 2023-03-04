@@ -9,7 +9,7 @@ import {
   Commitment,
   SendTransactionError,
   SendOptions,
-} from "@solana/web3.js";
+} from "@safecoin/web3.js";
 import { bs58 } from "./utils/bytes/index.js";
 import { isBrowser } from "./utils/common.js";
 import {
@@ -84,7 +84,7 @@ export class AnchorProvider implements Provider {
     }
     opts = opts ?? AnchorProvider.defaultOptions();
     const connection = new Connection(
-      url ?? "http://localhost:8899",
+      url ?? "http://localhost:8328",
       opts.preflightCommitment
     );
     const NodeWallet = require("./nodewallet.js").default;

@@ -1,7 +1,7 @@
-import * as anchor from "@coral-xyz/anchor";
-import { AnchorError, Program } from "@coral-xyz/anchor";
+import * as anchor from "@safely-project/anchor";
+import { AnchorError, Program } from "@safely-project/anchor";
 import { InitIfNeeded } from "../../target/types/init_if_needed";
-import { SystemProgram, LAMPORTS_PER_SOL } from "@solana/web3.js";
+import { SystemProgram, LAMPORTS_PER_SAFE } from "@safecoin/web3.js";
 import { expect } from "chai";
 
 describe("init-if-needed", () => {
@@ -44,7 +44,7 @@ describe("init-if-needed", () => {
           SystemProgram.transfer({
             fromPubkey: provider.wallet.publicKey,
             toPubkey: account.publicKey,
-            lamports: 1 * LAMPORTS_PER_SOL,
+            lamports: 1 * LAMPORTS_PER_SAFE,
           }),
         ])
         .rpc();

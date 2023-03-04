@@ -1,119 +1,152 @@
-<div align="center">
-  <img height="170x" src="https://pbs.twimg.com/media/FVUVaO9XEAAulvK?format=png&name=small" />
+<p align="center">
+  <a href="https://solana.com">
+    <img alt="Safecoin" src="https://raw.githubusercontent.com/Fair-Exchange/safecoinwiki/master/Logos/SafeCoin/SafeCoin-Logo-with-text.png"/>
+  </a>
+</p>
 
-  <h1>Anchor</h1>
+[![twitter](https://img.shields.io/twitter/follow/safecoins?style=social)](https://twitter.com/safecoins)
 
-  <p>
-    <strong>Solana Sealevel Framework</strong>
-  </p>
 
-  <p>
-    <a href="https://github.com/coral-xyz/anchor/actions"><img alt="Build Status" src="https://github.com/coral-xyz/anchor/actions/workflows/tests.yaml/badge.svg" /></a>
-    <a href="https://anchor-lang.com"><img alt="Tutorials" src="https://img.shields.io/badge/docs-tutorials-blueviolet" /></a>
-    <a href="https://discord.gg/PDeRXyVURd"><img alt="Discord Chat" src="https://img.shields.io/discord/889577356681945098?color=blueviolet" /></a>
-    <a href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/github/license/coral-xyz/anchor?color=blueviolet" /></a>
-  </p>
-</div>
+# Building
 
-Anchor is a framework for Solana's [Sealevel](https://medium.com/solana-labs/sealevel-parallel-processing-thousands-of-smart-contracts-d814b378192) runtime providing several convenient developer tools for writing smart contracts.
+## **1. Install rustc, cargo and rustfmt.**
 
-- Rust eDSL for writing Solana programs
-- [IDL](https://en.wikipedia.org/wiki/Interface_description_language) specification
-- TypeScript package for generating clients from IDL
-- CLI and workspace management for developing complete applications
-
-If you're familiar with developing in Ethereum's [Solidity](https://docs.soliditylang.org/en/v0.7.4/), [Truffle](https://www.trufflesuite.com/), [web3.js](https://github.com/ethereum/web3.js), then the experience will be familiar. Although the DSL syntax and semantics are targeted at Solana, the high level flow of writing RPC request handlers, emitting an IDL, and generating clients from IDL is the same.
-
-## Getting Started
-
-For a quickstart guide and in depth tutorials, see the [anchor book](https://book.anchor-lang.com) and the older [documentation](https://anchor-lang.com) that is being phased out.
-To jump straight to examples, go [here](https://github.com/coral-xyz/anchor/tree/master/examples). For the latest Rust and TypeScript API documentation, see [docs.rs](https://docs.rs/anchor-lang) and the [typedoc](https://coral-xyz.github.io/anchor/ts/index.html).
-
-## Packages
-
-| Package                 | Description                                              | Version                                                                                                                          | Docs                                                                                                            |
-| :---------------------- | :------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------- |
-| `anchor-lang`           | Rust primitives for writing programs on Solana           | [![Crates.io](https://img.shields.io/crates/v/anchor-lang?color=blue)](https://crates.io/crates/anchor-lang)                     | [![Docs.rs](https://docs.rs/anchor-lang/badge.svg)](https://docs.rs/anchor-lang)                                |
-| `anchor-spl`            | CPI clients for SPL programs on Solana                   | ![crates](https://img.shields.io/crates/v/anchor-spl?color=blue)                                                                 | [![Docs.rs](https://docs.rs/anchor-spl/badge.svg)](https://docs.rs/anchor-spl)                                  |
-| `anchor-client`         | Rust client for Anchor programs                          | ![crates](https://img.shields.io/crates/v/anchor-client?color=blue)                                                              | [![Docs.rs](https://docs.rs/anchor-client/badge.svg)](https://docs.rs/anchor-client)                            |
-| `@coral-xyz/anchor`     | TypeScript client for Anchor programs                    | [![npm](https://img.shields.io/npm/v/@coral-xyz/anchor.svg?color=blue)](https://www.npmjs.com/package/@coral-xyz/anchor)         | [![Docs](https://img.shields.io/badge/docs-typedoc-blue)](https://coral-xyz.github.io/anchor/ts/index.html)     |
-| `@coral-xyz/anchor-cli` | CLI to support building and managing an Anchor workspace | [![npm](https://img.shields.io/npm/v/@coral-xyz/anchor-cli.svg?color=blue)](https://www.npmjs.com/package/@coral-xyz/anchor-cli) | [![Docs](https://img.shields.io/badge/docs-typedoc-blue)](https://coral-xyz.github.io/anchor/cli/commands.html) |
-
-## Note
-
-- **Anchor is in active development, so all APIs are subject to change.**
-- **This code is unaudited. Use at your own risk.**
-
-## Examples
-
-Here's a counter program, where only the designated `authority`
-can increment the count.
-
-```rust
-use anchor_lang::prelude::*;
-
-declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
-
-#[program]
-mod counter {
-    use super::*;
-
-    pub fn initialize(ctx: Context<Initialize>, start: u64) -> Result<()> {
-        let counter = &mut ctx.accounts.counter;
-        counter.authority = *ctx.accounts.authority.key;
-        counter.count = start;
-        Ok(())
-    }
-
-    pub fn increment(ctx: Context<Increment>) -> Result<()> {
-        let counter = &mut ctx.accounts.counter;
-        counter.count += 1;
-        Ok(())
-    }
-}
-
-#[derive(Accounts)]
-pub struct Initialize<'info> {
-    #[account(init, payer = authority, space = 48)]
-    pub counter: Account<'info, Counter>,
-    pub authority: Signer<'info>,
-    pub system_program: Program<'info, System>,
-}
-
-#[derive(Accounts)]
-pub struct Increment<'info> {
-    #[account(mut, has_one = authority)]
-    pub counter: Account<'info, Counter>,
-    pub authority: Signer<'info>,
-}
-
-#[account]
-pub struct Counter {
-    pub authority: Pubkey,
-    pub count: u64,
-}
+```bash
+$ curl https://sh.rustup.rs -sSf | sh
+$ source $HOME/.cargo/env
+$ rustup component add rustfmt
 ```
 
-For more, see the [examples](https://github.com/coral-xyz/anchor/tree/master/examples)
-and [tests](https://github.com/coral-xyz/anchor/tree/master/tests) directories.
+Please make sure you are always using the latest stable rust version by running:
 
-## License
+```bash
+$ rustup update
+```
 
-Anchor is licensed under [Apache 2.0](./LICENSE).
+When building a specific release branch, you should check the rust version in `ci/rust-version.sh` and if necessary, install that version by running:
+```bash
+$ rustup install VERSION
+```
+Note that if this is not the latest rust version on your machine, cargo commands may require an [override](https://rust-lang.github.io/rustup/overrides.html) in order to use the correct version.
 
-Unless you explicitly state otherwise, any contribution intentionally submitted
-for inclusion in Anchor by you, as defined in the Apache-2.0 license, shall be
-licensed as above, without any additional terms or conditions.
 
-## Contribution
+On Linux systems you may need to install libssl-dev, pkg-config, zlib1g-dev, etc.  On Ubuntu:
 
-Thank you for your interest in contributing to Anchor!
-Please see the [CONTRIBUTING.md](./CONTRIBUTING.md) to learn how.
+```bash
+$ sudo apt-get update
+$ sudo apt-get install libssl-dev libudev-dev pkg-config zlib1g-dev llvm clang cmake make libprotobuf-dev protobuf-compiler
+```
 
-### Thanks ❤️
+## **2. Download the source code.**
 
-<div align="center">
-  <a href="https://github.com/coral-xyz/anchor/graphs/contributors">
-    <img src="https://contrib.rocks/image?repo=coral-xyz/anchor" width="100%" />
-  </a>
-</div>
+```bash
+$ git clone https://github.com/Fair-Exchange/Safecoin.git
+$ cd Safecoin
+```
+
+## **3. Build.**
+
+```bash
+$ cargo build
+```
+
+## **4. Run a minimal local cluster.**
+```bash
+$ ./run.sh
+```
+
+# Testing
+
+**Run the test suite:**
+
+```bash
+$ cargo test
+```
+
+### Starting a local testnet
+Start your own testnet locally, instructions are in the [online docs](https://docs.solana.com/cluster/bench-tps).
+
+### Accessing the remote development cluster
+* `devnet` - stable public cluster for development accessible via
+devnet.safecoin.org. Runs 24/7. Learn more about the [public clusters](https://docs.solana.com/clusters)
+
+# Benchmarking
+
+First install the nightly build of rustc. `cargo bench` requires use of the
+unstable features only available in the nightly build.
+
+```bash
+$ rustup install nightly
+```
+
+Run the benchmarks:
+
+```bash
+$ cargo +nightly bench
+```
+
+# Release Process
+
+The release process for this project is described [here](RELEASE.md).
+
+# Code coverage
+
+To generate code coverage statistics:
+
+```bash
+$ scripts/coverage.sh
+$ open target/cov/lcov-local/index.html
+```
+
+Why coverage? While most see coverage as a code quality metric, we see it primarily as a developer
+productivity metric. When a developer makes a change to the codebase, presumably it's a *solution* to
+some problem.  Our unit-test suite is how we encode the set of *problems* the codebase solves. Running
+the test suite should indicate that your change didn't *infringe* on anyone else's solutions. Adding a
+test *protects* your solution from future changes. Say you don't understand why a line of code exists,
+try deleting it and running the unit-tests. The nearest test failure should tell you what problem
+was solved by that code. If no test fails, go ahead and submit a Pull Request that asks, "what
+problem is solved by this code?" On the other hand, if a test does fail and you can think of a
+better way to solve the same problem, a Pull Request with your solution would most certainly be
+welcome! Likewise, if rewriting a test can better communicate what code it's protecting, please
+send us that patch!
+
+# Disclaimer
+
+All claims, content, designs, algorithms, estimates, roadmaps,
+specifications, and performance measurements described in this project
+are done with the Solana Foundation's ("SF") best efforts. It is up to
+the reader to check and validate their accuracy and truthfulness.
+Furthermore nothing in this project constitutes a solicitation for
+investment.
+
+Any content produced by SF or developer resources that SF provides, are
+for educational and inspiration purposes only. SF does not encourage,
+induce or sanction the deployment, integration or use of any such
+applications (including the code comprising the Safecoin blockchain
+protocol) in violation of applicable laws or regulations and hereby
+prohibits any such deployment, integration or use. This includes use of
+any such applications by the reader (a) in violation of export control
+or sanctions laws of the United States or any other applicable
+jurisdiction, (b) if the reader is located in or ordinarily resident in
+a country or territory subject to comprehensive sanctions administered
+by the U.S. Office of Foreign Assets Control (OFAC), or (c) if the
+reader is or is working on behalf of a Specially Designated National
+(SDN) or a person subject to similar blocking or denied party
+prohibitions.
+
+The reader should be aware that U.S. export control and sanctions laws
+prohibit U.S. persons (and other persons that are subject to such laws)
+from transacting with persons in certain countries and territories or
+that are on the SDN list. As a project based primarily on open-source
+software, it is possible that such sanctioned persons may nevertheless
+bypass prohibitions, obtain the code comprising the Safecoin blockchain
+protocol (or other project code or applications) and deploy, integrate,
+or otherwise use it. Accordingly, there is a risk to individuals that
+other persons using the Safecoin blockchain protocol may be sanctioned
+persons and that transactions with such persons would be a violation of
+U.S. export controls and sanctions law. This risk applies to
+individuals, organizations, and other ecosystem participants that
+deploy, integrate, or use the Safecoin blockchain protocol code directly
+(e.g., as a node operator), and individuals that transact on the Safecoin
+blockchain through light clients, third party interfaces, and/or wallet
+software.

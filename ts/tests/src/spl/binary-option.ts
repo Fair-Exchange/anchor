@@ -1,17 +1,17 @@
 import assert from "assert";
-import { splBinaryOptionProgram } from "@coral-xyz/spl-binary-option";
+import { splBinaryOptionProgram } from "@safely-project/spl-binary-option";
 import {
   Keypair,
   PublicKey,
   SystemProgram,
   SYSVAR_RENT_PUBKEY,
-} from "@solana/web3.js";
-import { splTokenProgram } from "@coral-xyz/spl-token";
-import { BN } from "@coral-xyz/anchor";
+} from "@safecoin/web3.js";
+import { splTokenProgram } from "@safely-project/safe-token";
+import { BN } from "@safely-project/anchor";
 
 import {
   SPL_BINARY_OPTION_PROGRAM_ID,
-  SPL_TOKEN_PROGRAM_ID,
+  SAFE_TOKEN_PROGRAM_ID,
 } from "../constants";
 import {
   createAta,
@@ -30,7 +30,7 @@ export async function binaryOptionTests() {
   });
   const tokenProgram = splTokenProgram({
     provider,
-    programId: SPL_TOKEN_PROGRAM_ID,
+    programId: SAFE_TOKEN_PROGRAM_ID,
   });
   const kp = await loadKp();
 
@@ -66,7 +66,7 @@ export async function binaryOptionTests() {
         [
           longTokenMintPk.toBuffer(),
           shortTokenMintPk.toBuffer(),
-          SPL_TOKEN_PROGRAM_ID.toBuffer(),
+          SAFE_TOKEN_PROGRAM_ID.toBuffer(),
           SPL_BINARY_OPTION_PROGRAM_ID.toBuffer(),
         ],
         SPL_BINARY_OPTION_PROGRAM_ID

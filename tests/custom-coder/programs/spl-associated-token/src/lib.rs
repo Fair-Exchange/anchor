@@ -1,4 +1,4 @@
-// See https://github.com/coral-xyz/anchor/blob/master/ts/packages/spl-associated-token-account/program/lib.rs
+// See https://github.com/safely-project/anchor/blob/master/ts/packages/safe-associated-token-account/program/lib.rs
 
 use anchor_lang::prelude::*;
 

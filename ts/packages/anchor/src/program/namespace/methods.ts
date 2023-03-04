@@ -6,7 +6,7 @@ import {
   Transaction,
   TransactionInstruction,
   TransactionSignature,
-} from "@solana/web3.js";
+} from "@safecoin/web3.js";
 import { Idl, IdlAccountItem, IdlAccounts, IdlTypeDef } from "../../idl.js";
 import Provider from "../../provider.js";
 import {

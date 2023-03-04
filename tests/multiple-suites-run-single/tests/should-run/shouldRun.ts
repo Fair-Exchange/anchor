@@ -1,5 +1,5 @@
-import * as anchor from "@coral-xyz/anchor";
-import { Program } from "@coral-xyz/anchor";
+import * as anchor from "@safely-project/anchor";
+import { Program } from "@safely-project/anchor";
 import { assert } from "chai";
 import { MultipleSuitesRunSingle } from "../../target/types/multiple_suites_run_single";
 

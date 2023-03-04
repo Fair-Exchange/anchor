@@ -3,7 +3,7 @@ use crate::VERSION;
 use anchor_syn::idl::Idl;
 use anyhow::Result;
 use heck::{ToLowerCamelCase, ToSnakeCase, ToUpperCamelCase};
-use solana_sdk::pubkey::Pubkey;
+use safecoin_sdk::pubkey::Pubkey;
 use std::fmt::Write;
 
 pub fn default_program_id() -> Pubkey {
@@ -75,7 +75,7 @@ cpi = ["no-entrypoint"]
 default = []
 
 [dependencies]
-anchor-lang = "{2}"
+safe-anchor-lang = "{2}"
 "#,
         name,
         name.to_snake_case(),
@@ -86,7 +86,7 @@ anchor-lang = "{2}"
 pub fn deploy_js_script_host(cluster_url: &str, script_path: &str) -> String {
     format!(
         r#"
-const anchor = require('@coral-xyz/anchor');
+const anchor = require('@safely-project/anchor');
 
 // Deploy script defined by the user.
 const userScript = require("{script_path}");
@@ -112,7 +112,7 @@ main();
 
 pub fn deploy_ts_script_host(cluster_url: &str, script_path: &str) -> String {
     format!(
-        r#"import * as anchor from '@coral-xyz/anchor';
+        r#"import * as anchor from '@safely-project/anchor';
 
 // Deploy script defined by the user.
 const userScript = require("{script_path}");
@@ -141,7 +141,7 @@ pub fn deploy_script() -> &'static str {
 // single deploy script that's invoked from the CLI, injecting a provider
 // configured from the workspace's Anchor.toml.
 
-const anchor = require("@coral-xyz/anchor");
+const anchor = require("@safely-project/anchor");
 
 module.exports = async function (provider) {
   // Configure client to use the provider.
@@ -157,7 +157,7 @@ pub fn ts_deploy_script() -> &'static str {
 // single deploy script that's invoked from the CLI, injecting a provider
 // configured from the workspace's Anchor.toml.
 
-const anchor = require("@coral-xyz/anchor");
+const anchor = require("@safely-project/anchor");
 
 module.exports = async function (provider) {
   // Configure client to use the provider.
@@ -199,7 +199,7 @@ pub struct Initialize {{}}
 
 pub fn mocha(name: &str) -> String {
     format!(
-        r#"const anchor = require("@coral-xyz/anchor");
+        r#"const anchor = require("@safely-project/anchor");
 
 describe("{}", () => {{
   // Configure the client to use the local cluster.
@@ -220,7 +220,7 @@ describe("{}", () => {{
 
 pub fn jest(name: &str) -> String {
     format!(
-        r#"const anchor = require("@coral-xyz/anchor");
+        r#"const anchor = require("@safely-project/anchor");
 
 describe("{}", () => {{
   // Configure the client to use the local cluster.
@@ -248,7 +248,7 @@ pub fn package_json(jest: bool) -> String {
             "lint": "prettier */*.js \"*/**/*{{.js,.ts}}\" --check"
         }},
         "dependencies": {{
-            "@coral-xyz/anchor": "^{VERSION}"
+            "@safely-project/anchor": "^{VERSION}"
         }},
         "devDependencies": {{
             "jest": "^29.0.3",
@@ -265,7 +265,7 @@ pub fn package_json(jest: bool) -> String {
         "lint": "prettier */*.js \"*/**/*{{.js,.ts}}\" --check"
     }},
     "dependencies": {{
-        "@coral-xyz/anchor": "^{VERSION}"
+        "@safely-project/anchor": "^{VERSION}"
     }},
     "devDependencies": {{
         "chai": "^4.3.4",
@@ -287,7 +287,7 @@ pub fn ts_package_json(jest: bool) -> String {
             "lint": "prettier */*.js \"*/**/*{{.js,.ts}}\" --check"
         }},
         "dependencies": {{
-            "@coral-xyz/anchor": "^{VERSION}"
+            "@safely-project/anchor": "^{VERSION}"
         }},
         "devDependencies": {{
             "@types/bn.js": "^5.1.0",
@@ -308,7 +308,7 @@ pub fn ts_package_json(jest: bool) -> String {
         "lint": "prettier */*.js \"*/**/*{{.js,.ts}}\" --check"
     }},
     "dependencies": {{
-        "@coral-xyz/anchor": "^{VERSION}"
+        "@safely-project/anchor": "^{VERSION}"
     }},
     "devDependencies": {{
         "chai": "^4.3.4",
@@ -328,8 +328,8 @@ pub fn ts_package_json(jest: bool) -> String {
 
 pub fn ts_mocha(name: &str) -> String {
     format!(
-        r#"import * as anchor from "@coral-xyz/anchor";
-import {{ Program }} from "@coral-xyz/anchor";
+        r#"import * as anchor from "@safely-project/anchor";
+import {{ Program }} from "@safely-project/anchor";
 import {{ {} }} from "../target/types/{}";
 
 describe("{}", () => {{
@@ -355,8 +355,8 @@ describe("{}", () => {{
 
 pub fn ts_jest(name: &str) -> String {
     format!(
-        r#"import * as anchor from "@coral-xyz/anchor";
-import {{ Program }} from "@coral-xyz/anchor";
+        r#"import * as anchor from "@safely-project/anchor";
+import {{ Program }} from "@safely-project/anchor";
 import {{ {} }} from "../target/types/{}";
 
 describe("{}", () => {{
@@ -438,7 +438,7 @@ pub fn node_shell(
 ) -> Result<String> {
     let mut eval_string = format!(
         r#"
-const anchor = require('@coral-xyz/anchor');
+const anchor = require('@safely-project/anchor');
 const web3 = anchor.web3;
 const PublicKey = anchor.web3.PublicKey;
 const Keypair = anchor.web3.Keypair;

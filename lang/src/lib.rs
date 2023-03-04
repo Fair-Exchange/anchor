@@ -1,7 +1,7 @@
-//! Anchor ⚓ is a framework for Solana's Sealevel runtime providing several
+//! Anchor ⚓ is a framework for Safecoin's Sealevel runtime providing several
 //! convenient developer tools.
 //!
-//! - Rust eDSL for writing safe, secure, and high level Solana programs
+//! - Rust eDSL for writing safe, secure, and high level Safecoin programs
 //! - [IDL](https://en.wikipedia.org/wiki/Interface_description_language) specification
 //! - TypeScript package for generating clients from IDL
 //! - CLI and workspace management for developing complete applications
@@ -11,22 +11,22 @@
 //! [Truffle](https://www.trufflesuite.com/),
 //! [web3.js](https://github.com/ethereum/web3.js) or Parity's
 //! [Ink!](https://github.com/paritytech/ink), then the experience will be
-//! familiar. Although the syntax and semantics are targeted at Solana, the high
+//! familiar. Although the syntax and semantics are targeted at Safecoin, the high
 //! level workflow of writing RPC request handlers, emitting an IDL, and
 //! generating clients from IDL is the same.
 //!
 //! For detailed tutorials and examples on how to use Anchor, see the guided
-//! [tutorials](https://anchor-lang.com) or examples in the GitHub
-//! [repository](https://github.com/coral-xyz/anchor).
+//! [tutorials](https://safe-anchor-lang.com) or examples in the GitHub
+//! [repository](https://github.com/safely-project/anchor).
 //!
-//! Presented here are the Rust primitives for building on Solana.
+//! Presented here are the Rust primitives for building on Safecoin.
 
 extern crate self as anchor_lang;
 
 use bytemuck::{Pod, Zeroable};
-use solana_program::account_info::AccountInfo;
-use solana_program::instruction::AccountMeta;
-use solana_program::pubkey::Pubkey;
+use safecoin_program::account_info::AccountInfo;
+use safecoin_program::instruction::AccountMeta;
+use safecoin_program::pubkey::Pubkey;
 use std::collections::{BTreeMap, BTreeSet};
 use std::io::Write;
 
@@ -53,12 +53,12 @@ pub use anchor_derive_accounts::Accounts;
 pub use anchor_derive_space::InitSpace;
 /// Borsh is the default serialization format for instructions and accounts.
 pub use borsh::{BorshDeserialize as AnchorDeserialize, BorshSerialize as AnchorSerialize};
-pub use solana_program;
+pub use safecoin_program;
 
 pub type Result<T> = std::result::Result<T, error::Error>;
 
 /// A data structure of validated accounts that can be deserialized from the
-/// input to a Solana program. Implementations of this trait should perform any
+/// input to a Safecoin program. Implementations of this trait should perform any
 /// and all requisite constraint checks on accounts to ensure the accounts
 /// maintain any invariants required for the program to run securely. In most
 /// cases, it's recommended to use the [`Accounts`](./derive.Accounts.html)
@@ -101,7 +101,7 @@ pub trait AccountsClose<'info>: ToAccountInfos<'info> {
 }
 
 /// Transformation to
-/// [`AccountMeta`](../solana_program/instruction/struct.AccountMeta.html)
+/// [`AccountMeta`](../safecoin_program/instruction/struct.AccountMeta.html)
 /// structs.
 pub trait ToAccountMetas {
     /// `is_signer` is given as an optional override for the signer meta field.
@@ -113,7 +113,7 @@ pub trait ToAccountMetas {
 }
 
 /// Transformation to
-/// [`AccountInfo`](../solana_program/account_info/struct.AccountInfo.html)
+/// [`AccountInfo`](../safecoin_program/account_info/struct.AccountInfo.html)
 /// structs.
 pub trait ToAccountInfos<'info> {
     fn to_account_infos(&self) -> Vec<AccountInfo<'info>>;
@@ -135,7 +135,7 @@ where
 
 /// A data structure that can be serialized and stored into account storage,
 /// i.e. an
-/// [`AccountInfo`](../solana_program/account_info/struct.AccountInfo.html#structfield.data)'s
+/// [`AccountInfo`](../safecoin_program/account_info/struct.AccountInfo.html#structfield.data)'s
 /// mutable data slice.
 ///
 /// Implementors of this trait should ensure that any subsequent usage of the
@@ -153,7 +153,7 @@ pub trait AccountSerialize {
 
 /// A data structure that can be deserialized and stored into account storage,
 /// i.e. an
-/// [`AccountInfo`](../solana_program/account_info/struct.AccountInfo.html#structfield.data)'s
+/// [`AccountInfo`](../safecoin_program/account_info/struct.AccountInfo.html#structfield.data)'s
 /// mutable data slice.
 pub trait AccountDeserialize: Sized {
     /// Deserializes previously initialized account data. Should fail for all
@@ -188,12 +188,12 @@ pub trait InstructionData: Discriminator + AnchorSerialize {
     }
 }
 
-/// An event that can be emitted via a Solana log. See [`emit!`](crate::prelude::emit) for an example.
+/// An event that can be emitted via a Safecoin log. See [`emit!`](crate::prelude::emit) for an example.
 pub trait Event: AnchorSerialize + AnchorDeserialize + Discriminator {
     fn data(&self) -> Vec<u8>;
 }
 
-// The serialized event data to be emitted via a Solana log.
+// The serialized event data to be emitted via a Safecoin log.
 // TODO: remove this on the next major version upgrade.
 #[doc(hidden)]
 #[deprecated(since = "0.4.2", note = "Please use Event instead")]
@@ -294,7 +294,7 @@ pub mod prelude {
         accounts::sysvar::Sysvar, accounts::unchecked_account::UncheckedAccount, constant,
         context::Context, context::CpiContext, declare_id, emit, err, error, event, program,
         require, require_eq, require_gt, require_gte, require_keys_eq, require_keys_neq,
-        require_neq, solana_program::bpf_loader_upgradeable::UpgradeableLoaderState, source,
+        require_neq, safecoin_program::bpf_loader_upgradeable::UpgradeableLoaderState, source,
         system_program::System, zero_copy, AccountDeserialize, AccountSerialize, Accounts,
         AccountsClose, AccountsExit, AnchorDeserialize, AnchorSerialize, Id, InitSpace, Key, Owner,
         ProgramData, Result, Space, ToAccountInfo, ToAccountInfos, ToAccountMetas,
@@ -302,20 +302,20 @@ pub mod prelude {
     pub use anchor_attribute_error::*;
     pub use borsh;
     pub use error::*;
-    pub use solana_program::account_info::{next_account_info, AccountInfo};
-    pub use solana_program::instruction::AccountMeta;
-    pub use solana_program::msg;
-    pub use solana_program::program_error::ProgramError;
-    pub use solana_program::pubkey::Pubkey;
-    pub use solana_program::sysvar::clock::Clock;
-    pub use solana_program::sysvar::epoch_schedule::EpochSchedule;
-    pub use solana_program::sysvar::instructions::Instructions;
-    pub use solana_program::sysvar::rent::Rent;
-    pub use solana_program::sysvar::rewards::Rewards;
-    pub use solana_program::sysvar::slot_hashes::SlotHashes;
-    pub use solana_program::sysvar::slot_history::SlotHistory;
-    pub use solana_program::sysvar::stake_history::StakeHistory;
-    pub use solana_program::sysvar::Sysvar as SolanaSysvar;
+    pub use safecoin_program::account_info::{next_account_info, AccountInfo};
+    pub use safecoin_program::instruction::AccountMeta;
+    pub use safecoin_program::msg;
+    pub use safecoin_program::program_error::ProgramError;
+    pub use safecoin_program::pubkey::Pubkey;
+    pub use safecoin_program::sysvar::clock::Clock;
+    pub use safecoin_program::sysvar::epoch_schedule::EpochSchedule;
+    pub use safecoin_program::sysvar::instructions::Instructions;
+    pub use safecoin_program::sysvar::rent::Rent;
+    pub use safecoin_program::sysvar::rewards::Rewards;
+    pub use safecoin_program::sysvar::slot_hashes::SlotHashes;
+    pub use safecoin_program::sysvar::slot_history::SlotHistory;
+    pub use safecoin_program::sysvar::stake_history::StakeHistory;
+    pub use safecoin_program::sysvar::Sysvar as SafecoinSysvar;
     pub use thiserror;
 }
 
@@ -333,7 +333,7 @@ pub mod __private {
 
     pub use bytemuck;
 
-    use solana_program::pubkey::Pubkey;
+    use safecoin_program::pubkey::Pubkey;
 
     // Used to calculate the maximum between two expressions.
     // It is necessary for the calculation of the enum space.

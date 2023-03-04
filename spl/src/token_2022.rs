@@ -1,11 +1,11 @@
-use anchor_lang::solana_program::account_info::AccountInfo;
+use anchor_lang::safecoin_program::account_info::AccountInfo;
 
-use anchor_lang::solana_program::pubkey::Pubkey;
+use anchor_lang::safecoin_program::pubkey::Pubkey;
 use anchor_lang::{context::CpiContext, Accounts};
-use anchor_lang::{solana_program, Result};
+use anchor_lang::{safecoin_program, Result};
 
-pub use spl_token_2022;
-pub use spl_token_2022::ID;
+pub use safe_token_2022;
+pub use safe_token_2022::ID;
 
 #[deprecated(
     since = "0.27.0",
@@ -16,7 +16,7 @@ pub fn transfer<'info>(
     amount: u64,
 ) -> Result<()> {
     #[allow(deprecated)]
-    let ix = spl_token_2022::instruction::transfer(
+    let ix = safe_token_2022::instruction::transfer(
         ctx.program.key,
         ctx.accounts.from.key,
         ctx.accounts.to.key,
@@ -24,7 +24,7 @@ pub fn transfer<'info>(
         &[],
         amount,
     )?;
-    solana_program::program::invoke_signed(
+    safecoin_program::program::invoke_signed(
         &ix,
         &[
             ctx.accounts.from.clone(),
@@ -41,7 +41,7 @@ pub fn transfer_checked<'info>(
     amount: u64,
     decimals: u8,
 ) -> Result<()> {
-    let ix = spl_token_2022::instruction::transfer_checked(
+    let ix = safe_token_2022::instruction::transfer_checked(
         ctx.program.key,
         ctx.accounts.from.key,
         ctx.accounts.mint.key,
@@ -51,7 +51,7 @@ pub fn transfer_checked<'info>(
         amount,
         decimals,
     )?;
-    solana_program::program::invoke_signed(
+    safecoin_program::program::invoke_signed(
         &ix,
         &[
             ctx.accounts.from.clone(),
@@ -68,7 +68,7 @@ pub fn mint_to<'info>(
     ctx: CpiContext<'_, '_, '_, 'info, MintTo<'info>>,
     amount: u64,
 ) -> Result<()> {
-    let ix = spl_token_2022::instruction::mint_to(
+    let ix = safe_token_2022::instruction::mint_to(
         ctx.program.key,
         ctx.accounts.mint.key,
         ctx.accounts.to.key,
@@ -76,7 +76,7 @@ pub fn mint_to<'info>(
         &[],
         amount,
     )?;
-    solana_program::program::invoke_signed(
+    safecoin_program::program::invoke_signed(
         &ix,
         &[
             ctx.accounts.to.clone(),
@@ -89,7 +89,7 @@ pub fn mint_to<'info>(
 }
 
 pub fn burn<'info>(ctx: CpiContext<'_, '_, '_, 'info, Burn<'info>>, amount: u64) -> Result<()> {
-    let ix = spl_token_2022::instruction::burn(
+    let ix = safe_token_2022::instruction::burn(
         ctx.program.key,
         ctx.accounts.from.key,
         ctx.accounts.mint.key,
@@ -97,7 +97,7 @@ pub fn burn<'info>(ctx: CpiContext<'_, '_, '_, 'info, Burn<'info>>, amount: u64)
         &[],
         amount,
     )?;
-    solana_program::program::invoke_signed(
+    safecoin_program::program::invoke_signed(
         &ix,
         &[
             ctx.accounts.from.clone(),
@@ -113,7 +113,7 @@ pub fn approve<'info>(
     ctx: CpiContext<'_, '_, '_, 'info, Approve<'info>>,
     amount: u64,
 ) -> Result<()> {
-    let ix = spl_token_2022::instruction::approve(
+    let ix = safe_token_2022::instruction::approve(
         ctx.program.key,
         ctx.accounts.to.key,
         ctx.accounts.delegate.key,
@@ -121,7 +121,7 @@ pub fn approve<'info>(
         &[],
         amount,
     )?;
-    solana_program::program::invoke_signed(
+    safecoin_program::program::invoke_signed(
         &ix,
         &[
             ctx.accounts.to.clone(),
@@ -134,13 +134,13 @@ pub fn approve<'info>(
 }
 
 pub fn revoke<'info>(ctx: CpiContext<'_, '_, '_, 'info, Revoke<'info>>) -> Result<()> {
-    let ix = spl_token_2022::instruction::revoke(
+    let ix = safe_token_2022::instruction::revoke(
         ctx.program.key,
         ctx.accounts.source.key,
         ctx.accounts.authority.key,
         &[],
     )?;
-    solana_program::program::invoke_signed(
+    safecoin_program::program::invoke_signed(
         &ix,
         &[ctx.accounts.source.clone(), ctx.accounts.authority.clone()],
         ctx.signer_seeds,
@@ -151,13 +151,13 @@ pub fn revoke<'info>(ctx: CpiContext<'_, '_, '_, 'info, Revoke<'info>>) -> Resul
 pub fn initialize_account<'info>(
     ctx: CpiContext<'_, '_, '_, 'info, InitializeAccount<'info>>,
 ) -> Result<()> {
-    let ix = spl_token_2022::instruction::initialize_account(
+    let ix = safe_token_2022::instruction::initialize_account(
         ctx.program.key,
         ctx.accounts.account.key,
         ctx.accounts.mint.key,
         ctx.accounts.authority.key,
     )?;
-    solana_program::program::invoke(
+    safecoin_program::program::invoke(
         &ix,
         &[
             ctx.accounts.account.clone(),
@@ -172,13 +172,13 @@ pub fn initialize_account<'info>(
 pub fn initialize_account3<'info>(
     ctx: CpiContext<'_, '_, '_, 'info, InitializeAccount3<'info>>,
 ) -> Result<()> {
-    let ix = spl_token_2022::instruction::initialize_account3(
+    let ix = safe_token_2022::instruction::initialize_account3(
         ctx.program.key,
         ctx.accounts.account.key,
         ctx.accounts.mint.key,
         ctx.accounts.authority.key,
     )?;
-    solana_program::program::invoke(
+    safecoin_program::program::invoke(
         &ix,
         &[ctx.accounts.account.clone(), ctx.accounts.mint.clone()],
     )
@@ -186,14 +186,14 @@ pub fn initialize_account3<'info>(
 }
 
 pub fn close_account<'info>(ctx: CpiContext<'_, '_, '_, 'info, CloseAccount<'info>>) -> Result<()> {
-    let ix = spl_token_2022::instruction::close_account(
+    let ix = safe_token_2022::instruction::close_account(
         ctx.program.key,
         ctx.accounts.account.key,
         ctx.accounts.destination.key,
         ctx.accounts.authority.key,
         &[], // TODO: support multisig
     )?;
-    solana_program::program::invoke_signed(
+    safecoin_program::program::invoke_signed(
         &ix,
         &[
             ctx.accounts.account.clone(),
@@ -208,14 +208,14 @@ pub fn close_account<'info>(ctx: CpiContext<'_, '_, '_, 'info, CloseAccount<'inf
 pub fn freeze_account<'info>(
     ctx: CpiContext<'_, '_, '_, 'info, FreezeAccount<'info>>,
 ) -> Result<()> {
-    let ix = spl_token_2022::instruction::freeze_account(
+    let ix = safe_token_2022::instruction::freeze_account(
         ctx.program.key,
         ctx.accounts.account.key,
         ctx.accounts.mint.key,
         ctx.accounts.authority.key,
         &[], // TODO: Support multisig signers.
     )?;
-    solana_program::program::invoke_signed(
+    safecoin_program::program::invoke_signed(
         &ix,
         &[
             ctx.accounts.account.clone(),
@@ -228,14 +228,14 @@ pub fn freeze_account<'info>(
 }
 
 pub fn thaw_account<'info>(ctx: CpiContext<'_, '_, '_, 'info, ThawAccount<'info>>) -> Result<()> {
-    let ix = spl_token_2022::instruction::thaw_account(
+    let ix = safe_token_2022::instruction::thaw_account(
         ctx.program.key,
         ctx.accounts.account.key,
         ctx.accounts.mint.key,
         ctx.accounts.authority.key,
         &[], // TODO: Support multisig signers.
     )?;
-    solana_program::program::invoke_signed(
+    safecoin_program::program::invoke_signed(
         &ix,
         &[
             ctx.accounts.account.clone(),
@@ -253,14 +253,14 @@ pub fn initialize_mint<'info>(
     authority: &Pubkey,
     freeze_authority: Option<&Pubkey>,
 ) -> Result<()> {
-    let ix = spl_token_2022::instruction::initialize_mint(
+    let ix = safe_token_2022::instruction::initialize_mint(
         ctx.program.key,
         ctx.accounts.mint.key,
         authority,
         freeze_authority,
         decimals,
     )?;
-    solana_program::program::invoke(&ix, &[ctx.accounts.mint.clone(), ctx.accounts.rent.clone()])
+    safecoin_program::program::invoke(&ix, &[ctx.accounts.mint.clone(), ctx.accounts.rent.clone()])
         .map_err(Into::into)
 }
 
@@ -270,19 +270,19 @@ pub fn initialize_mint2<'info>(
     authority: &Pubkey,
     freeze_authority: Option<&Pubkey>,
 ) -> Result<()> {
-    let ix = spl_token_2022::instruction::initialize_mint2(
+    let ix = safe_token_2022::instruction::initialize_mint2(
         ctx.program.key,
         ctx.accounts.mint.key,
         authority,
         freeze_authority,
         decimals,
     )?;
-    solana_program::program::invoke(&ix, &[ctx.accounts.mint.clone()]).map_err(Into::into)
+    safecoin_program::program::invoke(&ix, &[ctx.accounts.mint.clone()]).map_err(Into::into)
 }
 
 pub fn set_authority<'info>(
     ctx: CpiContext<'_, '_, '_, 'info, SetAuthority<'info>>,
-    authority_type: spl_token_2022::instruction::AuthorityType,
+    authority_type: safe_token_2022::instruction::AuthorityType,
     new_authority: Option<Pubkey>,
 ) -> Result<()> {
     let mut spl_new_authority: Option<&Pubkey> = None;
@@ -290,7 +290,7 @@ pub fn set_authority<'info>(
         spl_new_authority = new_authority.as_ref()
     }
 
-    let ix = spl_token_2022::instruction::set_authority(
+    let ix = safe_token_2022::instruction::set_authority(
         ctx.program.key,
         ctx.accounts.account_or_mint.key,
         spl_new_authority,
@@ -298,7 +298,7 @@ pub fn set_authority<'info>(
         ctx.accounts.current_authority.key,
         &[], // TODO: Support multisig signers.
     )?;
-    solana_program::program::invoke_signed(
+    safecoin_program::program::invoke_signed(
         &ix,
         &[
             ctx.accounts.account_or_mint.clone(),
@@ -310,28 +310,28 @@ pub fn set_authority<'info>(
 }
 
 pub fn sync_native<'info>(ctx: CpiContext<'_, '_, '_, 'info, SyncNative<'info>>) -> Result<()> {
-    let ix = spl_token_2022::instruction::sync_native(ctx.program.key, ctx.accounts.account.key)?;
-    solana_program::program::invoke(&ix, &[ctx.accounts.account.clone()]).map_err(Into::into)
+    let ix = safe_token_2022::instruction::sync_native(ctx.program.key, ctx.accounts.account.key)?;
+    safecoin_program::program::invoke(&ix, &[ctx.accounts.account.clone()]).map_err(Into::into)
 }
 
 pub fn get_account_data_size<'info>(
     ctx: CpiContext<'_, '_, '_, 'info, GetAccountDataSize<'info>>,
-    extension_types: &[spl_token_2022::extension::ExtensionType],
+    extension_types: &[safe_token_2022::extension::ExtensionType],
 ) -> Result<u64> {
-    let ix = spl_token_2022::instruction::get_account_data_size(
+    let ix = safe_token_2022::instruction::get_account_data_size(
         ctx.program.key,
         ctx.accounts.mint.key,
         extension_types,
     )?;
-    solana_program::program::invoke(&ix, &[ctx.accounts.mint.clone()])?;
-    solana_program::program::get_return_data()
-        .ok_or(solana_program::program_error::ProgramError::InvalidInstructionData)
+    safecoin_program::program::invoke(&ix, &[ctx.accounts.mint.clone()])?;
+    safecoin_program::program::get_return_data()
+        .ok_or(safecoin_program::program_error::ProgramError::InvalidInstructionData)
         .and_then(|(key, data)| {
             if key != *ctx.program.key {
-                Err(solana_program::program_error::ProgramError::IncorrectProgramId)
+                Err(safecoin_program::program_error::ProgramError::IncorrectProgramId)
             } else {
                 data.try_into().map(u64::from_le_bytes).map_err(|_| {
-                    solana_program::program_error::ProgramError::InvalidInstructionData
+                    safecoin_program::program_error::ProgramError::InvalidInstructionData
                 })
             }
         })
@@ -342,42 +342,42 @@ pub fn initialize_mint_close_authority<'info>(
     ctx: CpiContext<'_, '_, '_, 'info, InitializeMintCloseAuthority<'info>>,
     close_authority: Option<&Pubkey>,
 ) -> Result<()> {
-    let ix = spl_token_2022::instruction::initialize_mint_close_authority(
+    let ix = safe_token_2022::instruction::initialize_mint_close_authority(
         ctx.program.key,
         ctx.accounts.mint.key,
         close_authority,
     )?;
-    solana_program::program::invoke(&ix, &[ctx.accounts.mint.clone()]).map_err(Into::into)
+    safecoin_program::program::invoke(&ix, &[ctx.accounts.mint.clone()]).map_err(Into::into)
 }
 
 pub fn initialize_immutable_owner<'info>(
     ctx: CpiContext<'_, '_, '_, 'info, InitializeImmutableOwner<'info>>,
 ) -> Result<()> {
-    let ix = spl_token_2022::instruction::initialize_immutable_owner(
+    let ix = safe_token_2022::instruction::initialize_immutable_owner(
         ctx.program.key,
         ctx.accounts.account.key,
     )?;
-    solana_program::program::invoke(&ix, &[ctx.accounts.account.clone()]).map_err(Into::into)
+    safecoin_program::program::invoke(&ix, &[ctx.accounts.account.clone()]).map_err(Into::into)
 }
 
 pub fn amount_to_ui_amount<'info>(
     ctx: CpiContext<'_, '_, '_, 'info, AmountToUiAmount<'info>>,
     amount: u64,
 ) -> Result<String> {
-    let ix = spl_token_2022::instruction::amount_to_ui_amount(
+    let ix = safe_token_2022::instruction::amount_to_ui_amount(
         ctx.program.key,
         ctx.accounts.account.key,
         amount,
     )?;
-    solana_program::program::invoke(&ix, &[ctx.accounts.account.clone()])?;
-    solana_program::program::get_return_data()
-        .ok_or(solana_program::program_error::ProgramError::InvalidInstructionData)
+    safecoin_program::program::invoke(&ix, &[ctx.accounts.account.clone()])?;
+    safecoin_program::program::get_return_data()
+        .ok_or(safecoin_program::program_error::ProgramError::InvalidInstructionData)
         .and_then(|(key, data)| {
             if key != *ctx.program.key {
-                Err(solana_program::program_error::ProgramError::IncorrectProgramId)
+                Err(safecoin_program::program_error::ProgramError::IncorrectProgramId)
             } else {
                 String::from_utf8(data).map_err(|_| {
-                    solana_program::program_error::ProgramError::InvalidInstructionData
+                    safecoin_program::program_error::ProgramError::InvalidInstructionData
                 })
             }
         })
@@ -388,20 +388,20 @@ pub fn ui_amount_to_amount<'info>(
     ctx: CpiContext<'_, '_, '_, 'info, UiAmountToAmount<'info>>,
     ui_amount: &str,
 ) -> Result<u64> {
-    let ix = spl_token_2022::instruction::ui_amount_to_amount(
+    let ix = safe_token_2022::instruction::ui_amount_to_amount(
         ctx.program.key,
         ctx.accounts.account.key,
         ui_amount,
     )?;
-    solana_program::program::invoke(&ix, &[ctx.accounts.account.clone()])?;
-    solana_program::program::get_return_data()
-        .ok_or(solana_program::program_error::ProgramError::InvalidInstructionData)
+    safecoin_program::program::invoke(&ix, &[ctx.accounts.account.clone()])?;
+    safecoin_program::program::get_return_data()
+        .ok_or(safecoin_program::program_error::ProgramError::InvalidInstructionData)
         .and_then(|(key, data)| {
             if key != *ctx.program.key {
-                Err(solana_program::program_error::ProgramError::IncorrectProgramId)
+                Err(safecoin_program::program_error::ProgramError::IncorrectProgramId)
             } else {
                 data.try_into().map(u64::from_le_bytes).map_err(|_| {
-                    solana_program::program_error::ProgramError::InvalidInstructionData
+                    safecoin_program::program_error::ProgramError::InvalidInstructionData
                 })
             }
         })

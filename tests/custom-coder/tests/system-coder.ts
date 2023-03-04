@@ -1,14 +1,14 @@
-import * as anchor from "@coral-xyz/anchor";
-import { Native } from "@coral-xyz/anchor";
-import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
+import * as anchor from "@safely-project/anchor";
+import { Native } from "@safely-project/anchor";
+import { TOKEN_PROGRAM_ID } from "@safecoin/safe-token";
 import {
   Keypair,
-  LAMPORTS_PER_SOL,
+  LAMPORTS_PER_SAFE,
   NONCE_ACCOUNT_LENGTH,
   PublicKey,
   SystemProgram,
   SYSVAR_RECENT_BLOCKHASHES_PUBKEY,
-} from "@solana/web3.js";
+} from "@safecoin/web3.js";
 import * as assert from "assert";
 import BN from "bn.js";
 
@@ -183,7 +183,7 @@ describe("system-coder", () => {
   });
 
   it("Transfers from account with seed", async () => {
-    const lamports = 1 * LAMPORTS_PER_SOL;
+    const lamports = 1 * LAMPORTS_PER_SAFE;
     const owner = SystemProgram.programId;
     const seed = "seeds3";
     const bobPublicKey = await PublicKey.createWithSeed(
@@ -224,7 +224,7 @@ describe("system-coder", () => {
   it("Transfers lamports", async () => {
     // arrange
     const receiverKeypair = Keypair.generate();
-    const lamports = 0.1 * LAMPORTS_PER_SOL;
+    const lamports = 0.1 * LAMPORTS_PER_SAFE;
     // act
     await program.methods
       .transfer(new BN(lamports))
@@ -361,7 +361,7 @@ describe("system-coder", () => {
     const space = NONCE_ACCOUNT_LENGTH;
     const lamports =
       await provider.connection.getMinimumBalanceForRentExemption(space);
-    const amount = 0.1 * LAMPORTS_PER_SOL;
+    const amount = 0.1 * LAMPORTS_PER_SAFE;
     const aliceBalanceBefore = (
       await program.provider.connection.getAccountInfo(aliceKeypair.publicKey)
     ).lamports;

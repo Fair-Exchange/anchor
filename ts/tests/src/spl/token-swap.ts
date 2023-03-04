@@ -1,10 +1,10 @@
 import assert from "assert";
-import { splTokenProgram } from "@coral-xyz/spl-token";
-import { splTokenSwapProgram } from "@coral-xyz/spl-token-swap";
-import { Keypair, PublicKey, SYSVAR_RENT_PUBKEY } from "@solana/web3.js";
-import { BN } from "@coral-xyz/anchor";
+import { splTokenProgram } from "@safely-project/safe-token";
+import { splTokenSwapProgram } from "@safely-project/safe-token-swap";
+import { Keypair, PublicKey, SYSVAR_RENT_PUBKEY } from "@safecoin/web3.js";
+import { BN } from "@safely-project/anchor";
 
-import { SPL_TOKEN_PROGRAM_ID, SPL_TOKEN_SWAP_PROGRAM_ID } from "../constants";
+import { SAFE_TOKEN_PROGRAM_ID, SAFE_TOKEN_SWAP_PROGRAM_ID } from "../constants";
 import {
   createTokenAccount,
   getProvider,
@@ -17,11 +17,11 @@ export async function tokenSwapTests() {
   const provider = await getProvider();
   const program = splTokenSwapProgram({
     provider,
-    programId: SPL_TOKEN_SWAP_PROGRAM_ID,
+    programId: SAFE_TOKEN_SWAP_PROGRAM_ID,
   });
   const tokenProgram = splTokenProgram({
     provider,
-    programId: SPL_TOKEN_PROGRAM_ID,
+    programId: SAFE_TOKEN_PROGRAM_ID,
   });
   const kp = await loadKp();
 

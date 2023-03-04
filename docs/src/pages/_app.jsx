@@ -27,7 +27,7 @@ const navigation = [
       { title: 'Introduction', href: '/' },
       { title: 'Installation', href: '/docs/installation' },
       { title: 'Hello World', href: '/docs/hello-world' },
-      { title: 'Intro to Solana', href: '/docs/intro-to-solana' },
+      { title: 'Intro to Safecoin', href: '/docs/intro-to-solana' },
     ],
   },
   {
@@ -71,7 +71,7 @@ const navigation = [
       { title: 'AVM', href: '/docs/avm' },
       {
         title: 'Core Library',
-        href: 'https://docs.rs/anchor-lang/latest/anchor_lang/',
+        href: 'https://docs.rs/safe-anchor-lang/latest/anchor_lang/',
       },
       {
         title: 'Rust Client Library',
@@ -79,7 +79,7 @@ const navigation = [
       },
       // {
       //   title: 'TypeScript Client Library',
-      //   href: 'https://docs.rs/anchor-lang/latest/anchor_lang/error/enum.ErrorCode.html',
+      //   href: 'https://docs.rs/safe-anchor-lang/latest/anchor_lang/error/enum.ErrorCode.html',
       // },
       {
         title: 'JavaScript Anchor Types',
@@ -150,7 +150,7 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
-      <PlausibleProvider domain="anchor-lang.com" trackOutboundLinks={true}>
+      <PlausibleProvider domain="safe-anchor-lang.com" trackOutboundLinks={true}>
         <Head>
           <title>{pageTitle}</title>
           {description && <meta name="description" content={description} />}
@@ -161,7 +161,7 @@ export default function App({ Component, pageProps }) {
           <meta property="og:description" content={description} />
           <meta
             property="og:image"
-            content="https://www.anchor-lang.com/logo.png"
+            content="https://www.safe-anchor-lang.com/logo.png"
           />
           <meta property="og:image:width" content="250" />
           <meta property="og:image:height" content="214" />
@@ -172,7 +172,7 @@ export default function App({ Component, pageProps }) {
           <meta name="twitter:description" content={description} />
           <meta
             name="twitter:image"
-            content="https://www.anchor-lang.com/logo.png"
+            content="https://www.safe-anchor-lang.com/logo.png"
           />
         </Head>
         <Layout

@@ -1,6 +1,6 @@
 const { assert } = require("chai");
-const { Token } = require("@solana/spl-token");
-const anchor = require("@coral-xyz/anchor");
+const { Token } = require("@safecoin/safe-token");
+const anchor = require("@safely-project/anchor");
 const serumCmn = require("@project-serum/common");
 const { Market } = require("@project-serum/serum");
 const utf8 = anchor.utils.bytes.utf8;
@@ -10,7 +10,7 @@ const { setupStakePool } = require("./utils/stake");
 
 const DEX_PID = new PublicKey("srmqPvymJeFKQ4zGQed1GFppgkRHL9kaELCbyksJtPX");
 const SWAP_PID = new PublicKey("22Y43yTVxuUkoRKdm9thyRhQ3SdgQS7c7kB6UNCiaczD");
-const TOKEN_PID = new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA");
+const TOKEN_PID = new PublicKey("ToKLx75MGim1d1jRusuVX8xvdvvbSDESVaNXpRA9PHN");
 const REGISTRY_PID = new PublicKey(
   "GrAkKfEpTKQuVHG2Y97Y2FF4i7y7Q5AHLK94JBy7Y5yv"
 );

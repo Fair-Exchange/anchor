@@ -4,10 +4,10 @@ use crate::error::{Error, ErrorCode};
 use crate::{
     AccountDeserialize, Accounts, AccountsExit, Id, Key, Result, ToAccountInfos, ToAccountMetas,
 };
-use solana_program::account_info::AccountInfo;
-use solana_program::bpf_loader_upgradeable::{self, UpgradeableLoaderState};
-use solana_program::instruction::AccountMeta;
-use solana_program::pubkey::Pubkey;
+use safecoin_program::account_info::AccountInfo;
+use safecoin_program::bpf_loader_upgradeable::{self, UpgradeableLoaderState};
+use safecoin_program::instruction::AccountMeta;
+use safecoin_program::pubkey::Pubkey;
 use std::collections::{BTreeMap, BTreeSet};
 use std::convert::TryFrom;
 use std::fmt;
@@ -17,8 +17,8 @@ use std::ops::Deref;
 /// Type validating that the account is the given Program
 ///
 /// The type has a `programdata_address` function that will return `Option::Some`
-/// if the program is owned by the [`BPFUpgradeableLoader`](https://docs.rs/solana-program/latest/solana_program/bpf_loader_upgradeable/index.html)
-/// which will contain the `programdata_address` property of the `Program` variant of the [`UpgradeableLoaderState`](https://docs.rs/solana-program/latest/solana_program/bpf_loader_upgradeable/enum.UpgradeableLoaderState.html) enum.
+/// if the program is owned by the [`BPFUpgradeableLoader`](https://docs.rs/safecoin-program/latest/safecoin_program/bpf_loader_upgradeable/index.html)
+/// which will contain the `programdata_address` property of the `Program` variant of the [`UpgradeableLoaderState`](https://docs.rs/safecoin-program/latest/safecoin_program/bpf_loader_upgradeable/enum.UpgradeableLoaderState.html) enum.
 ///
 /// # Table of Contents
 /// - [Basic Functionality](#basic-functionality)
@@ -68,12 +68,12 @@ use std::ops::Deref;
 ///
 /// # Out of the Box Types
 ///
-/// Between the [`anchor_lang`](https://docs.rs/anchor-lang/latest/anchor_lang) and [`anchor_spl`](https://docs.rs/anchor_spl/latest/anchor_spl) crates,
+/// Between the [`anchor_lang`](https://docs.rs/safe-anchor-lang/latest/anchor_lang) and [`anchor_spl`](https://docs.rs/anchor_spl/latest/anchor_spl) crates,
 /// the following `Program` types are provided out of the box:
 ///
-/// - [`System`](https://docs.rs/anchor-lang/latest/anchor_lang/struct.System.html)
-/// - [`AssociatedToken`](https://docs.rs/anchor-spl/latest/anchor_spl/associated_token/struct.AssociatedToken.html)
-/// - [`Token`](https://docs.rs/anchor-spl/latest/anchor_spl/token/struct.Token.html)
+/// - [`System`](https://docs.rs/safe-anchor-lang/latest/anchor_lang/struct.System.html)
+/// - [`AssociatedToken`](https://docs.rs/safe-anchor-spl/latest/anchor_spl/associated_token/struct.AssociatedToken.html)
+/// - [`Token`](https://docs.rs/safe-anchor-spl/latest/anchor_spl/token/struct.Token.html)
 ///
 #[derive(Clone)]
 pub struct Program<'info, T> {

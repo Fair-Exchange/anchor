@@ -1,6 +1,6 @@
 import BN from "bn.js";
 import bs58 from "bs58";
-import { PublicKey } from "@solana/web3.js";
+import { PublicKey } from "@safecoin/web3.js";
 
 import NodeWallet from "../src/nodewallet";
 import { translateAddress } from "../src/program/common";

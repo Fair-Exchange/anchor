@@ -1,5 +1,5 @@
 {
-  "name": "@coral-xyz/monorepo",
+  "name": "@safely-project/monorepo",
   "private": true,
   "workspaces": [
     "packages/*",

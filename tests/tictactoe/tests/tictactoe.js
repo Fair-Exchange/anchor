@@ -1,4 +1,4 @@
-const anchor = require("@coral-xyz/anchor");
+const anchor = require("@safely-project/anchor");
 
 describe("tictactoe", () => {
   anchor.setProvider(anchor.AnchorProvider.env());

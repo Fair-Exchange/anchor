@@ -17,9 +17,9 @@ default = []
 test-bpf = []
 
 [dependencies]
-anchor-lang = { path = "../../../../lang" }
+safe-anchor-lang = { path = "../../../../lang" }
 bytemuck = {version = "1.4.0", features = ["derive", "min_const_generics"]}
 
 [dev-dependencies]
 anchor-client = { path = "../../../../client", features = ["debug"] }
-solana-program-test = "1.14.16"
+safecoin-program-test = "1.14.16"

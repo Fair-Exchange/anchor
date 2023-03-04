@@ -1,6 +1,6 @@
 [provider]
 cluster = "localnet"
-wallet = "~/.config/solana/id.json"
+wallet = "~/.config/safecoin/id.json"
 
 [programs.localnet]
 escrow = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
@@ -11,7 +11,7 @@ test = "yarn run ts-mocha -t 1000000 tests/*.ts"
 [features]
 
 [test.validator]
-url = "https://api.mainnet-beta.solana.com"
+url = "https://api.mainnet-beta.safecoin.org"
 
 [[test.validator.clone]]
 address = "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"

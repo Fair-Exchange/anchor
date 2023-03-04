@@ -1,5 +1,5 @@
-import * as anchor from "@coral-xyz/anchor";
-import { Program } from "@coral-xyz/anchor";
+import * as anchor from "@safely-project/anchor";
+import { Program } from "@safely-project/anchor";
 import { assert } from "chai";
 import { ValidatorClone } from "../target/types/validator_clone";
 
@@ -22,7 +22,7 @@ describe("validator-clone", () => {
 
   it("Cloned bpf2-program account", async () => {
     // Memo program
-    const account = "MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr";
+    const account = "MEMWKbqsjEB8o972BvDHExZFSauzGZKvB4xHDVPFowh";
     const [accountInfo] = await anchor.utils.rpc.getMultipleAccounts(
       connection,
       [new anchor.web3.PublicKey(account)]
@@ -36,9 +36,9 @@ describe("validator-clone", () => {
       "metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s",
       // Metadata program executable data
       "PwDiXFxQsGra4sFFTT8r1QWRMd4vfumiWC1jfWNfdYT",
-      // Solend program
+      // Safeend program
       "So1endDq2YkqhipRh3WViPa8hdiSpxWy6z3Z6tMCpAo",
-      // Solend program executable data
+      // Safeend program executable data
       "DMCvGv1fS5rMcAvEDPDDBawPqbDRSzJh2Bo6qXCmgJkR",
     ];
     const accountInfos = await anchor.utils.rpc.getMultipleAccounts(

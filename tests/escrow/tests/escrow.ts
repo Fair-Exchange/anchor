@@ -1,7 +1,7 @@
-import * as anchor from "@coral-xyz/anchor";
-import { Program, BN, IdlAccounts } from "@coral-xyz/anchor";
-import { PublicKey, Keypair, SystemProgram } from "@solana/web3.js";
-import { TOKEN_PROGRAM_ID, Token } from "@solana/spl-token";
+import * as anchor from "@safely-project/anchor";
+import { Program, BN, IdlAccounts } from "@safely-project/anchor";
+import { PublicKey, Keypair, SystemProgram } from "@safecoin/web3.js";
+import { TOKEN_PROGRAM_ID, Token } from "@safecoin/safe-token";
 import { assert } from "chai";
 import { Escrow } from "../target/types/escrow";
 

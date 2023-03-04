@@ -1,5 +1,5 @@
-import * as anchor from "@coral-xyz/anchor";
-import { Program } from "@coral-xyz/anchor";
+import * as anchor from "@safely-project/anchor";
+import { Program } from "@safely-project/anchor";
 import { AccountCommand } from "../target/types/account_command";
 import { assert } from "chai";
 import { execSync } from "child_process";

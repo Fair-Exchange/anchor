@@ -459,7 +459,7 @@ pub struct ExchangeRedeemableForWatermelon<'info> {
     // and prevents forgotten / leftover redeemable tokens in the IDO pool.
     pub payer: Signer<'info>,
     // User Accounts
-    #[account(mut)] // Sol rent from empty redeemable account is refunded to the user
+    #[account(mut)] // Safe rent from empty redeemable account is refunded to the user
     pub user_authority: AccountInfo<'info>,
     // TODO replace with ATA constraints
     #[account(mut,

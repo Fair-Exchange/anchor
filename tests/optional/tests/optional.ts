@@ -1,4 +1,4 @@
-import * as anchor from "@coral-xyz/anchor";
+import * as anchor from "@safely-project/anchor";
 import {
   Program,
   web3,
@@ -8,7 +8,7 @@ import {
   LangErrorMessage,
   translateError,
   parseIdlErrors,
-} from "@coral-xyz/anchor";
+} from "@safely-project/anchor";
 import { Optional } from "../target/types/optional";
 import { AllowMissingOptionals } from "../target/types/allow_missing_optionals";
 import { assert, expect } from "chai";

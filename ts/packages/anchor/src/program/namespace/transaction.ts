@@ -1,4 +1,4 @@
-import { Transaction } from "@solana/web3.js";
+import { Transaction } from "@safecoin/web3.js";
 import { Idl, IdlInstruction } from "../../idl.js";
 import { splitArgsAndCtx } from "../context.js";
 import { InstructionFn } from "./instruction.js";

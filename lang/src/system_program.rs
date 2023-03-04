@@ -1,7 +1,7 @@
 use crate::prelude::*;
-use solana_program::pubkey::Pubkey;
+use safecoin_program::pubkey::Pubkey;
 
-pub use solana_program::system_program::ID;
+pub use safecoin_program::system_program::ID;
 
 #[derive(Debug, Clone)]
 pub struct System;
@@ -15,11 +15,11 @@ impl anchor_lang::Id for System {
 pub fn advance_nonce_account<'info>(
     ctx: CpiContext<'_, '_, '_, 'info, AdvanceNonceAccount<'info>>,
 ) -> Result<()> {
-    let ix = crate::solana_program::system_instruction::advance_nonce_account(
+    let ix = crate::safecoin_program::system_instruction::advance_nonce_account(
         ctx.accounts.nonce.key,
         ctx.accounts.authorized.key,
     );
-    crate::solana_program::program::invoke_signed(
+    crate::safecoin_program::program::invoke_signed(
         &ix,
         &[
             ctx.accounts.nonce,
@@ -42,11 +42,11 @@ pub fn allocate<'info>(
     ctx: CpiContext<'_, '_, '_, 'info, Allocate<'info>>,
     space: u64,
 ) -> Result<()> {
-    let ix = crate::solana_program::system_instruction::allocate(
+    let ix = crate::safecoin_program::system_instruction::allocate(
         ctx.accounts.account_to_allocate.key,
         space,
     );
-    crate::solana_program::program::invoke_signed(
+    crate::safecoin_program::program::invoke_signed(
         &ix,
         &[ctx.accounts.account_to_allocate],
         ctx.signer_seeds,
@@ -65,14 +65,14 @@ pub fn allocate_with_seed<'info>(
     space: u64,
     owner: &Pubkey,
 ) -> Result<()> {
-    let ix = crate::solana_program::system_instruction::allocate_with_seed(
+    let ix = crate::safecoin_program::system_instruction::allocate_with_seed(
         ctx.accounts.account_to_allocate.key,
         ctx.accounts.base.key,
         seed,
         space,
         owner,
     );
-    crate::solana_program::program::invoke_signed(
+    crate::safecoin_program::program::invoke_signed(
         &ix,
         &[ctx.accounts.account_to_allocate, ctx.accounts.base],
         ctx.signer_seeds,
@@ -90,11 +90,11 @@ pub fn assign<'info>(
     ctx: CpiContext<'_, '_, '_, 'info, Assign<'info>>,
     owner: &Pubkey,
 ) -> Result<()> {
-    let ix = crate::solana_program::system_instruction::assign(
+    let ix = crate::safecoin_program::system_instruction::assign(
         ctx.accounts.account_to_assign.key,
         owner,
     );
-    crate::solana_program::program::invoke_signed(
+    crate::safecoin_program::program::invoke_signed(
         &ix,
         &[ctx.accounts.account_to_assign],
         ctx.signer_seeds,
@@ -112,13 +112,13 @@ pub fn assign_with_seed<'info>(
     seed: &str,
     owner: &Pubkey,
 ) -> Result<()> {
-    let ix = crate::solana_program::system_instruction::assign_with_seed(
+    let ix = crate::safecoin_program::system_instruction::assign_with_seed(
         ctx.accounts.account_to_assign.key,
         ctx.accounts.base.key,
         seed,
         owner,
     );
-    crate::solana_program::program::invoke_signed(
+    crate::safecoin_program::program::invoke_signed(
         &ix,
         &[ctx.accounts.account_to_assign, ctx.accounts.base],
         ctx.signer_seeds,
@@ -136,12 +136,12 @@ pub fn authorize_nonce_account<'info>(
     ctx: CpiContext<'_, '_, '_, 'info, AuthorizeNonceAccount<'info>>,
     new_authority: &Pubkey,
 ) -> Result<()> {
-    let ix = crate::solana_program::system_instruction::authorize_nonce_account(
+    let ix = crate::safecoin_program::system_instruction::authorize_nonce_account(
         ctx.accounts.nonce.key,
         ctx.accounts.authorized.key,
         new_authority,
     );
-    crate::solana_program::program::invoke_signed(
+    crate::safecoin_program::program::invoke_signed(
         &ix,
         &[ctx.accounts.nonce, ctx.accounts.authorized],
         ctx.signer_seeds,
@@ -161,14 +161,14 @@ pub fn create_account<'info>(
     space: u64,
     owner: &Pubkey,
 ) -> Result<()> {
-    let ix = crate::solana_program::system_instruction::create_account(
+    let ix = crate::safecoin_program::system_instruction::create_account(
         ctx.accounts.from.key,
         ctx.accounts.to.key,
         lamports,
         space,
         owner,
     );
-    crate::solana_program::program::invoke_signed(
+    crate::safecoin_program::program::invoke_signed(
         &ix,
         &[ctx.accounts.from, ctx.accounts.to],
         ctx.signer_seeds,
@@ -189,7 +189,7 @@ pub fn create_account_with_seed<'info>(
     space: u64,
     owner: &Pubkey,
 ) -> Result<()> {
-    let ix = crate::solana_program::system_instruction::create_account_with_seed(
+    let ix = crate::safecoin_program::system_instruction::create_account_with_seed(
         ctx.accounts.from.key,
         ctx.accounts.to.key,
         ctx.accounts.base.key,
@@ -198,7 +198,7 @@ pub fn create_account_with_seed<'info>(
         space,
         owner,
     );
-    crate::solana_program::program::invoke_signed(
+    crate::safecoin_program::program::invoke_signed(
         &ix,
         &[ctx.accounts.from, ctx.accounts.to, ctx.accounts.base],
         ctx.signer_seeds,
@@ -218,19 +218,19 @@ pub fn create_nonce_account<'info>(
     lamports: u64,
     authority: &Pubkey,
 ) -> Result<()> {
-    let ixs = crate::solana_program::system_instruction::create_nonce_account(
+    let ixs = crate::safecoin_program::system_instruction::create_nonce_account(
         ctx.accounts.from.key,
         ctx.accounts.nonce.key,
         authority,
         lamports,
     );
-    crate::solana_program::program::invoke_signed(
+    crate::safecoin_program::program::invoke_signed(
         &ixs[0],
         &[ctx.accounts.from, ctx.accounts.nonce.clone()],
         ctx.signer_seeds,
     )?;
 
-    crate::solana_program::program::invoke_signed(
+    crate::safecoin_program::program::invoke_signed(
         &ixs[1],
         &[
             ctx.accounts.nonce,
@@ -256,7 +256,7 @@ pub fn create_nonce_account_with_seed<'info>(
     seed: &str,
     authority: &Pubkey,
 ) -> Result<()> {
-    let ixs = crate::solana_program::system_instruction::create_nonce_account_with_seed(
+    let ixs = crate::safecoin_program::system_instruction::create_nonce_account_with_seed(
         ctx.accounts.from.key,
         ctx.accounts.nonce.key,
         ctx.accounts.base.key,
@@ -264,7 +264,7 @@ pub fn create_nonce_account_with_seed<'info>(
         authority,
         lamports,
     );
-    crate::solana_program::program::invoke_signed(
+    crate::safecoin_program::program::invoke_signed(
         &ixs[0],
         &[
             ctx.accounts.from,
@@ -274,7 +274,7 @@ pub fn create_nonce_account_with_seed<'info>(
         ctx.signer_seeds,
     )?;
 
-    crate::solana_program::program::invoke_signed(
+    crate::safecoin_program::program::invoke_signed(
         &ixs[1],
         &[
             ctx.accounts.nonce,
@@ -299,12 +299,12 @@ pub fn transfer<'info>(
     ctx: CpiContext<'_, '_, '_, 'info, Transfer<'info>>,
     lamports: u64,
 ) -> Result<()> {
-    let ix = crate::solana_program::system_instruction::transfer(
+    let ix = crate::safecoin_program::system_instruction::transfer(
         ctx.accounts.from.key,
         ctx.accounts.to.key,
         lamports,
     );
-    crate::solana_program::program::invoke_signed(
+    crate::safecoin_program::program::invoke_signed(
         &ix,
         &[ctx.accounts.from, ctx.accounts.to],
         ctx.signer_seeds,
@@ -324,7 +324,7 @@ pub fn transfer_with_seed<'info>(
     from_owner: &Pubkey,
     lamports: u64,
 ) -> Result<()> {
-    let ix = crate::solana_program::system_instruction::transfer_with_seed(
+    let ix = crate::safecoin_program::system_instruction::transfer_with_seed(
         ctx.accounts.from.key,
         ctx.accounts.base.key,
         from_seed,
@@ -332,7 +332,7 @@ pub fn transfer_with_seed<'info>(
         ctx.accounts.to.key,
         lamports,
     );
-    crate::solana_program::program::invoke_signed(
+    crate::safecoin_program::program::invoke_signed(
         &ix,
         &[ctx.accounts.from, ctx.accounts.base, ctx.accounts.to],
         ctx.signer_seeds,
@@ -351,13 +351,13 @@ pub fn withdraw_nonce_account<'info>(
     ctx: CpiContext<'_, '_, '_, 'info, WithdrawNonceAccount<'info>>,
     lamports: u64,
 ) -> Result<()> {
-    let ix = crate::solana_program::system_instruction::withdraw_nonce_account(
+    let ix = crate::safecoin_program::system_instruction::withdraw_nonce_account(
         ctx.accounts.nonce.key,
         ctx.accounts.authorized.key,
         ctx.accounts.to.key,
         lamports,
     );
-    crate::solana_program::program::invoke_signed(
+    crate::safecoin_program::program::invoke_signed(
         &ix,
         &[
             ctx.accounts.nonce,

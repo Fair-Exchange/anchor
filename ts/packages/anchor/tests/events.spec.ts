@@ -1,4 +1,4 @@
-import { PublicKey } from "@solana/web3.js";
+import { PublicKey } from "@safecoin/web3.js";
 import { EventParser } from "../src/program/event";
 import { BorshCoder } from "../src";
 
@@ -70,14 +70,14 @@ describe("Events", () => {
       "Program 11111111111111111111111111111111 success",
       "Program 11111111111111111111111111111111 invoke [2]",
       "Program 11111111111111111111111111111111 success",
-      "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+      "Program ToKLx75MGim1d1jRusuVX8xvdvvbSDESVaNXpRA9PHN invoke [2]",
       "Program log: Instruction: Transfer",
-      "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 2549 of 141128 compute units",
-      "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
-      "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+      "Program ToKLx75MGim1d1jRusuVX8xvdvvbSDESVaNXpRA9PHN consumed 2549 of 141128 compute units",
+      "Program ToKLx75MGim1d1jRusuVX8xvdvvbSDESVaNXpRA9PHN success",
+      "Program ToKLx75MGim1d1jRusuVX8xvdvvbSDESVaNXpRA9PHN invoke [2]",
       "Program log: Instruction: CloseAccount",
-      "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 1745 of 135127 compute units",
-      "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+      "Program ToKLx75MGim1d1jRusuVX8xvdvvbSDESVaNXpRA9PHN consumed 1745 of 135127 compute units",
+      "Program ToKLx75MGim1d1jRusuVX8xvdvvbSDESVaNXpRA9PHN success",
       "Program log: UhUxVlc2hGeTBjNPCGmmZjvNSuBOYpfpRPJLfJmTLZueJAmbgEtIMGl9lLKKH6YKy1AQd8lrsdJPPc7joZ6kCkEKlNLKhbUv",
       "Program J2XMGdW2qQLx7rAdwWtSZpTXDgAQ988BLP9QTgUZvm54 consumed 73106 of 200000 compute units",
       "Program J2XMGdW2qQLx7rAdwWtSZpTXDgAQ988BLP9QTgUZvm54 success",
@@ -95,7 +95,7 @@ describe("Events", () => {
       ],
       events: [
         {
-          name: "NftSold",
+          name: "NftSafed",
           fields: [
             {
               name: "nftMintAddress",
@@ -120,7 +120,7 @@ describe("Events", () => {
 
     const gen = eventParser.parseLogs(logs);
     for (const event of gen) {
-      expect(event.name).toEqual("NftSold");
+      expect(event.name).toEqual("NftSafed");
       done();
     }
   });
@@ -129,15 +129,15 @@ describe("Events", () => {
       "Program J2XMGdW2qQLx7rAdwWtSZpTXDgAQ988BLP9QTgUZvm54 invoke [1]",
       "Program log: Instruction: CancelListing",
       "Program log: TRANSFERED SOME TOKENS",
-      "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+      "Program ToKLx75MGim1d1jRusuVX8xvdvvbSDESVaNXpRA9PHN invoke [2]",
       "Program log: Instruction: Transfer",
-      "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 2549 of 182795 compute units",
-      "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+      "Program ToKLx75MGim1d1jRusuVX8xvdvvbSDESVaNXpRA9PHN consumed 2549 of 182795 compute units",
+      "Program ToKLx75MGim1d1jRusuVX8xvdvvbSDESVaNXpRA9PHN success",
       "Program log: TRANSFERED SOME TOKENS",
-      "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+      "Program ToKLx75MGim1d1jRusuVX8xvdvvbSDESVaNXpRA9PHN invoke [2]",
       "Program log: Instruction: CloseAccount",
-      "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 1745 of 176782 compute units",
-      "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+      "Program ToKLx75MGim1d1jRusuVX8xvdvvbSDESVaNXpRA9PHN consumed 1745 of 176782 compute units",
+      "Program ToKLx75MGim1d1jRusuVX8xvdvvbSDESVaNXpRA9PHN success",
       "Program log: Vtv9xLjCsE60Ati9kl3VVU/5y8DMMeC4LaGdMLkX8WU+G59Wsi3wfky8rnO9otGb56CTRerWx3hB5M/SlRYBdht0fi+crAgFYsJcx2CHszpSWRkXNxYQ6DxQ/JqIvKnLC/8Mln7310A=",
       "Program J2XMGdW2qQLx7rAdwWtSZpTXDgAQ988BLP9QTgUZvm54 consumed 31435 of 200000 compute units",
       "Program J2XMGdW2qQLx7rAdwWtSZpTXDgAQ988BLP9QTgUZvm54 success",
@@ -225,15 +225,15 @@ describe("Events", () => {
       "Program 5VcVB7jEjdWJBkriXxayCrUUkwfhrPK3rXtnkxxUvMFP invoke [1]",
       "Program log: Instruction: CancelListing",
       "Program log: TRANSFERED SOME TOKENS",
-      "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+      "Program ToKLx75MGim1d1jRusuVX8xvdvvbSDESVaNXpRA9PHN invoke [2]",
       "Program log: Instruction: Transfer",
-      "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 2549 of 182795 compute units",
-      "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+      "Program ToKLx75MGim1d1jRusuVX8xvdvvbSDESVaNXpRA9PHN consumed 2549 of 182795 compute units",
+      "Program ToKLx75MGim1d1jRusuVX8xvdvvbSDESVaNXpRA9PHN success",
       "Program log: TRANSFERED SOME TOKENS",
-      "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+      "Program ToKLx75MGim1d1jRusuVX8xvdvvbSDESVaNXpRA9PHN invoke [2]",
       "Program log: Instruction: CloseAccount",
-      "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 1745 of 176782 compute units",
-      "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+      "Program ToKLx75MGim1d1jRusuVX8xvdvvbSDESVaNXpRA9PHN consumed 1745 of 176782 compute units",
+      "Program ToKLx75MGim1d1jRusuVX8xvdvvbSDESVaNXpRA9PHN success",
       "Program log: Vtv9xLjCsE60Ati9kl3VVU/5y8DMMeC4LaGdMLkX8WU+G59Wsi3wfky8rnO9otGb56CTRerWx3hB5M/SlRYBdht0fi+crAgFYsJcx2CHszpSWRkXNxYQ6DxQ/JqIvKnLC/8Mln7310A=",
       "Program 5VcVB7jEjdWJBkriXxayCrUUkwfhrPK3rXtnkxxUvMFP consumed 31435 of 200000 compute units",
       "Program 5VcVB7jEjdWJBkriXxayCrUUkwfhrPK3rXtnkxxUvMFP success",

@@ -11,12 +11,12 @@ Go [here](https://www.rust-lang.org/tools/install) to install Rust.
 We recommend reading chapters 1-9 of the [Rust book](https://doc.rust-lang.org/book/title-page.html) which cover the basics of using Rust (Most of the time you don't need advanced Rust to write anchor programs).
 {% /callout %}
 
-## Solana
+## Safecoin
 
-Go [here](https://docs.solana.com/cli/install-solana-cli-tools) to install Solana and then run `solana-keygen new` to create a keypair at the default location. Anchor uses this keypair to run your program tests.
+Go [here](https://docs.solana.com/cli/install-solana-cli-tools) to install Safecoin and then run `safecoin-keygen new` to create a keypair at the default location. Anchor uses this keypair to run your program tests.
 
 {% callout title="You should know!" %}
-We also recommend checking out the official [Solana developers page](https://solana.com/developers).
+We also recommend checking out the official [Safecoin developers page](https://solana.com/developers).
 {% /callout %}
 
 ## Yarn
@@ -32,7 +32,7 @@ Anchor version manager is a tool for using multiple versions of the anchor-cli. 
 Install `avm` using Cargo. Note this will replace your `anchor` binary if you had one installed.
 
 ```shell
-cargo install --git https://github.com/coral-xyz/anchor avm --locked --force
+cargo install --git https://github.com/safely-project/anchor avm --locked --force
 ```
 
 On Linux systems you may need to install additional dependencies if cargo install fails. E.g. on Ubuntu:
@@ -56,14 +56,14 @@ anchor --version
 
 ### Install using pre-build binary on x86_64 Linux
 
-Anchor binaries are available via an NPM package [`@coral-xyz/anchor-cli`](https://www.npmjs.com/package/@coral-xyz/anchor-cli). Only `x86_64` Linux is supported currently, you must build from source for other OS'.
+Anchor binaries are available via an NPM package [`@safely-project/anchor-cli`](https://www.npmjs.com/package/@safely-project/anchor-cli). Only `x86_64` Linux is supported currently, you must build from source for other OS'.
 
 ### Build from source for other operating systems without avm
 
 We can also use Cargo to install the CLI directly. Make sure that the `--tag` argument uses the version you want (the version here is just an example).
 
 ```shell
-cargo install --git https://github.com/coral-xyz/anchor --tag v0.26.0 anchor-cli --locked
+cargo install --git https://github.com/safely-project/anchor --tag v0.26.0 anchor-cli --locked
 ```
 
 On Linux systems you may need to install additional dependencies if cargo install fails. On Ubuntu,

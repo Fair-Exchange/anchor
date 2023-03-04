@@ -10,12 +10,12 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
     });
     quote! {
         #[cfg(not(feature = "no-entrypoint"))]
-        anchor_lang::solana_program::entrypoint!(entry);
+        anchor_lang::safecoin_program::entrypoint!(entry);
         /// The Anchor codegen exposes a programming model where a user defines
         /// a set of methods inside of a `#[program]` module in a way similar
         /// to writing RPC request handlers. The macro then generates a bunch of
         /// code wrapping these user defined methods into something that can be
-        /// executed on Solana.
+        /// executed on Safecoin.
         ///
         /// These methods fall into one categorie for now.
         ///
@@ -45,9 +45,9 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
         ///   context, invoking the user's code, and finally running the exit
         ///   routine, which typically persists account changes.
         ///
-        /// The `entry` function here, defines the standard entry to a Solana
+        /// The `entry` function here, defines the standard entry to a Safecoin
         /// program, where execution begins.
-        pub fn entry(program_id: &Pubkey, accounts: &[AccountInfo], data: &[u8]) -> anchor_lang::solana_program::entrypoint::ProgramResult {
+        pub fn entry(program_id: &Pubkey, accounts: &[AccountInfo], data: &[u8]) -> anchor_lang::safecoin_program::entrypoint::ProgramResult {
             try_entry(program_id, accounts, data).map_err(|e| {
                 e.log();
                 e.into()

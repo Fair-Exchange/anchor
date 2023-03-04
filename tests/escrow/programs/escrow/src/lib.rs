@@ -19,7 +19,7 @@ use anchor_lang::prelude::*;
 use anchor_spl::token_interface::{
     self, Mint, SetAuthority, TokenAccount, TokenInterface, TransferChecked,
 };
-use spl_token_2022::instruction::AuthorityType;
+use safe_token_2022::instruction::AuthorityType;
 
 declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 

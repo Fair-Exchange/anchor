@@ -2,8 +2,8 @@ use anchor_lang::context::CpiContext;
 use anchor_lang::{Accounts, Result, ToAccountInfos};
 use mpl_token_metadata::state::{CollectionDetails, DataV2, TokenMetadataAccount};
 use mpl_token_metadata::ID;
-use solana_program::account_info::AccountInfo;
-use solana_program::pubkey::Pubkey;
+use safecoin_program::account_info::AccountInfo;
+use safecoin_program::pubkey::Pubkey;
 use std::ops::Deref;
 
 pub fn create_metadata_accounts_v2<'info>(
@@ -38,7 +38,7 @@ pub fn create_metadata_accounts_v2<'info>(
         collection,
         uses,
     );
-    solana_program::program::invoke_signed(
+    safecoin_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -80,7 +80,7 @@ pub fn create_metadata_accounts_v3<'info>(
         uses,
         details,
     );
-    solana_program::program::invoke_signed(
+    safecoin_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -104,7 +104,7 @@ pub fn update_metadata_accounts_v2<'info>(
         primary_sale_happened,
         is_mutable,
     );
-    solana_program::program::invoke_signed(
+    safecoin_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -126,7 +126,7 @@ pub fn create_master_edition_v3<'info>(
         *ctx.accounts.payer.key,
         max_supply,
     );
-    solana_program::program::invoke_signed(
+    safecoin_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -153,7 +153,7 @@ pub fn mint_new_edition_from_master_edition_via_token<'info>(
         *ctx.accounts.metadata_mint.key,
         edition,
     );
-    solana_program::program::invoke_signed(
+    safecoin_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -174,7 +174,7 @@ pub fn set_collection_size<'info>(
         collection_authority_record,
         size,
     );
-    solana_program::program::invoke_signed(
+    safecoin_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -196,7 +196,7 @@ pub fn verify_collection<'info>(
         *ctx.accounts.collection_master_edition.key,
         collection_authority_record,
     );
-    solana_program::program::invoke_signed(
+    safecoin_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -218,7 +218,7 @@ pub fn verify_sized_collection_item<'info>(
         *ctx.accounts.collection_master_edition.key,
         collection_authority_record,
     );
-    solana_program::program::invoke_signed(
+    safecoin_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -241,7 +241,7 @@ pub fn set_and_verify_collection<'info>(
         *ctx.accounts.collection_master_edition.key,
         collection_authority_record,
     );
-    solana_program::program::invoke_signed(
+    safecoin_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -264,7 +264,7 @@ pub fn set_and_verify_sized_collection_item<'info>(
         *ctx.accounts.collection_master_edition.key,
         collection_authority_record,
     );
-    solana_program::program::invoke_signed(
+    safecoin_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -282,7 +282,7 @@ pub fn freeze_delegated_account<'info>(
         *ctx.accounts.edition.key,
         *ctx.accounts.mint.key,
     );
-    solana_program::program::invoke_signed(
+    safecoin_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -300,7 +300,7 @@ pub fn thaw_delegated_account<'info>(
         *ctx.accounts.edition.key,
         *ctx.accounts.mint.key,
     );
-    solana_program::program::invoke_signed(
+    safecoin_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -318,7 +318,7 @@ pub fn update_primary_sale_happened_via_token<'info>(
         *ctx.accounts.token.key,
     );
 
-    solana_program::program::invoke_signed(
+    safecoin_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -333,7 +333,7 @@ pub fn sign_metadata<'info>(ctx: CpiContext<'_, '_, '_, 'info, SignMetadata<'inf
         *ctx.accounts.creator.key,
     );
 
-    solana_program::program::invoke_signed(
+    safecoin_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,
@@ -350,7 +350,7 @@ pub fn remove_creator_verification<'info>(
         *ctx.accounts.creator.key,
     );
 
-    solana_program::program::invoke_signed(
+    safecoin_program::program::invoke_signed(
         &ix,
         &ToAccountInfos::to_account_infos(&ctx),
         ctx.signer_seeds,

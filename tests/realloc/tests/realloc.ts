@@ -1,5 +1,5 @@
-import * as anchor from "@coral-xyz/anchor";
-import { AnchorError, Program } from "@coral-xyz/anchor";
+import * as anchor from "@safely-project/anchor";
+import { AnchorError, Program } from "@safely-project/anchor";
 import { assert } from "chai";
 import { Realloc } from "../target/types/realloc";
 

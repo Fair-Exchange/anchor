@@ -1,6 +1,6 @@
-import * as anchor from "@coral-xyz/anchor";
-import { AnchorError, Program } from "@coral-xyz/anchor";
-import { PublicKey } from "@solana/web3.js";
+import * as anchor from "@safely-project/anchor";
+import { AnchorError, Program } from "@safely-project/anchor";
+import { PublicKey } from "@safecoin/web3.js";
 import { assert } from "chai";
 import { BpfUpgradeableState } from "../target/types/bpf_upgradeable_state";
 

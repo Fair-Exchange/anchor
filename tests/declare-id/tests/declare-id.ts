@@ -1,6 +1,6 @@
-import * as anchor from "@coral-xyz/anchor";
-import { AnchorError, Program } from "@coral-xyz/anchor";
-import splToken from "@solana/spl-token";
+import * as anchor from "@safely-project/anchor";
+import { AnchorError, Program } from "@safely-project/anchor";
+import splToken from "@safecoin/safe-token";
 import { DeclareId } from "../target/types/declare_id";
 import { assert } from "chai";
 

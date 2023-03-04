@@ -1,5 +1,5 @@
 import { Buffer } from "buffer";
-import { Keypair, PublicKey, Transaction } from "@solana/web3.js";
+import { Keypair, PublicKey, Transaction } from "@safecoin/web3.js";
 import { Wallet } from "./provider";
 
 /**

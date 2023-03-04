@@ -1,9 +1,9 @@
 import assert from "assert";
-import { splTokenProgram } from "@coral-xyz/spl-token";
-import { Keypair, PublicKey, SYSVAR_RENT_PUBKEY } from "@solana/web3.js";
-import { BN } from "@coral-xyz/anchor";
+import { splTokenProgram } from "@safely-project/safe-token";
+import { Keypair, PublicKey, SYSVAR_RENT_PUBKEY } from "@safecoin/web3.js";
+import { BN } from "@safely-project/anchor";
 
-import { NATIVE_MINT_PK, SPL_TOKEN_PROGRAM_ID } from "../constants";
+import { NATIVE_MINT_PK, SAFE_TOKEN_PROGRAM_ID } from "../constants";
 import {
   createTokenAccount,
   getProvider,
@@ -16,7 +16,7 @@ export async function splTokenTests() {
   const provider = await getProvider();
   const program = splTokenProgram({
     provider,
-    programId: SPL_TOKEN_PROGRAM_ID,
+    programId: SAFE_TOKEN_PROGRAM_ID,
   });
   const kp = await loadKp();
   const delegateKp = new Keypair();
@@ -312,11 +312,11 @@ export async function splTokenTests() {
   }
 
   async function syncNative() {
-    const wrappedSolAccount = await createTokenAccount(NATIVE_MINT_PK);
+    const wrappedSafeAccount = await createTokenAccount(NATIVE_MINT_PK);
     await program.methods
       .syncNative()
       .accounts({
-        account: wrappedSolAccount,
+        account: wrappedSafeAccount,
       })
       .rpc();
   }

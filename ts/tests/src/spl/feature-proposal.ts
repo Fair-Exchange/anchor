@@ -1,17 +1,17 @@
-import { splFeatureProposalProgram } from "@coral-xyz/spl-feature-proposal";
-import { splTokenProgram } from "@coral-xyz/spl-token";
-import { BN } from "@coral-xyz/anchor";
+import { splFeatureProposalProgram } from "@safely-project/safe-feature-proposal";
+import { splTokenProgram } from "@safely-project/safe-token";
+import { BN } from "@safely-project/anchor";
 import {
   Keypair,
   PublicKey,
   SystemProgram,
   SYSVAR_CLOCK_PUBKEY,
   SYSVAR_RENT_PUBKEY,
-} from "@solana/web3.js";
+} from "@safecoin/web3.js";
 
 import {
   SPL_FEATURE_PROPOSAL_PROGRAM_ID,
-  SPL_TOKEN_PROGRAM_ID,
+  SAFE_TOKEN_PROGRAM_ID,
 } from "../constants";
 import { getProvider, loadKp, sendAndConfirmTx, test } from "../utils";
 
@@ -23,7 +23,7 @@ export async function featureProposalTests() {
   });
   const tokenProgram = splTokenProgram({
     provider,
-    programId: SPL_TOKEN_PROGRAM_ID,
+    programId: SAFE_TOKEN_PROGRAM_ID,
   });
   const kp = await loadKp();
 

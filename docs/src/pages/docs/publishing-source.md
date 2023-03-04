@@ -4,7 +4,7 @@ description: Anchor - Publishing Source
 ---
 
 The Anchor Program Registry at [apr.dev](https://apr.dev)
-hosts a catalog of verified programs on Solana both written with and without Anchor. It is recommended
+hosts a catalog of verified programs on Safecoin both written with and without Anchor. It is recommended
 that authors of smart contracts publish their source to promote best
 practices for security and transparency.
 
@@ -41,7 +41,7 @@ members = ["programs/multisig"]
 
 [provider]
 cluster = "mainnet"
-wallet = "~/.config/solana/id.json"
+wallet = "~/.config/safecoin/id.json"
 
 [programs.mainnet]
 multisig = "A9HAbnCwoD6f2NkZobKFf6buJoN9gUVVvX5PoUnDHS6u"
@@ -77,7 +77,7 @@ An example of a toml file for an Anchor program can be found [here](https://www.
 
 #### Non Anchor Program
 
-An example of a toml file for a non-anchor program can be found [here](https://www.apr.dev/program/9xQeWvG816bUx9EPjHmaT23yvVM2ZWbrrpZb9PusVFin/build/1).
+An example of a toml file for a non-anchor program can be found [here](https://www.apr.dev/program/SRMrEgnzRgGMQ8QzcL8cjWr5xpdVs1KQCQ58Jkkq1qx/build/1).
 
 ## Publishing
 

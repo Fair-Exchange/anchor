@@ -1,7 +1,7 @@
-const anchor = require("@coral-xyz/anchor");
+const anchor = require("@safely-project/anchor");
 const serumCmn = require("@project-serum/common");
 const { assert } = require("chai");
-const { TOKEN_PROGRAM_ID } = require("@solana/spl-token");
+const { TOKEN_PROGRAM_ID } = require("@safecoin/safe-token");
 
 describe("cashiers-check", () => {
   // Configure the client to use the local cluster.

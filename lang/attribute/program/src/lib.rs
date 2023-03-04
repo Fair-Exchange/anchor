@@ -4,7 +4,7 @@ use quote::ToTokens;
 use syn::parse_macro_input;
 
 /// The `#[program]` attribute defines the module containing all instruction
-/// handlers defining all entries into a Solana program.
+/// handlers defining all entries into a Safecoin program.
 #[proc_macro_attribute]
 pub fn program(
     _args: proc_macro::TokenStream,

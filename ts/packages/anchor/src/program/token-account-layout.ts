@@ -1,7 +1,7 @@
 import BN from "bn.js";
 import * as BufferLayout from "buffer-layout";
 import { Layout } from "buffer-layout";
-import { PublicKey } from "@solana/web3.js";
+import { PublicKey } from "@safecoin/web3.js";
 
 function uint64(property?: string): Layout<u64 | null> {
   return new WrappedLayout(

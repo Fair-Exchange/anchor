@@ -1,6 +1,6 @@
-const anchor = require("@coral-xyz/anchor");
+const anchor = require("@safely-project/anchor");
 const serumCmn = require("@project-serum/common");
-const { TOKEN_PROGRAM_ID } = require("@solana/spl-token");
+const { TOKEN_PROGRAM_ID } = require("@safecoin/safe-token");
 const utils = require("./utils");
 const { assert, expect } = require("chai");
 const nativeAssert = require("assert");
@@ -783,7 +783,7 @@ describe("Lockup and Registry", () => {
         });
       },
       (err) => {
-        // Solana doesn't propagate errors across CPI. So we receive the registry's error code,
+        // Safecoin doesn't propagate errors across CPI. So we receive the registry's error code,
         // not the lockup's.
         assert.strictEqual(err.error.errorCode.number, 6020);
         assert.strictEqual(err.error.errorCode.code, "UnrealizedReward");

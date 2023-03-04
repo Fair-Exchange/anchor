@@ -1,7 +1,7 @@
 import TransactionFactory from "../src/program/namespace/transaction";
 import InstructionFactory from "../src/program/namespace/instruction";
 import { BorshCoder } from "../src";
-import { PublicKey, TransactionInstruction } from "@solana/web3.js";
+import { PublicKey, TransactionInstruction } from "@safecoin/web3.js";
 
 describe("Transaction", () => {
   const preIx = new TransactionInstruction({

@@ -1,4 +1,4 @@
-const anchor = require("@coral-xyz/anchor");
+const anchor = require("@safely-project/anchor");
 
 describe("basic-0", () => {
   // Configure the client to use the local cluster.

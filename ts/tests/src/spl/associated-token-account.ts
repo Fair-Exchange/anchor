@@ -1,8 +1,8 @@
-import { splAssociatedTokenAccountProgram } from "@coral-xyz/spl-associated-token-account";
-import { splTokenProgram } from "@coral-xyz/spl-token";
-import { Keypair, PublicKey, SystemProgram } from "@solana/web3.js";
+import { splAssociatedTokenAccountProgram } from "@safely-project/safe-associated-token-account";
+import { splTokenProgram } from "@safely-project/safe-token";
+import { Keypair, PublicKey, SystemProgram } from "@safecoin/web3.js";
 
-import { SPL_ATA_PROGRAM_ID, SPL_TOKEN_PROGRAM_ID } from "../constants";
+import { SPL_ATA_PROGRAM_ID, SAFE_TOKEN_PROGRAM_ID } from "../constants";
 import {
   createMint,
   getAta,
@@ -20,7 +20,7 @@ export async function associatedTokenAccountTests() {
   });
   const tokenProgram = splTokenProgram({
     provider,
-    programId: SPL_TOKEN_PROGRAM_ID,
+    programId: SAFE_TOKEN_PROGRAM_ID,
   });
   const kp = await loadKp();
 

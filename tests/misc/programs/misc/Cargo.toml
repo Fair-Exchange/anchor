@@ -16,7 +16,7 @@ cpi = ["no-entrypoint"]
 default = []
 
 [dependencies]
-anchor-lang = { path = "../../../../lang", features = ["init-if-needed"] }
-anchor-spl = { path = "../../../../spl" }
-spl-associated-token-account = "1.1.1"
+safe-anchor-lang = { path = "../../../../lang", features = ["init-if-needed"] }
+safe-anchor-spl = { path = "../../../../spl" }
+safe-associated-token-account = "1.1.1"
 bytemuck = {version = "1.4.0", features = ["derive", "min_const_generics"]}

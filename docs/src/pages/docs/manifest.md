@@ -12,7 +12,7 @@ Example:
 ```toml
 [provider]
 cluster = "localnet"                    # The cluster used for all commands.
-wallet = "~/.config/solana/id.json"     # The keypair used for all commands.
+wallet = "~/.config/safecoin/id.json"     # The keypair used for all commands.
 ```
 
 ## scripts (required for testing)
@@ -93,13 +93,13 @@ my_program = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
 
 The addresses of the programs in the workspace.
 
-`programs.localnet` is used during testing on localnet where it's possible to load a program at genesis with the `--bpf-program` option on `solana-test-validator`.
+`programs.localnet` is used during testing on localnet where it's possible to load a program at genesis with the `--bpf-program` option on `safecoin-test-validator`.
 
 ## test
 
 #### startup_wait
 
-Increases the time anchor waits for the `solana-test-validator` to start up. This is, for example, useful if you're cloning (see `test.validator.clone`) many accounts which increases the validator's startup time.
+Increases the time anchor waits for the `safecoin-test-validator` to start up. This is, for example, useful if you're cloning (see `test.validator.clone`) many accounts which increases the validator's startup time.
 
 Example:
 
@@ -110,7 +110,7 @@ startup_wait = 10000
 
 #### genesis
 
-Makes commands like `anchor test` start `solana-test-validator` with a given program already loaded.
+Makes commands like `anchor test` start `safecoin-test-validator` with a given program already loaded.
 
 Example
 
@@ -126,11 +126,11 @@ program = "swap.so"
 
 ## test.validator
 
-These options are passed into the options with the same name in the `solana-test-validator` cli (see `solana-test-validator --help`) in commands like `anchor test`.
+These options are passed into the options with the same name in the `safecoin-test-validator` cli (see `safecoin-test-validator --help`) in commands like `anchor test`.
 
 ```toml
 [test.validator]
-url = "https://api.mainnet-beta.solana.com"     # This is the url of the cluster that accounts are cloned from (See `test.validator.clone`).
+url = "https://api.mainnet-beta.safecoin.org"     # This is the url of the cluster that accounts are cloned from (See `test.validator.clone`).
 warp_slot = 1337                                # Warp the ledger to `warp_slot` after starting the validator.
 slots_per_epoch = 5                             # Override the number of slots in an epoch.
 rpc_port = 1337                                 # Set JSON RPC on this port, and the next port for the RPC websocket.
@@ -138,7 +138,7 @@ limit_ledger_size = 1337                        # Keep this amount of shreds in 
 ledger = "test-ledger"                          # Set ledger location.
 gossip_port = 1337                              # Gossip port number for the validator.
 gossip_host = "127.0.0.1"                       # Gossip DNS name or IP address for the validator to advertise in gossip.
-faucet_sol = 1337                               # Give the faucet address this much SOL in genesis.
+faucet_sol = 1337                               # Give the faucet address this much SAFE in genesis.
 faucet_port = 1337                              # Enable the faucet on this port.
 dynamic_port_range = "1337 - 13337"             # Range to use for dynamically assigned ports.
 bind_address = "0.0.0.0"                        # IP address to bind the validator ports.
@@ -154,7 +154,7 @@ Example:
 
 ```toml
 [test.validator]
-url = "https://api.mainnet-beta.solana.com"
+url = "https://api.mainnet-beta.safecoin.org"
 
 [[test.validator.clone]]
 address = "7NL2qWArf2BbEBBH1vTRZCsoNqFATTddH6h8GkVvrLpG"

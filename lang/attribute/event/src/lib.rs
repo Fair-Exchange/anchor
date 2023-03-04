@@ -46,7 +46,7 @@ pub fn event(
 }
 
 /// Logs an event that can be subscribed to by clients.
-/// Uses the [`sol_log_data`](https://docs.rs/solana-program/latest/solana_program/log/fn.sol_log_data.html)
+/// Uses the [`sol_log_data`](https://docs.rs/safecoin-program/latest/safecoin_program/log/fn.sol_log_data.html)
 /// syscall which results in the following log:
 /// ```ignore
 /// Program data: <Base64EncodedEvent>
@@ -76,7 +76,7 @@ pub fn emit(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
     let data: proc_macro2::TokenStream = input.into();
     proc_macro::TokenStream::from(quote! {
         {
-            anchor_lang::solana_program::log::sol_log_data(&[&anchor_lang::Event::data(&#data)]);
+            anchor_lang::safecoin_program::log::sol_log_data(&[&anchor_lang::Event::data(&#data)]);
         }
     })
 }

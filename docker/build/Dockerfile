@@ -8,7 +8,7 @@ FROM ubuntu:18.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-ARG SOLANA_CLI
+ARG SAFECOIN_CLI
 ARG ANCHOR_CLI
 
 ENV NODE_VERSION="v17.0.1"
@@ -37,11 +37,11 @@ RUN . $NVM_DIR/nvm.sh && \
     nvm alias default node && \
     npm install -g yarn
 
-# Install Solana tools.
-RUN sh -c "$(curl -sSfL https://release.solana.com/${SOLANA_CLI}/install)"
+# Install Safecoin tools.
+RUN sh -c "$(curl -sSfL https://release.solana.com/${SAFECOIN_CLI}/install)"
 
 # Install anchor.
-RUN cargo install --git https://github.com/coral-xyz/anchor --tag ${ANCHOR_CLI} anchor-cli --locked
+RUN cargo install --git https://github.com/safely-project/anchor --tag ${ANCHOR_CLI} anchor-cli --locked
 
 # Build a dummy program to bootstrap the BPF SDK (doing this speeds up builds).
 RUN mkdir -p /tmp && cd tmp && anchor init dummy && cd dummy && anchor build

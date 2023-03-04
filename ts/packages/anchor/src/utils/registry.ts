@@ -1,7 +1,7 @@
 import BN from "bn.js";
 import fetch from "cross-fetch";
-import * as borsh from "@coral-xyz/borsh";
-import { Connection, PublicKey } from "@solana/web3.js";
+import * as borsh from "@safely-project/borsh";
+import { Connection, PublicKey } from "@safecoin/web3.js";
 
 /**
  * Returns a verified build from the anchor registry. null if no such

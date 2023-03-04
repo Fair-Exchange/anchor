@@ -5,7 +5,7 @@ use syn::parse_macro_input;
 
 mod id;
 
-/// An attribute for a data structure representing a Solana account.
+/// An attribute for a data structure representing a Safecoin account.
 ///
 /// `#[account]` generates trait implementations for the following traits:
 ///

@@ -1,5 +1,5 @@
 import camelCase from "camelcase";
-import { PublicKey } from "@solana/web3.js";
+import { PublicKey } from "@safecoin/web3.js";
 import { Coder } from "../../coder/index.js";
 import Provider from "../../provider.js";
 import { Idl, IdlInstruction } from "../../idl.js";

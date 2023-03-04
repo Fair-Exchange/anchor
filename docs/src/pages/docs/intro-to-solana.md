@@ -1,20 +1,20 @@
 ---
-title: Intro to Programming on Solana
+title: Intro to Programming on Safecoin
 description: Quidem magni aut exercitationem maxime rerum eos.
 ---
 
-This is a brief intro to programming on Solana that explains the most important topics.
+This is a brief intro to programming on Safecoin that explains the most important topics.
 It aims to provide everything you need to understand the following chapters in the book.
 
 ---
 
-## Memory on Solana
+## Memory on Safecoin
 
-On a high level, memory inside a Solana cluster can be thought of as a monolithic heap of data. Smart contracts on Solana ("programs" in Solana jargon) each have access to their own part of that heap.
+On a high level, memory inside a Safecoin cluster can be thought of as a monolithic heap of data. Smart contracts on Safecoin ("programs" in Safecoin jargon) each have access to their own part of that heap.
 
-While a program may read any part of the global heap, if a program tries to write to a part of the heap that is not theirs, the Solana runtime makes the transaction fail (there is one exception to this which is increasing the balance of an account).
+While a program may read any part of the global heap, if a program tries to write to a part of the heap that is not theirs, the Safecoin runtime makes the transaction fail (there is one exception to this which is increasing the balance of an account).
 
-All state lives in this heap. Your SOL accounts, smart contracts, and memory used by smart contracts. And each memory region has a program that manages it (sometimes called the “owner”). The solana term for a memory region is "account". Some programs own thousands of independent accounts. As shown in the figure, these accounts (even when owned by the same program) do not have to be equal in size.
+All state lives in this heap. Your SAFE accounts, smart contracts, and memory used by smart contracts. And each memory region has a program that manages it (sometimes called the “owner”). The safecoin term for a memory region is "account". Some programs own thousands of independent accounts. As shown in the figure, these accounts (even when owned by the same program) do not have to be equal in size.
 
 ![Heap Segment](/heap_segment.svg)
 
@@ -29,13 +29,13 @@ You can make a program read and write data by sending transactions. Programs pro
 
 The first point means that even if in theory the program may read and write to a large part of the global heap, in the context of a transaction, it may only read from and write to the specific regions specified in the arguments of the transaction.
 
-> This design is partly responsible for Solana’s high throughput. The runtime can look at all the incoming transactions of a program (and even across programs) and can check whether the memory regions in the first argument of the transactions overlap. If they don’t, the runtime can run these transactions in parallel because they don’t conflict with each other. Even better, if the runtime sees that two transactions access overlapping memory regions but only read and don’t write, it can also parallelize those transactions because they do not conflict with each other.
+> This design is partly responsible for Safecoin’s high throughput. The runtime can look at all the incoming transactions of a program (and even across programs) and can check whether the memory regions in the first argument of the transactions overlap. If they don’t, the runtime can run these transactions in parallel because they don’t conflict with each other. Even better, if the runtime sees that two transactions access overlapping memory regions but only read and don’t write, it can also parallelize those transactions because they do not conflict with each other.
 
-How exactly can a transaction specify a memory region/account? To answer that, we need to look deeper into what properties an account has ([docs here](https://docs.rs/solana-program/latest/solana_program/account_info/struct.AccountInfo.html)). This is the data structure for an account in a transaction. The `is_signer` and `is_writable` fields are set per transaction (e.g. `is_signed` is set if the corresponding private key of the account's `key` field signed the transaction) and are not part of the metadata that is saved in the heap). In front of the user data that the account can store (in the `data` field) , there is some metadata connected to each account. First, it has a key property which is a ed25519 public key and serves as the address of the account. This is how the transaction can specify which accounts the program may access in the transaction.
+How exactly can a transaction specify a memory region/account? To answer that, we need to look deeper into what properties an account has ([docs here](https://docs.rs/safecoin-program/latest/safecoin_program/account_info/struct.AccountInfo.html)). This is the data structure for an account in a transaction. The `is_signer` and `is_writable` fields are set per transaction (e.g. `is_signed` is set if the corresponding private key of the account's `key` field signed the transaction) and are not part of the metadata that is saved in the heap). In front of the user data that the account can store (in the `data` field) , there is some metadata connected to each account. First, it has a key property which is a ed25519 public key and serves as the address of the account. This is how the transaction can specify which accounts the program may access in the transaction.
 
 ![Transaction](/transaction.svg)
 
-An account also has a lamports field (a lamport is SOL’s smallest unit). Since all state lives in the heap, normal SOL accounts are on the heap too. They're accounts with a `data` field of length 0 (they still have metadata though!) and some amount of lamports. The System Program owns all regular SOL accounts.
+An account also has a lamports field (a lamport is SAFE’s smallest unit). Since all state lives in the heap, normal SAFE accounts are on the heap too. They're accounts with a `data` field of length 0 (they still have metadata though!) and some amount of lamports. The System Program owns all regular SAFE accounts.
 
 ## Rent
 
@@ -45,7 +45,7 @@ Because validators don’t have infinite storage and providing storage costs mon
 
 Let’s now look at an example of a program: The System Program. The System Program is a smart contract with some additional privileges.
 
-All "normal" SOL accounts are owned by the System Program. One of the system program’s responsibilities is handling transfers between the accounts it owns. This is worth repeating: Even normal SOL transfers on Solana are handled by a smart contract.
+All "normal" SAFE accounts are owned by the System Program. One of the system program’s responsibilities is handling transfers between the accounts it owns. This is worth repeating: Even normal SAFE transfers on Safecoin are handled by a smart contract.
 
 To provide transfer functionality, the system program has a “transfer” endpoint. This endpoint takes 2 accounts - from and to - and a “lamports” argument. The system program checks whether `from` signed the transaction via the `is_signer` field on the `from` account. The runtime will set this flag to `true` if the private key of the keypair that the account’s public key belongs to signed the transaction. If “from” signed the transaction, the system program removes lamports from `from`’s account and adds them to `to`’s account.
 
@@ -74,7 +74,7 @@ Next to transferring lamports, the system program is used to create accounts for
 
 ## Program Composition
 
-There are two ways for developers to make programs interact with each other. To explain these, we'll use a common flow on Solana: Create & Initialize.
+There are two ways for developers to make programs interact with each other. To explain these, we'll use a common flow on Safecoin: Create & Initialize.
 
 Consider a counter program with two endpoints. One to initialize the counter and one to increment it. To create a new counter, we call the system program's `create_account` to create the account in memory and then the counter's `initialize` function.
 
@@ -134,7 +134,7 @@ Anchor recommends CPIs to create and initialize accounts when possible (Accounts
 
 ### Validating Inputs
 
-On Solana it is crucial to validate program inputs. Clients pass accounts and program inputs to programs which means that malicious clients can pass malicious accounts and inputs. Programs need to be written in a way that handles those malicious inputs.
+On Safecoin it is crucial to validate program inputs. Clients pass accounts and program inputs to programs which means that malicious clients can pass malicious accounts and inputs. Programs need to be written in a way that handles those malicious inputs.
 
 Consider the transfer function in the system program for example. It checks that `from` has signed the transaction.
 
@@ -192,11 +192,11 @@ fn increment(accounts) {
 }
 ```
 
-There are many types of attacks possible on Solana that all revolve around passing in one account where another was expected but it wasn't checked that the actual one is really the expected one. This brings us from Solana to Anchor. A big part of Anchor's raison d'être is making input validation easier or even doing it for you when possible (e.g. with idiomatic anchor, this account type confusion cannot happen thanks to anchor's discriminator which we'll cover later in the book).
+There are many types of attacks possible on Safecoin that all revolve around passing in one account where another was expected but it wasn't checked that the actual one is really the expected one. This brings us from Safecoin to Anchor. A big part of Anchor's raison d'être is making input validation easier or even doing it for you when possible (e.g. with idiomatic anchor, this account type confusion cannot happen thanks to anchor's discriminator which we'll cover later in the book).
 
 Let's dive in.
 
 ## Other Resources
 
-- [SolDev](https://soldev.app)
-- [Solana Cookbook](https://solanacookbook.com/)
+- [SafeDev](https://soldev.app)
+- [Safecoin Cookbook](https://solanacookbook.com/)

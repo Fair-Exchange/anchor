@@ -1,15 +1,15 @@
-const anchor = require("@coral-xyz/anchor");
+const anchor = require("@safely-project/anchor");
 const { assert } = require("chai");
 const {
   splTokenProgram,
-  SPL_TOKEN_PROGRAM_ID,
-} = require("@coral-xyz/spl-token");
+  SAFE_TOKEN_PROGRAM_ID,
+} = require("@safely-project/safe-token");
 
 describe("program", () => {
   const provider = anchor.AnchorProvider.local();
 
   const TEST_PROGRAM_IDS = [
-    SPL_TOKEN_PROGRAM_ID,
+    SAFE_TOKEN_PROGRAM_ID,
     new anchor.web3.PublicKey("TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"),
   ];
   const TOKEN_PROGRAMS = TEST_PROGRAM_IDS.map((programId) =>
@@ -26,7 +26,7 @@ describe("program", () => {
 
   TOKEN_PROGRAMS.forEach((tokenProgram) => {
     const name =
-      tokenProgram.programId === SPL_TOKEN_PROGRAM_ID ? "token" : "token-2022";
+      tokenProgram.programId === SAFE_TOKEN_PROGRAM_ID ? "token" : "token-2022";
     describe(name, () => {
       let mint = null;
       let from = null;
@@ -74,7 +74,7 @@ describe("program", () => {
         const newMint = await createMint(tokenProgram);
         const authority = provider.wallet.publicKey;
         const associatedTokenProgram = new anchor.web3.PublicKey(
-          "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+          "AToD9iqHSc2fhEP9Jp7UYA6mRjHQ4CTWyzCsw8X3tH7K"
         );
         const [tokenAccount] = anchor.web3.PublicKey.findProgramAddressSync(
           [

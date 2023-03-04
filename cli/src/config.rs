@@ -7,9 +7,9 @@ use heck::ToSnakeCase;
 use reqwest::Url;
 use serde::de::{self, MapAccess, Visitor};
 use serde::{Deserialize, Deserializer, Serialize};
-use solana_cli_config::{Config as SolanaConfig, CONFIG_FILE};
-use solana_sdk::pubkey::Pubkey;
-use solana_sdk::signature::{Keypair, Signer};
+use safecoin_cli_config::{Config as SafecoinConfig, CONFIG_FILE};
+use safecoin_sdk::pubkey::Pubkey;
+use safecoin_sdk::signature::{Keypair, Signer};
 use std::collections::{BTreeMap, HashMap};
 use std::convert::TryFrom;
 use std::fs::{self, File};
@@ -419,7 +419,7 @@ impl Config {
     }
 
     pub fn wallet_kp(&self) -> Result<Keypair> {
-        solana_sdk::signature::read_keypair_file(&self.provider.wallet.to_string())
+        safecoin_sdk::signature::read_keypair_file(&self.provider.wallet.to_string())
             .map_err(|_| anyhow!("Unable to read keypair file"))
     }
 }
@@ -552,10 +552,10 @@ pub fn get_solana_cfg_url() -> Result<String, io::Error> {
     let config_file = CONFIG_FILE.as_ref().ok_or_else(|| {
         io::Error::new(
             io::ErrorKind::NotFound,
-            "Default Solana config was not found",
+            "Default Safecoin config was not found",
         )
     })?;
-    SolanaConfig::load(config_file).map(|config| config.json_rpc_url)
+    SafecoinConfig::load(config_file).map(|config| config.json_rpc_url)
 }
 
 fn ser_programs(
@@ -901,7 +901,7 @@ pub struct _Validator {
     // Enable the faucet on this port [default: 9900].
     #[serde(skip_serializing_if = "Option::is_none")]
     pub faucet_port: Option<u16>,
-    // Give the faucet address this much SOL in genesis. [default: 1000000]
+    // Give the faucet address this much SAFE in genesis. [default: 1000000]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub faucet_sol: Option<String>,
     // Geyser plugin config location
@@ -913,7 +913,7 @@ pub struct _Validator {
     // Gossip port number for the validator
     #[serde(skip_serializing_if = "Option::is_none")]
     pub gossip_port: Option<u16>,
-    // URL for Solana's JSON RPC or moniker.
+    // URL for Safecoin's JSON RPC or moniker.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub url: Option<String>,
     // Use DIR as ledger location
@@ -922,7 +922,7 @@ pub struct _Validator {
     // Keep this amount of shreds in root slots. [default: 10000]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub limit_ledger_size: Option<String>,
-    // Enable JSON RPC on this port, and the next port for the RPC websocket. [default: 8899]
+    // Enable JSON RPC on this port, and the next port for the RPC websocket. [default: 8328]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub rpc_port: Option<u16>,
     // Override the number of slots in an epoch.
@@ -990,7 +990,7 @@ impl From<_Validator> for Validator {
             limit_ledger_size: _validator.limit_ledger_size,
             rpc_port: _validator
                 .rpc_port
-                .unwrap_or(solana_sdk::rpc_port::DEFAULT_RPC_PORT),
+                .unwrap_or(safecoin_sdk::rpc_port::DEFAULT_RPC_PORT),
             slots_per_epoch: _validator.slots_per_epoch,
             ticks_per_slot: _validator.ticks_per_slot,
             warp_slot: _validator.warp_slot,
@@ -1107,7 +1107,7 @@ impl Program {
 
     pub fn keypair(&self) -> Result<Keypair> {
         let file = self.keypair_file()?;
-        solana_sdk::signature::read_keypair_file(file.path())
+        safecoin_sdk::signature::read_keypair_file(file.path())
             .map_err(|_| anyhow!("failed to read keypair for program: {}", self.lib_name))
     }
 
@@ -1206,7 +1206,7 @@ impl AnchorPackage {
     }
 }
 
-crate::home_path!(WalletPath, ".config/solana/id.json");
+crate::home_path!(WalletPath, ".config/safecoin/id.json");
 
 #[cfg(test)]
 mod tests {

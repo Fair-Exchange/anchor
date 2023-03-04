@@ -1,7 +1,7 @@
 import { AccountsCoder } from "../index.js";
 import { Idl, IdlTypeDef } from "../../idl.js";
 import * as BufferLayout from "buffer-layout";
-import { NONCE_ACCOUNT_LENGTH, PublicKey } from "@solana/web3.js";
+import { NONCE_ACCOUNT_LENGTH, PublicKey } from "@safecoin/web3.js";
 import { accountSize } from "../common.js";
 
 export class SystemAccountsCoder<A extends string = string>

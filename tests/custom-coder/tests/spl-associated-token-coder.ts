@@ -1,7 +1,7 @@
-import { Native, AnchorProvider, setProvider } from "@coral-xyz/anchor";
-import { splAssociatedTokenAccountProgram } from "@coral-xyz/spl-associated-token-account";
-import { splTokenProgram } from "@coral-xyz/spl-token";
-import { Keypair, PublicKey, SYSVAR_RENT_PUBKEY } from "@solana/web3.js";
+import { Native, AnchorProvider, setProvider } from "@safely-project/anchor";
+import { splAssociatedTokenAccountProgram } from "@safely-project/safe-associated-token-account";
+import { splTokenProgram } from "@safely-project/safe-token";
+import { Keypair, PublicKey, SYSVAR_RENT_PUBKEY } from "@safecoin/web3.js";
 import * as assert from "assert";
 
 describe("spl-associated-token-coder", () => {

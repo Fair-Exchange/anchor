@@ -3,7 +3,7 @@ title: Cross-Program Invocations
 description: Anchor - Cross-Program Invocations
 ---
 
-Often it's useful for programs to interact with each other. In Solana this is achieved via Cross-Program Invocations (CPIs).
+Often it's useful for programs to interact with each other. In Safecoin this is achieved via Cross-Program Invocations (CPIs).
 
 ---
 
@@ -104,7 +104,7 @@ Also add the line `puppet_master = "HmbTLCmaGvZhKnn1Zfa1JVnp7vkMV4DYVxPLWBVoN65L
 puppet = { path = "../puppet", features = ["cpi"]}
 ```
 
-The `features = ["cpi"]` is used so we can not only use puppet's types but also its instruction builders and cpi functions. Without those, we would have to use low level solana syscalls. Fortunately, anchor provides abstractions on top of those. By enabling the `cpi` feature, the puppet-master program gets access to the `puppet::cpi` module. Anchor generates this module automatically and it contains tailor-made instructions builders and cpi helpers for the program.
+The `features = ["cpi"]` is used so we can not only use puppet's types but also its instruction builders and cpi functions. Without those, we would have to use low level safecoin syscalls. Fortunately, anchor provides abstractions on top of those. By enabling the `cpi` feature, the puppet-master program gets access to the `puppet::cpi` module. Anchor generates this module automatically and it contains tailor-made instructions builders and cpi helpers for the program.
 
 In the case of the puppet program, the puppet-master uses the `SetData` instruction builder struct provided by the `puppet::cpi::accounts` module to submit the accounts the `SetData` instruction of the puppet program expects. Then, the puppet-master creates a new cpi context and passes it to the `puppet::cpi::set_data` cpi function. This function has the exact same function as the `set_data` function in the puppet program with the exception that it expects a `CpiContext` instead of a `Context`.
 
@@ -147,9 +147,9 @@ impl<'info> PullStrings<'info> {
 We can verify that everything works as expected by replacing the contents of the `puppet.ts` file with:
 
 ```ts
-import * as anchor from '@coral-xyz/anchor'
-import { Program } from '@coral-xyz/anchor'
-import { Keypair } from '@solana/web3.js'
+import * as anchor from '@safely-project/anchor'
+import { Program } from '@safely-project/anchor'
+import { Keypair } from '@safecoin/web3.js'
 import { expect } from 'chai'
 import { Puppet } from '../target/types/puppet'
 import { PuppetMaster } from '../target/types/puppet_master'
@@ -286,9 +286,9 @@ impl<'info> PullStrings<'info> {
 Finally, change the test:
 
 ```ts
-import * as anchor from '@coral-xyz/anchor'
-import { Program } from '@coral-xyz/anchor'
-import { Keypair } from '@solana/web3.js'
+import * as anchor from '@safely-project/anchor'
+import { Program } from '@safely-project/anchor'
+import { Keypair } from '@safecoin/web3.js'
 import { Puppet } from '../target/types/puppet'
 import { PuppetMaster } from '../target/types/puppet_master'
 import { expect } from 'chai'
@@ -377,7 +377,7 @@ Ok(())
 
 ## Returning values from handler functions
 
-The Anchor handler functions are capable of returning data using the Solana `set_return_data` and `get_return_data` syscalls. This data can be used in CPI callers and clients.
+The Anchor handler functions are capable of returning data using the Safecoin `set_return_data` and `get_return_data` syscalls. This data can be used in CPI callers and clients.
 
 Instead of returning a `Result<()>`, consider this version of the `set_data` function from above which has been modified to return `Result<u64>`:
 

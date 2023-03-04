@@ -1,17 +1,17 @@
-const anchor = require("@coral-xyz/anchor");
+const anchor = require("@safely-project/anchor");
 const { assert } = require("chai");
 const {
   ASSOCIATED_TOKEN_PROGRAM_ID,
   TOKEN_PROGRAM_ID,
   Token,
-} = require("@solana/spl-token");
+} = require("@safecoin/safe-token");
 const {
   sleep,
   getTokenAccount,
   createMint,
   createTokenAccount,
 } = require("./utils");
-const { token } = require("@coral-xyz/anchor/dist/cjs/utils");
+const { token } = require("@safely-project/anchor/dist/cjs/utils");
 
 describe("ido-pool", () => {
   const provider = anchor.AnchorProvider.local();
@@ -259,7 +259,7 @@ describe("ido-pool", () => {
 
     secondUserKeypair = anchor.web3.Keypair.generate();
 
-    transferSolInstr = anchor.web3.SystemProgram.transfer({
+    transferSafeInstr = anchor.web3.SystemProgram.transfer({
       fromPubkey: provider.wallet.publicKey,
       lamports: 100_000_000_000, // 100 sol
       toPubkey: secondUserKeypair.publicKey,
@@ -279,7 +279,7 @@ describe("ido-pool", () => {
       provider.wallet.publicKey
     );
     let createSecondUserUsdcTrns = new anchor.web3.Transaction();
-    createSecondUserUsdcTrns.add(transferSolInstr);
+    createSecondUserUsdcTrns.add(transferSafeInstr);
     createSecondUserUsdcTrns.add(createSecondUserUsdcInstr);
     await provider.sendAndConfirm(createSecondUserUsdcTrns);
     await usdcMintAccount.mintTo(

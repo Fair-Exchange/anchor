@@ -32,7 +32,7 @@ impl FromStr for Cluster {
                 let http_url = s;
 
                 // Taken from:
-                // https://github.com/solana-labs/solana/blob/aea8f0df1610248d29d8ca3bc0d60e9fabc99e31/web3.js/src/util/url.ts
+                // https://github.com/fair-exchange/safecoin/blob/aea8f0df1610248d29d8ca3bc0d60e9fabc99e31/web3.js/src/util/url.ts
 
                 let mut ws_url = Url::parse(http_url)?;
                 if let Some(port) = ws_url.port() {
@@ -74,19 +74,19 @@ impl std::fmt::Display for Cluster {
 impl Cluster {
     pub fn url(&self) -> &str {
         match self {
-            Cluster::Devnet => "https://api.devnet.solana.com",
-            Cluster::Testnet => "https://api.testnet.solana.com",
-            Cluster::Mainnet => "https://api.mainnet-beta.solana.com",
-            Cluster::Localnet => "http://127.0.0.1:8899",
-            Cluster::Debug => "http://34.90.18.145:8899",
+            Cluster::Devnet => "https://api.devnet.safecoin.org",
+            Cluster::Testnet => "https://api.testnet.safecoin.org",
+            Cluster::Mainnet => "https://api.mainnet-beta.safecoin.org",
+            Cluster::Localnet => "http://127.0.0.1:8328",
+            Cluster::Debug => "http://34.90.18.145:8328",
             Cluster::Custom(url, _ws_url) => url,
         }
     }
     pub fn ws_url(&self) -> &str {
         match self {
-            Cluster::Devnet => "wss://api.devnet.solana.com",
-            Cluster::Testnet => "wss://api.testnet.solana.com",
-            Cluster::Mainnet => "wss://api.mainnet-beta.solana.com",
+            Cluster::Devnet => "wss://api.devnet.safecoin.org",
+            Cluster::Testnet => "wss://api.testnet.safecoin.org",
+            Cluster::Mainnet => "wss://api.mainnet-beta.safecoin.org",
             Cluster::Localnet => "ws://127.0.0.1:9000",
             Cluster::Debug => "ws://34.90.18.145:9000",
             Cluster::Custom(_url, ws_url) => ws_url,

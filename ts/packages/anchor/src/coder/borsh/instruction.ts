@@ -4,8 +4,8 @@ import { Layout } from "buffer-layout";
 import camelCase from "camelcase";
 import { snakeCase } from "snake-case";
 import { sha256 } from "js-sha256";
-import * as borsh from "@coral-xyz/borsh";
-import { AccountMeta, PublicKey } from "@solana/web3.js";
+import * as borsh from "@safely-project/borsh";
+import { AccountMeta, PublicKey } from "@safecoin/web3.js";
 import {
   Idl,
   IdlField,

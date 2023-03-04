@@ -1,6 +1,6 @@
 [provider]
 cluster = "localnet"
-wallet = "~/.config/solana/id.json"
+wallet = "~/.config/safecoin/id.json"
 
 [programs.localnet]
 composite = "EHthziFziNoac9LBGxEaVN47Y3uUiRoXvqAiR6oes4iU"

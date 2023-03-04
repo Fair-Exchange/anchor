@@ -1,6 +1,6 @@
 import { Buffer } from "buffer";
-import { PublicKey } from "@solana/web3.js";
-import * as borsh from "@coral-xyz/borsh";
+import { PublicKey } from "@safecoin/web3.js";
+import * as borsh from "@safely-project/borsh";
 
 export type Idl = {
   version: string;

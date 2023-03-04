@@ -1,4 +1,4 @@
-// Tests are for whether we are able to call native Solana programs and fetch
+// Tests are for whether we are able to call native Safecoin programs and fetch
 // program state through Anchor client and not for whether internal program logic
 // works as intended. For the latter case, check out the program's repository.
 //

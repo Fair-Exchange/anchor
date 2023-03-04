@@ -28,7 +28,7 @@ to understand, contribute to, or modify the code.
 
 ## Accounts
 
-Accounts are the pieces of state owned by a Solana program. For reference while reading, here are all
+Accounts are the pieces of state owned by a Safecoin program. For reference while reading, here are all
 accounts used by the **Registry** program.
 
 * `Registrar` - Analagous to an SPL token `Mint`, the `Registrar` defines a staking instance. It has its own pool, and it's own set of rewards distributed amongst its own set of stakers.
@@ -103,7 +103,7 @@ Surprisingly, such a mechanism is not immediately obvious.
 
 First, the above program is a non starter. Not only does the SPL token
 program not have the ability to iterate through all accounts for a given mint within a program,
-but, since Solana transactions require the specification of all accounts being accessed
+but, since Safecoin transactions require the specification of all accounts being accessed
 in a transaction (this is how it achieves parallelism), such a transaction's size would be
 well over the limit. So modifying global state atomically in a single transaction is out of the
 question.

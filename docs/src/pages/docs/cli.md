@@ -66,7 +66,7 @@ Deserializes the account with the data types provided in the given IDL file even
 anchor build
 ```
 
-Builds programs in the workspace targeting Solana's BPF runtime and emitting IDLs in the `target/idl` directory.
+Builds programs in the workspace targeting Safecoin's BPF runtime and emitting IDLs in the `target/idl` directory.
 
 ```shell
 anchor build --verifiable
@@ -88,9 +88,9 @@ This lists cluster endpoints:
 Cluster Endpoints:
 
 * Mainnet - https://solana-api.projectserum.com
-* Mainnet - https://api.mainnet-beta.solana.com
-* Devnet  - https://api.devnet.solana.com
-* Testnet - https://api.testnet.solana.com
+* Mainnet - https://api.mainnet-beta.safecoin.org
+* Devnet  - https://api.devnet.safecoin.org
+* Testnet - https://api.testnet.safecoin.org
 ```
 
 ## Deploy
@@ -102,7 +102,7 @@ anchor deploy
 Deploys all programs in the workspace to the configured cluster.
 
 {% callout title="Tip" %}
-This is different from the `solana program deploy` command, because every time it's run
+This is different from the `safecoin program deploy` command, because every time it's run
 it will generate a _new_ program address.
 {% /callout %}
 
@@ -192,7 +192,7 @@ Initializes a project workspace with the following structure.
 - `Anchor.toml`: Anchor configuration file.
 - `Cargo.toml`: Rust workspace configuration file.
 - `package.json`: JavaScript dependencies file.
-- `programs/`: Directory for Solana program crates.
+- `programs/`: Directory for Safecoin program crates.
 - `app/`: Directory for your application frontend.
 - `tests/`: Directory for JavaScript integration tests.
 - `migrations/deploy.js`: Deploy script.
@@ -209,7 +209,7 @@ from the workspace's `Anchor.toml`. For example,
 ```javascript
 // File: migrations/deploys.js
 
-const anchor = require('@coral-xyz/anchor')
+const anchor = require('@safely-project/anchor')
 
 module.exports = async function (provider) {
   anchor.setProvider(provider)
@@ -235,7 +235,7 @@ Creates a new program in the workspace's `programs/` directory initialized with 
 anchor shell
 ```
 
-Starts a node js shell with an Anchor client setup according to the local config. This client can be used to interact with deployed Solana programs in the workspace.
+Starts a node js shell with an Anchor client setup according to the local config. This client can be used to interact with deployed Safecoin programs in the workspace.
 
 ## Test
 
@@ -267,7 +267,7 @@ The Anchor workflow [recommends](https://www.parity.io/paritys-checklist-for-sec
 anchor upgrade <target/deploy/program.so> --program-id <program-id>
 ```
 
-Uses Solana's upgradeable BPF loader to upgrade the on chain program code.
+Uses Safecoin's upgradeable BPF loader to upgrade the on chain program code.
 
 ## Verify
 

@@ -383,7 +383,7 @@ impl<'ty> ConstraintGroupBuilder<'ty> {
             if cfg!(not(feature = "init-if-needed")) && i.if_needed {
                 return Err(ParseError::new(
                     i.span(),
-                    "init_if_needed requires that anchor-lang be imported \
+                    "init_if_needed requires that safe-anchor-lang be imported \
                     with the init-if-needed cargo feature enabled. \
                     Carefully read the init_if_needed docs before using this feature \
                     to make sure you know how to protect yourself against \

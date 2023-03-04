@@ -1,4 +1,4 @@
-const anchor = require("@coral-xyz/anchor");
+const anchor = require("@safely-project/anchor");
 const { assert } = require("chai");
 const { PublicKey } = anchor.web3;
 

@@ -1,10 +1,10 @@
 import assert from "assert";
-import { splStakePoolProgram } from "@coral-xyz/spl-stake-pool";
-import { splTokenProgram } from "@coral-xyz/spl-token";
-import { BN } from "@coral-xyz/anchor";
+import { splStakePoolProgram } from "@safely-project/spl-stake-pool";
+import { splTokenProgram } from "@safely-project/safe-token";
+import { BN } from "@safely-project/anchor";
 import {
   Keypair,
-  LAMPORTS_PER_SOL,
+  LAMPORTS_PER_SAFE,
   PublicKey,
   StakeProgram,
   STAKE_CONFIG_ID,
@@ -13,9 +13,9 @@ import {
   SYSVAR_RENT_PUBKEY,
   SYSVAR_STAKE_HISTORY_PUBKEY,
   VoteProgram,
-} from "@solana/web3.js";
+} from "@safecoin/web3.js";
 
-import { SPL_STAKE_POOL_PROGRAM_ID, SPL_TOKEN_PROGRAM_ID } from "../constants";
+import { SPL_STAKE_POOL_PROGRAM_ID, SAFE_TOKEN_PROGRAM_ID } from "../constants";
 import {
   createAta,
   createMint,
@@ -35,7 +35,7 @@ export async function stakePoolTests() {
   });
   const tokenProgram = splTokenProgram({
     provider,
-    programId: SPL_TOKEN_PROGRAM_ID,
+    programId: SAFE_TOKEN_PROGRAM_ID,
   });
   const kp = await loadKp();
 
@@ -90,7 +90,7 @@ export async function stakePoolTests() {
         (await provider.connection.getMinimumBalanceForRentExemption(
           StakeProgram.space
         )) +
-        LAMPORTS_PER_SOL * 11,
+        LAMPORTS_PER_SAFE * 11,
       stakePubkey: reserveStakePk,
     }).instructions;
 
@@ -227,7 +227,7 @@ export async function stakePoolTests() {
   async function increaseValidatorStake() {
     await program.methods
       .increaseValidatorStake(
-        new BN(LAMPORTS_PER_SOL),
+        new BN(LAMPORTS_PER_SAFE),
         new BN(TRANSIENT_STAKE_SEED)
       )
       .accounts({
@@ -252,7 +252,7 @@ export async function stakePoolTests() {
   async function decreaseValidatorStake() {
     const decreaseValidatorStakeIx = await program.methods
       .decreaseValidatorStake(
-        new BN(LAMPORTS_PER_SOL),
+        new BN(LAMPORTS_PER_SAFE),
         new BN(TRANSIENT_STAKE_SEED + 1)
       )
       .accounts({
@@ -333,7 +333,7 @@ export async function stakePoolTests() {
   }
 
   async function depositStake() {
-    const DEPOSIT_AMOUNT = LAMPORTS_PER_SOL;
+    const DEPOSIT_AMOUNT = LAMPORTS_PER_SAFE;
 
     const [poolDepositAuthorityPk] = await PublicKey.findProgramAddress(
       [stakePoolPk.toBuffer(), Buffer.from("deposit")],
@@ -473,9 +473,9 @@ export async function stakePoolTests() {
       .rpc();
   }
 
-  async function depositSol() {
+  async function depositSafe() {
     await program.methods
-      .depositSol(new BN(1))
+      .depositSafe(new BN(1))
       .accounts({
         stakePool: stakePoolPk,
         stakePoolWithdrawAuthority: withdrawAuthorityPk,
@@ -501,9 +501,9 @@ export async function stakePoolTests() {
       .rpc();
   }
 
-  async function withdrawSol() {
+  async function withdrawSafe() {
     await program.methods
-      .withdrawSol(new BN(1))
+      .withdrawSafe(new BN(1))
       .accounts({
         stakePool: stakePoolPk,
         stakePoolWithdrawAuthority: withdrawAuthorityPk,
@@ -582,9 +582,9 @@ export async function stakePoolTests() {
   await test(setManager);
   await test(setFee);
   await test(setStaker);
-  await test(depositSol);
+  await test(depositSafe);
   await test(setFundingAuthority);
-  await test(withdrawSol);
+  await test(withdrawSafe);
   // await test(createTokenMetadata);
   // await test(updateTokenMetadata);
   await test(fetchStakePool);

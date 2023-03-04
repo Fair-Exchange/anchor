@@ -4,7 +4,7 @@ use crate::Program;
 use heck::CamelCase;
 use quote::{quote, ToTokens};
 
-// Generate non-inlined wrappers for each instruction handler, since Solana's
+// Generate non-inlined wrappers for each instruction handler, since Safecoin's
 // BPF max stack size can't handle reasonable sized dispatch trees without doing
 // so.
 pub fn generate(program: &Program) -> proc_macro2::TokenStream {
@@ -105,7 +105,7 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
             let maybe_set_return_data = match ret_type.to_string().as_str() {
                 "()" => quote! {},
                 _ => quote! {
-                    anchor_lang::solana_program::program::set_return_data(&result.try_to_vec().unwrap());
+                    anchor_lang::safecoin_program::program::set_return_data(&result.try_to_vec().unwrap());
                 },
             };
             quote! {
@@ -149,7 +149,7 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
                         #(#ix_arg_names),*
                     )?;
 
-                    // Maybe set Solana return data.
+                    // Maybe set Safecoin return data.
                     #maybe_set_return_data
 
                     // Exit routine.

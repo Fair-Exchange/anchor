@@ -1,4 +1,4 @@
-import { PublicKey } from "@solana/web3.js";
+import { PublicKey } from "@safecoin/web3.js";
 import Provider from "../../provider.js";
 import { SuccessfulTxSimulationResponse } from "src/utils/rpc.js";
 import { splitArgsAndCtx } from "../context.js";

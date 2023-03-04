@@ -1,4 +1,4 @@
-import { TransactionSignature } from "@solana/web3.js";
+import { TransactionSignature } from "@safecoin/web3.js";
 import Provider from "../../provider.js";
 import { Idl } from "../../idl.js";
 import { splitArgsAndCtx } from "../context.js";

@@ -1,6 +1,6 @@
 import camelCase from "camelcase";
 import * as toml from "toml";
-import { PublicKey } from "@solana/web3.js";
+import { PublicKey } from "@safecoin/web3.js";
 import { Program } from "./program/index.js";
 import { Idl } from "./idl.js";
 import { isBrowser } from "./utils/common.js";

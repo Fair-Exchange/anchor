@@ -1,4 +1,4 @@
-import { PublicKey } from "@solana/web3.js";
+import { PublicKey } from "@safecoin/web3.js";
 import { Program } from "../program/index.js";
 import Provider from "../provider.js";
 import { SystemCoder } from "../coder/system/index.js";

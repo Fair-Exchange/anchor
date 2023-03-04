@@ -1,10 +1,10 @@
 import { createHash } from "crypto";
-import { splNameServiceProgram } from "@coral-xyz/spl-name-service";
-import { BN } from "@coral-xyz/anchor";
+import { splNameServiceProgram } from "@safely-project/spl-name-service";
+import { BN } from "@safely-project/anchor";
 
 import { SPL_NAME_SERVICE_PROGRAM_ID } from "../constants";
 import { confirmTx, getProvider, loadKp, test } from "../utils";
-import { Keypair, PublicKey, SystemProgram } from "@solana/web3.js";
+import { Keypair, PublicKey, SystemProgram } from "@safecoin/web3.js";
 
 export async function nameServiceTests() {
   const provider = await getProvider();

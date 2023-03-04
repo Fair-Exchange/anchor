@@ -4,9 +4,9 @@ WORKDIR=$(PWD)
 #
 ANCHOR_CLI=v0.26.0
 #
-# Solana toolchain.
+# Safecoin toolchain.
 #
-SOLANA_CLI=v1.14.16
+SAFECOIN_CLI=v1.14.16
 #
 # Build version should match the Anchor cli version.
 #
@@ -20,7 +20,7 @@ default:
 build: build/Dockerfile
 	@docker build \
 	--build-arg ANCHOR_CLI=$(ANCHOR_CLI) \
-	--build-arg SOLANA_CLI=$(SOLANA_CLI) \
+	--build-arg SAFECOIN_CLI=$(SAFECOIN_CLI) \
 	$@ -t $(IMG_ORG)/$@:$(IMG_VER)
 
 build-push:

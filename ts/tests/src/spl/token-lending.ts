@@ -3,20 +3,20 @@
 // deserialized correctly but the tests are incomplete.
 
 import assert from "assert";
-import { splTokenLendingProgram } from "@coral-xyz/spl-token-lending";
-import { splTokenProgram } from "@coral-xyz/spl-token";
-import { BN } from "@coral-xyz/anchor";
+import { splTokenLendingProgram } from "@safely-project/safe-token-lending";
+import { splTokenProgram } from "@safely-project/safe-token";
+import { BN } from "@safely-project/anchor";
 import {
   Keypair,
   PublicKey,
   SYSVAR_CLOCK_PUBKEY,
   SYSVAR_RENT_PUBKEY,
-} from "@solana/web3.js";
+} from "@safecoin/web3.js";
 
 import {
   NATIVE_MINT_PK,
-  SPL_TOKEN_LENDING_PROGRAM_ID,
-  SPL_TOKEN_PROGRAM_ID,
+  SAFE_TOKEN_LENDING_PROGRAM_ID,
+  SAFE_TOKEN_PROGRAM_ID,
 } from "../constants";
 import {
   createAta,
@@ -30,11 +30,11 @@ export async function tokenLendingTests() {
   const provider = await getProvider();
   const program = splTokenLendingProgram({
     provider,
-    programId: SPL_TOKEN_LENDING_PROGRAM_ID,
+    programId: SAFE_TOKEN_LENDING_PROGRAM_ID,
   });
   const tokenProgram = splTokenProgram({
     provider,
-    programId: SPL_TOKEN_PROGRAM_ID,
+    programId: SAFE_TOKEN_PROGRAM_ID,
   });
   const kp = await loadKp();
 

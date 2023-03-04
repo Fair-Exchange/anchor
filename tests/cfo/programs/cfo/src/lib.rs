@@ -1,7 +1,7 @@
 // WIP. This program has been checkpointed and is not production ready.
 
 use anchor_lang::prelude::*;
-use anchor_lang::solana_program::sysvar::instructions as tx_instructions;
+use anchor_lang::safecoin_program::sysvar::instructions as tx_instructions;
 use anchor_spl::dex::{self, Dex};
 use anchor_spl::token::{self, Mint, Token, TokenAccount};
 use lockup::program::Lockup;
@@ -583,7 +583,7 @@ pub struct DexMarketAccounts<'info> {
     bids: UncheckedAccount<'info>,
     #[account(mut)]
     asks: UncheckedAccount<'info>,
-    // The `spl_token::Account` that funds will be taken from, i.e., transferred
+    // The `safe_token::Account` that funds will be taken from, i.e., transferred
     // from the user into the market's vault.
     //
     // For bids, this is the base currency. For asks, the quote.

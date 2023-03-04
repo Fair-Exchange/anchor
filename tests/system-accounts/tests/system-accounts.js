@@ -1,5 +1,5 @@
-const anchor = require("@coral-xyz/anchor");
-const splToken = require("@solana/spl-token");
+const anchor = require("@safely-project/anchor");
+const splToken = require("@safecoin/safe-token");
 const { assert } = require("chai");
 
 describe("system_accounts", () => {
@@ -38,7 +38,7 @@ describe("system_accounts", () => {
       tokenAccount,
       authority.publicKey,
       [],
-      1 * anchor.web3.LAMPORTS_PER_SOL
+      1 * anchor.web3.LAMPORTS_PER_SAFE
     );
 
     try {

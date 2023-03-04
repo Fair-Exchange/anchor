@@ -117,7 +117,7 @@ use syn::parse_macro_input;
 ///                         The given space number is the size of the account in bytes, so accounts that hold
 ///                         a variable number of items such as a <code>Vec</code> should allocate sufficient space for all items that may
 ///                         be added to the data structure because account size is fixed.
-///                         Check out the <a href = "https://book.anchor-lang.com/anchor_references/space.html" target = "_blank" rel = "noopener noreferrer">space reference</a>
+///                         Check out the <a href = "https://book.safe-anchor-lang.com/anchor_references/space.html" target = "_blank" rel = "noopener noreferrer">space reference</a>
 ///                         and the <a href = "https://borsh.io/" target = "_blank" rel = "noopener noreferrer">borsh library</a>
 ///                         (which anchor uses under the hood for serialization) specification to learn how much
 ///                         space different data structures require.
@@ -198,7 +198,7 @@ use syn::parse_macro_input;
 ///                 If the account does exist, it still checks whether the given init constraints are correct,
 ///                 e.g. that the account has the expected amount of space and, if it's a PDA, the correct seeds etc.<br><br>
 ///                 This feature should be used with care and is therefore behind a feature flag.
-///                 You can enable it by importing <code>anchor-lang</code> with the <code>init-if-needed</code> cargo feature.<br>
+///                 You can enable it by importing <code>safe-anchor-lang</code> with the <code>init-if-needed</code> cargo feature.<br>
 ///                 When using <code>init_if_needed</code>, you need to make sure you properly protect yourself
 ///                 against re-initialization attacks. You need to include checks in your code that check
 ///                 that the initialized account cannot be reset to its initial settings after the first time it was
@@ -424,7 +424,7 @@ use syn::parse_macro_input;
 ///                 <code>#[account(realloc = &lt;space&gt;, realloc::payer = &lt;target&gt;, realloc::zero = &lt;bool&gt;)]</code>
 ///             </td>
 ///             <td>
-///                 Used to <a href="https://docs.rs/solana-program/latest/solana_program/account_info/struct.AccountInfo.html#method.realloc" target = "_blank" rel = "noopener noreferrer">realloc</a>
+///                 Used to <a href="https://docs.rs/safecoin-program/latest/safecoin_program/account_info/struct.AccountInfo.html#method.realloc" target = "_blank" rel = "noopener noreferrer">realloc</a>
 ///                 program account space at the beginning of an instruction.
 ///                 <br><br>
 ///                 The account must be marked as <code>mut</code> and applied to either <code>Account</code> or <code>AccountLoader</code> types.

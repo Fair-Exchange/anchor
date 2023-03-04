@@ -381,7 +381,7 @@ fn generate_constraint_realloc(
             #payer_optional_check
             if __delta_space > 0 {
                 #system_program_optional_check
-                if ::std::convert::TryInto::<usize>::try_into(__delta_space).unwrap() > anchor_lang::solana_program::entrypoint::MAX_PERMITTED_DATA_INCREASE {
+                if ::std::convert::TryInto::<usize>::try_into(__delta_space).unwrap() > anchor_lang::safecoin_program::entrypoint::MAX_PERMITTED_DATA_INCREASE {
                     return Err(anchor_lang::error::Error::from(anchor_lang::error::ErrorCode::AccountReallocExceedsLimit).with_account_name(#account_name));
                 }
 
@@ -539,7 +539,7 @@ fn generate_constraint_init_group(
                     // Checks that all the required accounts for this operation are present.
                     #optional_checks
 
-                    if !#if_needed || AsRef::<AccountInfo>::as_ref(&#field).owner == &anchor_lang::solana_program::system_program::ID {
+                    if !#if_needed || AsRef::<AccountInfo>::as_ref(&#field).owner == &anchor_lang::safecoin_program::system_program::ID {
                         #payer_optional_check
 
                         // Create the account with the system program.
@@ -598,7 +598,7 @@ fn generate_constraint_init_group(
                     // Checks that all the required accounts for this operation are present.
                     #optional_checks
 
-                    if !#if_needed || AsRef::<AccountInfo>::as_ref(&#field).owner == &anchor_lang::solana_program::system_program::ID {
+                    if !#if_needed || AsRef::<AccountInfo>::as_ref(&#field).owner == &anchor_lang::safecoin_program::system_program::ID {
                         #payer_optional_check
 
                         let cpi_program = associated_token_program.to_account_info();
@@ -676,7 +676,7 @@ fn generate_constraint_init_group(
                     // Checks that all the required accounts for this operation are present.
                     #optional_checks
 
-                    if !#if_needed || AsRef::<AccountInfo>::as_ref(&#field).owner == &anchor_lang::solana_program::system_program::ID {
+                    if !#if_needed || AsRef::<AccountInfo>::as_ref(&#field).owner == &anchor_lang::safecoin_program::system_program::ID {
                         // Define payer variable.
                         #payer_optional_check
 
@@ -693,7 +693,7 @@ fn generate_constraint_init_group(
                     }
                     let pa: #ty_decl = #from_account_info_unchecked;
                     if #if_needed {
-                        if pa.mint_authority != anchor_lang::solana_program::program_option::COption::Some(#owner.key()) {
+                        if pa.mint_authority != anchor_lang::safecoin_program::program_option::COption::Some(#owner.key()) {
                             return Err(anchor_lang::error::Error::from(anchor_lang::error::ErrorCode::ConstraintMintMintAuthority).with_account_name(#name_str));
                         }
                         if pa.freeze_authority
@@ -771,7 +771,7 @@ fn generate_constraint_init_group(
 
                     // Create the account. Always do this in the event
                     // if needed is not specified or the system program is the owner.
-                    let pa: #ty_decl = if !#if_needed || actual_owner == &anchor_lang::solana_program::system_program::ID {
+                    let pa: #ty_decl = if !#if_needed || actual_owner == &anchor_lang::safecoin_program::system_program::ID {
                         #payer_optional_check
 
                         // CPI to the system program to create.
@@ -879,14 +879,14 @@ fn generate_constraint_associated_token(
     let name = &f.ident;
     let name_str = name.to_string();
     let wallet_address = &c.wallet;
-    let spl_token_mint_address = &c.mint;
+    let safe_token_mint_address = &c.mint;
     let mut optional_check_scope = OptionalCheckScope::new_with_field(accs, name);
     let wallet_address_optional_check = optional_check_scope.generate_check(wallet_address);
-    let spl_token_mint_address_optional_check =
-        optional_check_scope.generate_check(spl_token_mint_address);
+    let safe_token_mint_address_optional_check =
+        optional_check_scope.generate_check(safe_token_mint_address);
     let optional_checks = quote! {
         #wallet_address_optional_check
-        #spl_token_mint_address_optional_check
+        #safe_token_mint_address_optional_check
     };
 
     quote! {
@@ -898,7 +898,7 @@ fn generate_constraint_associated_token(
             if my_owner != wallet_address {
                 return Err(anchor_lang::error::Error::from(anchor_lang::error::ErrorCode::ConstraintTokenOwner).with_account_name(#name_str).with_pubkeys((my_owner, wallet_address)));
             }
-            let __associated_token_address = ::anchor_spl::associated_token::get_associated_token_address(&wallet_address, &#spl_token_mint_address.key());
+            let __associated_token_address = ::anchor_spl::associated_token::get_associated_token_address(&wallet_address, &#safe_token_mint_address.key());
             let my_key = #name.key();
             if my_key != __associated_token_address {
                 return Err(anchor_lang::error::Error::from(anchor_lang::error::ErrorCode::ConstraintAssociated).with_account_name(#name_str).with_pubkeys((my_key, __associated_token_address)));
@@ -963,7 +963,7 @@ fn generate_constraint_mint(
             let mint_authority_optional_check = optional_check_scope.generate_check(mint_authority);
             quote! {
                 #mint_authority_optional_check
-                if #name.mint_authority != anchor_lang::solana_program::program_option::COption::Some(#mint_authority.key()) {
+                if #name.mint_authority != anchor_lang::safecoin_program::program_option::COption::Some(#mint_authority.key()) {
                     return Err(anchor_lang::error::ErrorCode::ConstraintMintMintAuthority.into());
                 }
             }
@@ -976,7 +976,7 @@ fn generate_constraint_mint(
                 optional_check_scope.generate_check(freeze_authority);
             quote! {
                 #freeze_authority_optional_check
-                if #name.freeze_authority != anchor_lang::solana_program::program_option::COption::Some(#freeze_authority.key()) {
+                if #name.freeze_authority != anchor_lang::safecoin_program::program_option::COption::Some(#freeze_authority.key()) {
                     return Err(anchor_lang::error::ErrorCode::ConstraintMintFreezeAuthority.into());
                 }
             }
@@ -1036,8 +1036,8 @@ fn generate_get_token_account_space(mint: &Expr) -> proc_macro2::TokenStream {
         {
             let mint_info = #mint.to_account_info();
             if *mint_info.owner == ::anchor_spl::token_2022::Token2022::id() {
-                use ::anchor_spl::token_2022::spl_token_2022::extension::{BaseStateWithExtensions, ExtensionType, StateWithExtensions};
-                use ::anchor_spl::token_2022::spl_token_2022::state::{Account, Mint};
+                use ::anchor_spl::token_2022::safe_token_2022::extension::{BaseStateWithExtensions, ExtensionType, StateWithExtensions};
+                use ::anchor_spl::token_2022::safe_token_2022::state::{Account, Mint};
                 let mint_data = mint_info.try_borrow_data()?;
                 let mint_state = StateWithExtensions::<Mint>::unpack(&mint_data)?;
                 let mint_extensions = mint_state.get_extension_types()?;

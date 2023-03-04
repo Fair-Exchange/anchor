@@ -1,10 +1,10 @@
-import { AnchorProvider, setProvider } from "@coral-xyz/anchor";
-import { splTokenProgram } from "@coral-xyz/spl-token";
-import { Keypair, SYSVAR_RENT_PUBKEY, PublicKey } from "@solana/web3.js";
+import { AnchorProvider, setProvider } from "@safely-project/anchor";
+import { splTokenProgram } from "@safely-project/safe-token";
+import { Keypair, SYSVAR_RENT_PUBKEY, PublicKey } from "@safecoin/web3.js";
 import BN from "bn.js";
 import { assert } from "chai";
 
-describe("spl-token", () => {
+describe("safe-token", () => {
   // Configure the client to use the local cluster.
   const provider = AnchorProvider.env();
   setProvider(provider);

@@ -1,5 +1,5 @@
-import * as anchor from "@coral-xyz/anchor";
-import { Program } from "@coral-xyz/anchor";
+import * as anchor from "@safely-project/anchor";
+import { Program } from "@safely-project/anchor";
 import { IdlCommandsOne } from "../target/types/idl_commands_one";
 import { IdlCommandsTwo } from "../target/types/idl_commands_two";
 import { assert } from "chai";

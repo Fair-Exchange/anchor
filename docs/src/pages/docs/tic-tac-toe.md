@@ -3,7 +3,7 @@ title: Project - Tic-Tac-Toe
 description: Anchor - Milestone Project - Tic-Tac-Toe
 ---
 
-> [Program Code](https://github.com/coral-xyz/anchor/tree/master/docs/programs/tic-tac-toe)
+> [Program Code](https://github.com/safely-project/anchor/tree/master/docs/programs/tic-tac-toe)
 
 You're now ready to build your first anchor project. Create a new anchor workspace with
 
@@ -344,7 +344,7 @@ Finally, we verify the game has been set up properly by comparing the actual sta
 
 Now, run `anchor test`. This starts up (and subsequently shuts down) a local validator (make sure you don't have one running before) and runs your tests using the test script defined in `Anchor.toml`.
 
-> If you get the error `Error: Unable to read keypair file` when running the test, you likely need to generate a Solana keypair using `solana-keygen new`.
+> If you get the error `Error: Unable to read keypair file` when running the test, you likely need to generate a Safecoin keypair using `safecoin-keygen new`.
 
 ## Playing the game
 
@@ -455,7 +455,7 @@ it('player one wins', async () => {
 
 and run `anchor test`.
 
-You can finish writing the test by yourself (or check out [the reference implementation](https://github.com/coral-xyz/anchor/tree/master/docs/programs/tic-tac-toe)). Try to simulate a win and a tie!
+You can finish writing the test by yourself (or check out [the reference implementation](https://github.com/safely-project/anchor/tree/master/docs/programs/tic-tac-toe)). Try to simulate a win and a tie!
 
 Proper testing also includes tests that try to exploit the contract. You can check whether you've protected yourself properly by calling `play` with unexpected parameters. You can also familiarize yourself with the returned `AnchorErrors` this way. For example:
 
@@ -520,7 +520,7 @@ try {
 
 ## Deployment
 
-Solana has three main clusters: `mainnet-beta`, `devnet`, and `testnet`.
+Safecoin has three main clusters: `mainnet-beta`, `devnet`, and `testnet`.
 For developers, `devnet` and `mainnet-beta` are the most interesting. `devnet` is where you test your application in a more realistic environment than `localnet`. `testnet` is mostly for validators.
 
 We are going to deploy on `devnet`.
@@ -538,7 +538,7 @@ There is more to deployments than this e.g. understanding how the BPFLoader work
 
 ## Program directory organization
 
-> [Program Code](https://github.com/coral-xyz/anchor/tree/master/docs/programs/tic-tac-toe)
+> [Program Code](https://github.com/safely-project/anchor/tree/master/docs/programs/tic-tac-toe)
 
 Eventually, some programs become too big to keep them in a single file and it makes sense to break them up.
 

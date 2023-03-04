@@ -4,14 +4,14 @@
 //
 // TODO: Modernize all these apis. This is all quite clunky.
 
-const Token = require("@solana/spl-token").Token;
-const TOKEN_PROGRAM_ID = require("@solana/spl-token").TOKEN_PROGRAM_ID;
+const Token = require("@safecoin/safe-token").Token;
+const TOKEN_PROGRAM_ID = require("@safecoin/safe-token").TOKEN_PROGRAM_ID;
 const TokenInstructions = require("@project-serum/serum").TokenInstructions;
 const Market = require("@project-serum/serum").Market;
 const DexInstructions = require("@project-serum/serum").DexInstructions;
-const web3 = require("@coral-xyz/anchor").web3;
+const web3 = require("@safely-project/anchor").web3;
 const Connection = web3.Connection;
-const BN = require("@coral-xyz/anchor").BN;
+const BN = require("@safely-project/anchor").BN;
 const serumCmn = require("@project-serum/common");
 const Account = web3.Account;
 const Transaction = web3.Transaction;

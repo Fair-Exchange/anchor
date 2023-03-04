@@ -3,7 +3,7 @@ title: Program Derived Addresses
 description: Anchor - Program Derived Addresses
 ---
 
-Knowing how to use PDAs is one of the most important skills for Solana Programming.
+Knowing how to use PDAs is one of the most important skills for Safecoin Programming.
 They simplify the programming model and make programs more secure. So what are they?
 
 ---
@@ -42,7 +42,7 @@ fn find_pda(seeds, program_id) {
 ```
 
 It is technically possible that no bump is found within 256 tries but this probability is negligible.
-If you're interested in the exact calculation of a PDA, check out the [`solana_program` source code](https://docs.rs/solana-program/latest/solana_program/pubkey/struct.Pubkey.html#method.find_program_address).
+If you're interested in the exact calculation of a PDA, check out the [`safecoin_program` source code](https://docs.rs/safecoin-program/latest/safecoin_program/pubkey/struct.Pubkey.html#method.find_program_address).
 
 The first bump that results in a PDA is commonly called the "canonical bump". Other bumps may also result in a PDA but it's recommended to only use the canonical bump to avoid confusion.
 
@@ -190,9 +190,9 @@ pub fn change_user_name(ctx: Context<ChangeUserName>, new_name: String) -> Resul
 Finally, let's add a test. Copy this into `game.ts`
 
 ```ts
-import * as anchor from '@coral-xyz/anchor'
-import { Program } from '@coral-xyz/anchor'
-import { PublicKey } from '@solana/web3.js'
+import * as anchor from '@safely-project/anchor'
+import { Program } from '@safely-project/anchor'
+import { PublicKey } from '@safecoin/web3.js'
 import { Game } from '../target/types/game'
 import { expect } from 'chai'
 
@@ -250,7 +250,7 @@ Creating PDAs requires them to sign the `createAccount` CPI of the system progra
 
 PDAs are not public keys so it's impossible for them to sign anything. However, PDAs can still pseudo sign CPIs.
 In anchor, to sign with a pda you have to change `CpiContext::new(cpi_program, cpi_accounts)` to `CpiContext::new_with_signer(cpi_program, cpi_accounts, seeds)` where the `seeds` argument are the seeds _and_ the bump the PDA was created with.
-When the CPI is invoked, for each account in `cpi_accounts` the Solana runtime will check whether`hash(seeds, current_program_id) == account address` is true. If yes, that account's `is_signer` flag will be turned to true.
+When the CPI is invoked, for each account in `cpi_accounts` the Safecoin runtime will check whether`hash(seeds, current_program_id) == account address` is true. If yes, that account's `is_signer` flag will be turned to true.
 This means a PDA derived from some program X, may only be used to sign CPIs that originate from that program X. This means that on a high level, PDA signatures can be considered program signatures.
 
 This is great news because for many programs it is necessary that the program itself takes the authority over some assets.
@@ -306,9 +306,9 @@ The `authority` account is now an `UncheckedAccount` instead of a `Signer`. When
 Finally, this is the new `puppet.ts`:
 
 ```ts
-import * as anchor from '@coral-xyz/anchor'
-import { Program } from '@coral-xyz/anchor'
-import { Keypair, PublicKey } from '@solana/web3.js'
+import * as anchor from '@safely-project/anchor'
+import { Program } from '@safely-project/anchor'
+import { Keypair, PublicKey } from '@safecoin/web3.js'
 import { Puppet } from '../target/types/puppet'
 import { PuppetMaster } from '../target/types/puppet_master'
 import { expect } from 'chai'
@@ -369,12 +369,12 @@ Secondly, PDAs can be used to allow programs to sign CPIs. This means that progr
 
 You can even combine these two use cases and use a PDA that's used in an instruction as a state account to also sign a CPI.
 
-Admittedly, working with PDAs is one of the most challenging parts of working with Solana.
+Admittedly, working with PDAs is one of the most challenging parts of working with Safecoin.
 This is why in addition to our explanations here, we want to provide you with some further resources.
 
 ## Other Resources
 
-- [Solana Cookbook](https://solanacookbook.com/core-concepts/pdas.html)
+- [Safecoin Cookbook](https://solanacookbook.com/core-concepts/pdas.html)
 - [Pencilflips's twitter thread on PDAs](https://twitter.com/pencilflip/status/1455948263853600768?s=20&t=J2JXCwv395D7MNkX7a9LGw)
 - [jarry xiao's talk on PDAs and CPIs](https://www.youtube.com/watch?v=iMWaQRyjpl4)
-- [paulx's guide on everything Solana (covers much more than PDAs)](https://paulx.dev/blog/2021/01/14/programming-on-solana-an-introduction/)
+- [paulx's guide on everything Safecoin (covers much more than PDAs)](https://paulx.dev/blog/2021/01/14/programming-on-solana-an-introduction/)

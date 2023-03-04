@@ -141,7 +141,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "anchor-lang"
+name = "safe-anchor-lang"
 version = "0.26.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "662ceafe667448ee4199a4be2ee83b6bb76da28566eee5cea05f96ab38255af8"
@@ -160,7 +160,7 @@ dependencies = [
  "bincode",
  "borsh",
  "bytemuck",
- "solana-program",
+ "safecoin-program",
  "thiserror",
 ]
 
@@ -1106,7 +1106,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f2dd574626839106c320a323308629dcb1acfc96e32a8cba364ddc61ac23ee83"
 
 [[package]]
-name = "solana-frozen-abi"
+name = "safecoin-frozen-abi"
 version = "1.13.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "16f845c62a8aee31ad250c08345818a7b0da10ebf7e1e5fdf5f5e735b6dee766"
@@ -1123,12 +1123,12 @@ dependencies = [
  "serde_bytes",
  "serde_derive",
  "sha2 0.10.6",
- "solana-frozen-abi-macro",
+ "safecoin-frozen-abi-macro",
  "thiserror",
 ]
 
 [[package]]
-name = "solana-frozen-abi-macro"
+name = "safecoin-frozen-abi-macro"
 version = "1.13.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8ebd2c533f11262885f1131e52ea6136e7c72fffb18c858ffee05964c5d2beb7"
@@ -1140,7 +1140,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "solana-program"
+name = "safecoin-program"
 version = "1.13.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b218d6f58a793dfd2a7df80c5e9d289d1d78a22dc4975aa9962b9726f5c182ae"
@@ -1174,15 +1174,15 @@ dependencies = [
  "serde_derive",
  "sha2 0.10.6",
  "sha3",
- "solana-frozen-abi",
- "solana-frozen-abi-macro",
- "solana-sdk-macro",
+ "safecoin-frozen-abi",
+ "safecoin-frozen-abi-macro",
+ "safecoin-sdk-macro",
  "thiserror",
  "wasm-bindgen",
 ]
 
 [[package]]
-name = "solana-sdk-macro"
+name = "safecoin-sdk-macro"
 version = "1.13.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "74ea5bf7eca00bc00e34453e11ee0f35cc15dab08c7167b5b01ef88623628246"
@@ -1235,7 +1235,7 @@ dependencies = [
 name = "tic-tac-toe"
 version = "0.1.0"
 dependencies = [
- "anchor-lang",
+ "safe-anchor-lang",
  "num-derive",
  "num-traits",
 ]

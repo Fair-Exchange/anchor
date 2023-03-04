@@ -39,20 +39,20 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
                             let mut data = #sighash_tts.to_vec();
                             data.append(&mut ix_data);
                             let accounts = ctx.to_account_metas(None);
-                            anchor_lang::solana_program::instruction::Instruction {
+                            anchor_lang::safecoin_program::instruction::Instruction {
                                 program_id: crate::ID,
                                 accounts,
                                 data,
                             }
                         };
                         let mut acc_infos = ctx.to_account_infos();
-                        anchor_lang::solana_program::program::invoke_signed(
+                        anchor_lang::safecoin_program::program::invoke_signed(
                             &ix,
                             &acc_infos,
                             ctx.signer_seeds,
                         ).map_or_else(
                             |e| Err(Into::into(e)),
-                            // Maybe handle Solana return data.
+                            // Maybe handle Safecoin return data.
                             |_| { #maybe_return }
                         )
                     }
@@ -78,7 +78,7 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
 
             impl<T: AnchorDeserialize> Return<T> {
                 pub fn get(&self) -> T {
-                    let (_key, data) = anchor_lang::solana_program::program::get_return_data().unwrap();
+                    let (_key, data) = anchor_lang::safecoin_program::program::get_return_data().unwrap();
                     T::try_from_slice(&data).unwrap()
                 }
             }

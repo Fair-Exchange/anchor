@@ -20,8 +20,8 @@
       "../../node_modules/@types"
     ],
     "paths": {
-      "@solana/web3.js": [
-        "../../node_modules/@solana/web3.js/lib"
+      "@safecoin/web3.js": [
+        "../../node_modules/@safecoin/web3.js/lib"
       ]
     }
   }

@@ -1,14 +1,14 @@
-use anchor_lang::solana_program::pubkey::Pubkey;
+use anchor_lang::safecoin_program::pubkey::Pubkey;
 use std::ops::Deref;
 
-static IDS: [Pubkey; 2] = [spl_token::ID, spl_token_2022::ID];
+static IDS: [Pubkey; 2] = [safe_token::ID, safe_token_2022::ID];
 
 #[derive(Clone, Debug, Default, PartialEq)]
-pub struct TokenAccount(spl_token_2022::state::Account);
+pub struct TokenAccount(safe_token_2022::state::Account);
 
 impl anchor_lang::AccountDeserialize for TokenAccount {
     fn try_deserialize_unchecked(buf: &mut &[u8]) -> anchor_lang::Result<Self> {
-        spl_token_2022::extension::StateWithExtensions::<spl_token_2022::state::Account>::unpack(
+        safe_token_2022::extension::StateWithExtensions::<safe_token_2022::state::Account>::unpack(
             buf,
         )
         .map(|t| TokenAccount(t.base))
@@ -25,7 +25,7 @@ impl anchor_lang::Owners for TokenAccount {
 }
 
 impl Deref for TokenAccount {
-    type Target = spl_token_2022::state::Account;
+    type Target = safe_token_2022::state::Account;
 
     fn deref(&self) -> &Self::Target {
         &self.0
@@ -33,11 +33,11 @@ impl Deref for TokenAccount {
 }
 
 #[derive(Clone, Debug, Default, PartialEq)]
-pub struct Mint(spl_token_2022::state::Mint);
+pub struct Mint(safe_token_2022::state::Mint);
 
 impl anchor_lang::AccountDeserialize for Mint {
     fn try_deserialize_unchecked(buf: &mut &[u8]) -> anchor_lang::Result<Self> {
-        spl_token_2022::extension::StateWithExtensions::<spl_token_2022::state::Mint>::unpack(buf)
+        safe_token_2022::extension::StateWithExtensions::<safe_token_2022::state::Mint>::unpack(buf)
             .map(|t| Mint(t.base))
             .map_err(Into::into)
     }
@@ -52,7 +52,7 @@ impl anchor_lang::Owners for Mint {
 }
 
 impl Deref for Mint {
-    type Target = spl_token_2022::state::Mint;
+    type Target = safe_token_2022::state::Mint;
 
     fn deref(&self) -> &Self::Target {
         &self.0
