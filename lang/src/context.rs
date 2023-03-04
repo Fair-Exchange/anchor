@@ -69,7 +69,7 @@ impl<'a, 'b, 'c, 'info, T: Accounts<'info>> Context<'a, 'b, 'c, 'info, T> {
 /// ```ignore
 /// // Callee Program
 ///
-/// use anchor_lang::prelude::*;
+/// use safe_anchor_lang::prelude::*;
 ///
 /// declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 ///
@@ -112,7 +112,7 @@ impl<'a, 'b, 'c, 'info, T: Accounts<'info>> Context<'a, 'b, 'c, 'info, T> {
 ///
 /// // Caller Program
 ///
-/// use anchor_lang::prelude::*;
+/// use safe_anchor_lang::prelude::*;
 /// use callee::{self, program::Callee};
 ///
 /// declare_id!("Sxg7dBh5VLT8S1o6BqncZCPq9nhHHukjfVd6ohQJeAk");

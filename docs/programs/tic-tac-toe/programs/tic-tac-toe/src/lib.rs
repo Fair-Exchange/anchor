@@ -1,4 +1,4 @@
-use anchor_lang::prelude::*;
+use safe_anchor_lang::prelude::*;
 use instructions::*;
 use state::game::Tile;
 

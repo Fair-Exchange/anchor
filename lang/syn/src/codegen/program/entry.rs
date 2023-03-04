@@ -6,11 +6,11 @@ use quote::quote;
 pub fn generate(program: &Program) -> proc_macro2::TokenStream {
     let name: proc_macro2::TokenStream = program.name.to_string().to_camel_case().parse().unwrap();
     let fallback_maybe = dispatch::gen_fallback(program).unwrap_or(quote! {
-        Err(anchor_lang::error::ErrorCode::InstructionMissing.into())
+        Err(safe_anchor_lang::error::ErrorCode::InstructionMissing.into())
     });
     quote! {
         #[cfg(not(feature = "no-entrypoint"))]
-        anchor_lang::safecoin_program::entrypoint!(entry);
+        safe_anchor_lang::safecoin_program::entrypoint!(entry);
         /// The Anchor codegen exposes a programming model where a user defines
         /// a set of methods inside of a `#[program]` module in a way similar
         /// to writing RPC request handlers. The macro then generates a bunch of
@@ -31,7 +31,7 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
         /// * Start program via the entrypoint.
         /// * Strip method identifier off the first 8 bytes of the instruction
         ///   data and invoke the identified method. The method identifier
-        ///   is a variant of sighash. See docs.rs for `anchor_lang` for details.
+        ///   is a variant of sighash. See docs.rs for `safe_anchor_lang` for details.
         /// * If the method identifier is an IDL identifier, execute the IDL
         ///   instructions, which are a special set of hardcoded instructions
         ///   baked into every Anchor program. Then exit.
@@ -47,20 +47,20 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
         ///
         /// The `entry` function here, defines the standard entry to a Safecoin
         /// program, where execution begins.
-        pub fn entry(program_id: &Pubkey, accounts: &[AccountInfo], data: &[u8]) -> anchor_lang::safecoin_program::entrypoint::ProgramResult {
+        pub fn entry(program_id: &Pubkey, accounts: &[AccountInfo], data: &[u8]) -> safe_anchor_lang::safecoin_program::entrypoint::ProgramResult {
             try_entry(program_id, accounts, data).map_err(|e| {
                 e.log();
                 e.into()
             })
         }
 
-        fn try_entry(program_id: &Pubkey, accounts: &[AccountInfo], data: &[u8]) -> anchor_lang::Result<()> {
+        fn try_entry(program_id: &Pubkey, accounts: &[AccountInfo], data: &[u8]) -> safe_anchor_lang::Result<()> {
             #[cfg(feature = "anchor-debug")]
             {
                 msg!("anchor-debug is active");
             }
             if *program_id != ID {
-                return Err(anchor_lang::error::ErrorCode::DeclaredProgramIdMismatch.into());
+                return Err(safe_anchor_lang::error::ErrorCode::DeclaredProgramIdMismatch.into());
             }
             if data.len() < 8 {
                 return #fallback_maybe;
@@ -77,7 +77,7 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
             #[derive(Clone)]
             pub struct #name;
 
-            impl anchor_lang::Id for #name {
+            impl safe_anchor_lang::Id for #name {
                 fn id() -> Pubkey {
                     ID
                 }

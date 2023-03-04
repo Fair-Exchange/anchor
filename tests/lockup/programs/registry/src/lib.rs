@@ -1,11 +1,11 @@
 //! A relatively advanced example of a staking program. If you're new to Anchor,
 //! it's suggested to start with the other examples.
 
-use anchor_lang::accounts::state::ProgramState;
-use anchor_lang::prelude::*;
-use anchor_lang::safecoin_program::account_info::next_account_info;
-use anchor_lang::safecoin_program::program_option::COption;
-use anchor_spl::token::{self, Mint, TokenAccount, Transfer};
+use safe_anchor_lang::accounts::state::ProgramState;
+use safe_anchor_lang::prelude::*;
+use safe_anchor_lang::safecoin_program::account_info::next_account_info;
+use safe_anchor_lang::safecoin_program::program_option::COption;
+use safe_anchor_spl::token::{self, Mint, TokenAccount, Transfer};
 use lockup::{CreateVesting, RealizeLock, Realizor, Vesting};
 use std::convert::Into;
 

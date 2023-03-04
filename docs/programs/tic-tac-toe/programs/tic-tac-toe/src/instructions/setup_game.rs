@@ -1,5 +1,5 @@
 use crate::state::game::*;
-use anchor_lang::prelude::*;
+use safe_anchor_lang::prelude::*;
 
 pub fn setup_game(ctx: Context<SetupGame>, player_two: Pubkey) -> Result<()> {
     ctx.accounts

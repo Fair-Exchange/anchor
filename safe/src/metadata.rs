@@ -1,5 +1,5 @@
-use anchor_lang::context::CpiContext;
-use anchor_lang::{Accounts, Result, ToAccountInfos};
+use safe_anchor_lang::context::CpiContext;
+use safe_anchor_lang::{Accounts, Result, ToAccountInfos};
 use mpl_token_metadata::state::{CollectionDetails, DataV2, TokenMetadataAccount};
 use mpl_token_metadata::ID;
 use safecoin_program::account_info::AccountInfo;
@@ -521,16 +521,16 @@ impl MetadataAccount {
     pub const LEN: usize = mpl_token_metadata::state::MAX_METADATA_LEN;
 }
 
-impl anchor_lang::AccountDeserialize for MetadataAccount {
-    fn try_deserialize_unchecked(buf: &mut &[u8]) -> anchor_lang::Result<Self> {
+impl safe_anchor_lang::AccountDeserialize for MetadataAccount {
+    fn try_deserialize_unchecked(buf: &mut &[u8]) -> safe_anchor_lang::Result<Self> {
         let result = mpl_token_metadata::state::Metadata::safe_deserialize(buf)?;
         Ok(MetadataAccount(result))
     }
 }
 
-impl anchor_lang::AccountSerialize for MetadataAccount {}
+impl safe_anchor_lang::AccountSerialize for MetadataAccount {}
 
-impl anchor_lang::Owner for MetadataAccount {
+impl safe_anchor_lang::Owner for MetadataAccount {
     fn owner() -> Pubkey {
         ID
     }
@@ -550,8 +550,8 @@ impl MasterEditionAccount {
     pub const LEN: usize = mpl_token_metadata::state::MAX_MASTER_EDITION_LEN;
 }
 
-impl anchor_lang::AccountDeserialize for MasterEditionAccount {
-    fn try_deserialize_unchecked(buf: &mut &[u8]) -> anchor_lang::Result<Self> {
+impl safe_anchor_lang::AccountDeserialize for MasterEditionAccount {
+    fn try_deserialize_unchecked(buf: &mut &[u8]) -> safe_anchor_lang::Result<Self> {
         let result = mpl_token_metadata::state::MasterEditionV2::safe_deserialize(buf)?;
         Ok(MasterEditionAccount(result))
     }
@@ -564,9 +564,9 @@ impl Deref for MasterEditionAccount {
     }
 }
 
-impl anchor_lang::AccountSerialize for MasterEditionAccount {}
+impl safe_anchor_lang::AccountSerialize for MasterEditionAccount {}
 
-impl anchor_lang::Owner for MasterEditionAccount {
+impl safe_anchor_lang::Owner for MasterEditionAccount {
     fn owner() -> Pubkey {
         ID
     }
@@ -575,7 +575,7 @@ impl anchor_lang::Owner for MasterEditionAccount {
 #[derive(Clone)]
 pub struct Metadata;
 
-impl anchor_lang::Id for Metadata {
+impl safe_anchor_lang::Id for Metadata {
     fn id() -> Pubkey {
         ID
     }

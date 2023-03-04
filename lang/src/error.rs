@@ -1,4 +1,4 @@
-use anchor_lang::error_code;
+use safe_anchor_lang::error_code;
 use borsh::maybestd::io::Error as BorshIoError;
 use safecoin_program::{program_error::ProgramError, pubkey::Pubkey};
 use std::fmt::{Debug, Display};
@@ -329,7 +329,7 @@ impl ProgramErrorWithOrigin {
     pub fn log(&self) {
         match &self.error_origin {
             None => {
-                anchor_lang::safecoin_program::msg!(
+                safe_anchor_lang::safecoin_program::msg!(
                     "ProgramError occurred. Error Code: {:?}. Error Number: {}. Error Message: {}.",
                     self.program_error,
                     u64::from(self.program_error.clone()),
@@ -337,7 +337,7 @@ impl ProgramErrorWithOrigin {
                 );
             }
             Some(ErrorOrigin::Source(source)) => {
-                anchor_lang::safecoin_program::msg!(
+                safe_anchor_lang::safecoin_program::msg!(
                     "ProgramError thrown in {}:{}. Error Code: {:?}. Error Number: {}. Error Message: {}.",
                     source.filename,
                     source.line,
@@ -348,7 +348,7 @@ impl ProgramErrorWithOrigin {
             }
             Some(ErrorOrigin::AccountName(account_name)) => {
                 // using sol_log because msg! wrongly interprets 5 inputs as u64
-                anchor_lang::safecoin_program::log::sol_log(&format!(
+                safe_anchor_lang::safecoin_program::log::sol_log(&format!(
                     "ProgramError caused by account: {}. Error Code: {:?}. Error Number: {}. Error Message: {}.",
                     account_name,
                     self.program_error,
@@ -359,14 +359,14 @@ impl ProgramErrorWithOrigin {
         }
         match &self.compared_values {
             Some(ComparedValues::Pubkeys((left, right))) => {
-                anchor_lang::safecoin_program::msg!("Left:");
+                safe_anchor_lang::safecoin_program::msg!("Left:");
                 left.log();
-                anchor_lang::safecoin_program::msg!("Right:");
+                safe_anchor_lang::safecoin_program::msg!("Right:");
                 right.log();
             }
             Some(ComparedValues::Values((left, right))) => {
-                anchor_lang::safecoin_program::msg!("Left: {}", left);
-                anchor_lang::safecoin_program::msg!("Right: {}", right);
+                safe_anchor_lang::safecoin_program::msg!("Left: {}", left);
+                safe_anchor_lang::safecoin_program::msg!("Right: {}", right);
             }
             None => (),
         }
@@ -418,13 +418,13 @@ impl AnchorError {
     pub fn log(&self) {
         match &self.error_origin {
             None => {
-                anchor_lang::safecoin_program::log::sol_log(&format!(
+                safe_anchor_lang::safecoin_program::log::sol_log(&format!(
                     "AnchorError occurred. Error Code: {}. Error Number: {}. Error Message: {}.",
                     self.error_name, self.error_code_number, self.error_msg
                 ));
             }
             Some(ErrorOrigin::Source(source)) => {
-                anchor_lang::safecoin_program::msg!(
+                safe_anchor_lang::safecoin_program::msg!(
                     "AnchorError thrown in {}:{}. Error Code: {}. Error Number: {}. Error Message: {}.",
                     source.filename,
                     source.line,
@@ -434,7 +434,7 @@ impl AnchorError {
                 );
             }
             Some(ErrorOrigin::AccountName(account_name)) => {
-                anchor_lang::safecoin_program::log::sol_log(&format!(
+                safe_anchor_lang::safecoin_program::log::sol_log(&format!(
                     "AnchorError caused by account: {}. Error Code: {}. Error Number: {}. Error Message: {}.",
                     account_name,
                     self.error_name,
@@ -445,14 +445,14 @@ impl AnchorError {
         }
         match &self.compared_values {
             Some(ComparedValues::Pubkeys((left, right))) => {
-                anchor_lang::safecoin_program::msg!("Left:");
+                safe_anchor_lang::safecoin_program::msg!("Left:");
                 left.log();
-                anchor_lang::safecoin_program::msg!("Right:");
+                safe_anchor_lang::safecoin_program::msg!("Right:");
                 right.log();
             }
             Some(ComparedValues::Values((left, right))) => {
-                anchor_lang::safecoin_program::msg!("Left: {}", left);
-                anchor_lang::safecoin_program::msg!("Right: {}", right);
+                safe_anchor_lang::safecoin_program::msg!("Left: {}", left);
+                safe_anchor_lang::safecoin_program::msg!("Right: {}", right);
             }
             None => (),
         }
@@ -484,13 +484,13 @@ impl PartialEq for AnchorError {
 
 impl Eq for AnchorError {}
 
-impl std::convert::From<Error> for anchor_lang::safecoin_program::program_error::ProgramError {
-    fn from(e: Error) -> anchor_lang::safecoin_program::program_error::ProgramError {
+impl std::convert::From<Error> for safe_anchor_lang::safecoin_program::program_error::ProgramError {
+    fn from(e: Error) -> safe_anchor_lang::safecoin_program::program_error::ProgramError {
         match e {
             Error::AnchorError(AnchorError {
                 error_code_number, ..
             }) => {
-                anchor_lang::safecoin_program::program_error::ProgramError::Custom(error_code_number)
+                safe_anchor_lang::safecoin_program::program_error::ProgramError::Custom(error_code_number)
             }
             Error::ProgramError(program_error) => program_error.program_error,
         }

@@ -1,7 +1,7 @@
 #![allow(dead_code)]
 
-use anchor_lang::prelude::borsh::maybestd::io::Write;
-use anchor_lang::prelude::*;
+use safe_anchor_lang::prelude::borsh::maybestd::io::Write;
+use safe_anchor_lang::prelude::*;
 use borsh::{BorshDeserialize, BorshSerialize};
 use safecoin_program::pubkey::Pubkey;
 

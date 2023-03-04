@@ -1,11 +1,11 @@
 //! A relatively advanced example of a lockup program. If you're new to Anchor,
 //! it's suggested to start with the other examples.
 
-use anchor_lang::accounts::state::ProgramState;
-use anchor_lang::prelude::*;
-use anchor_lang::safecoin_program;
-use anchor_lang::safecoin_program::instruction::Instruction;
-use anchor_spl::token::{self, TokenAccount, Transfer};
+use safe_anchor_lang::accounts::state::ProgramState;
+use safe_anchor_lang::prelude::*;
+use safe_anchor_lang::safecoin_program;
+use safe_anchor_lang::safecoin_program::instruction::Instruction;
+use safe_anchor_spl::token::{self, TokenAccount, Transfer};
 
 mod calculator;
 

@@ -28,7 +28,7 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
         })
         .collect();
     let fallback_fn = gen_fallback(program).unwrap_or(quote! {
-        Err(anchor_lang::error::ErrorCode::InstructionFallbackNotFound.into())
+        Err(safe_anchor_lang::error::ErrorCode::InstructionFallbackNotFound.into())
     });
     quote! {
         /// Performs method dispatch.
@@ -50,7 +50,7 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
             program_id: &Pubkey,
             accounts: &[AccountInfo],
             data: &[u8],
-        ) -> anchor_lang::Result<()> {
+        ) -> safe_anchor_lang::Result<()> {
             // Split the instruction data into the first 8 byte method
             // identifier (sighash) and the serialized instruction data.
             let mut ix_data: &[u8] = data;
@@ -62,10 +62,10 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
             };
 
 
-            use anchor_lang::Discriminator;
+            use safe_anchor_lang::Discriminator;
             match sighash {
                 #(#global_dispatch_arms)*
-                anchor_lang::idl::IDL_IX_TAG_LE => {
+                safe_anchor_lang::idl::IDL_IX_TAG_LE => {
                     // If the method identifier is the IDL tag, then execute an IDL
                     // instruction, injected into all Anchor programs.
                     if cfg!(not(feature = "no-idl")) {
@@ -75,7 +75,7 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
                             &ix_data,
                         )
                     } else {
-                        Err(anchor_lang::error::ErrorCode::IdlInstructionStub.into())
+                        Err(safe_anchor_lang::error::ErrorCode::IdlInstructionStub.into())
                     }
                 }
                 _ => {

@@ -14,7 +14,7 @@ use syn::{
 };
 
 const DERIVE_NAME: &str = "Accounts";
-// TODO: share this with `anchor_lang` crate.
+// TODO: share this with `safe_anchor_lang` crate.
 const ERROR_CODE_OFFSET: u32 = 6000;
 
 // Parse an entire interface file.

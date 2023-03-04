@@ -17,15 +17,15 @@ governance = []
 shmem = []
 stake = ["borsh"]
 devnet = []
-metadata = ["mpl-token-metadata"]
+metadata = ["lpl-token-metadata"]
 dex = ["serum_dex"]
 
 [dependencies]
 safe-anchor-lang = { path = "../lang", version = "0.26.0", features = ["derive"] }
 borsh = { version = "^0.9", optional = true }
 serum_dex = { git = "https://github.com/openbook-dex/program/", rev = "1be91f2", version = "0.4.0", features = ["no-entrypoint"], optional = true }
-safecoin-program = "1.14.3"
-safe-token = { version = "3.5.0", features = ["no-entrypoint"], optional = true }
-safe-token-2022 = { version = "0.4.3", features = ["no-entrypoint"], optional = true }
-safe-associated-token-account = { version = "1.1.1", features = ["no-entrypoint"], optional = true }
-mpl-token-metadata = { version = "^1.4.3", optional = true, features = ["no-entrypoint"] }
+safecoin-program = { version = "1.15.3", path = "../../Safecoin/sdk/program"}
+safe-token = { version = "3.5.0", path="../../safecoin-program-library/token/program", features = ["no-entrypoint"], optional = true }
+safe-token-2022 = { version = "0.5.0", path="../../safecoin-program-library/token/program-2022", features = ["no-entrypoint"], optional = true }
+safe-associated-token-account = { version = "1.1.2", path="../../safecoin-program-library/associated-token-account/program", features = ["no-entrypoint"], optional = true }
+lpl-token-metadata = { version = "^1.8.5", path = "../../ledamint-program-library/token-metadata/program", optional = true, features = ["no-entrypoint"] }

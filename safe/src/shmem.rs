@@ -1,8 +1,8 @@
 //! CPI API for interacting with the SPL shared memory
 //! [program](https://github.com/fair-exchange/safecoin-program-library/tree/master/shared-memory).
 
-use anchor_lang::ToAccountInfo;
-use anchor_lang::{context::CpiContext, Accounts};
+use safe_anchor_lang::ToAccountInfo;
+use safe_anchor_lang::{context::CpiContext, Accounts};
 use safecoin_program::account_info::AccountInfo;
 use safecoin_program::declare_id;
 use safecoin_program::entrypoint::ProgramResult;

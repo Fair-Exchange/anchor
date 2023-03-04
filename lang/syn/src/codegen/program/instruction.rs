@@ -26,11 +26,11 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
                 let sighash_tts: proc_macro2::TokenStream =
                     format!("{sighash_arr:?}").parse().unwrap();
                 quote! {
-                    impl anchor_lang::Discriminator for #ix_name_camel {
+                    impl safe_anchor_lang::Discriminator for #ix_name_camel {
                         const DISCRIMINATOR: [u8; 8] = #sighash_tts;
                     }
-                    impl anchor_lang::InstructionData for #ix_name_camel {}
-                    impl anchor_lang::Owner for #ix_name_camel {
+                    impl safe_anchor_lang::InstructionData for #ix_name_camel {}
+                    impl safe_anchor_lang::Owner for #ix_name_camel {
                         fn owner() -> Pubkey {
                             ID
                         }

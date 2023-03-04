@@ -2,7 +2,7 @@
 //! It's not too instructive/coherent by itself, so please see other examples.
 
 use account::MAX_SIZE;
-use anchor_lang::prelude::*;
+use safe_anchor_lang::prelude::*;
 use context::*;
 use event::*;
 

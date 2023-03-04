@@ -17,9 +17,9 @@
 //! the `execute_transaction`, once enough (i.e. `threshold`) of the owners have
 //! signed.
 
-use anchor_lang::prelude::*;
-use anchor_lang::safecoin_program;
-use anchor_lang::safecoin_program::instruction::Instruction;
+use safe_anchor_lang::prelude::*;
+use safe_anchor_lang::safecoin_program;
+use safe_anchor_lang::safecoin_program::instruction::Instruction;
 use std::convert::Into;
 
 declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");

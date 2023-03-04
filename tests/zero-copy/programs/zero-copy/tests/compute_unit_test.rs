@@ -2,7 +2,7 @@
 
 use {
     anchor_client::{
-        anchor_lang::Discriminator,
+        safe_anchor_lang::Discriminator,
         safecoin_sdk::{
             account::Account,
             commitment_config::CommitmentConfig,

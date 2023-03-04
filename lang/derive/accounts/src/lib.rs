@@ -22,7 +22,7 @@ use syn::parse_macro_input;
 ///
 /// ```ignore
 /// ...
-/// pub fn initialize(ctx: Context<Create>, bump: u8, authority: Pubkey, data: u64) -> anchor_lang::Result<()> {
+/// pub fn initialize(ctx: Context<Create>, bump: u8, authority: Pubkey, data: u64) -> safe_anchor_lang::Result<()> {
 ///     ...
 ///     Ok(())
 /// }
@@ -487,7 +487,7 @@ use syn::parse_macro_input;
 ///                 <br><br>
 ///                 Example:
 ///                 <pre>
-/// use anchor_spl::{mint, token::{TokenAccount, Mint, Token}};
+/// use safe_anchor_spl::{mint, token::{TokenAccount, Mint, Token}};
 /// ...&#10;
 /// #[account(
 ///     init,
@@ -519,7 +519,7 @@ use syn::parse_macro_input;
 ///                 <br><br>
 ///                 Example:
 ///                 <pre>
-/// use anchor_spl::token::{Mint, Token};
+/// use safe_anchor_spl::token::{Mint, Token};
 /// ...&#10;
 /// #[account(
 ///     init,
@@ -553,7 +553,7 @@ use syn::parse_macro_input;
 ///                 <br><br>
 ///                 Example:
 ///                 <pre>
-/// use anchor_spl::{
+/// use safe_anchor_spl::{
 ///     associated_token::AssociatedToken,
 ///     mint,
 ///     token::{TokenAccount, Mint, Token}

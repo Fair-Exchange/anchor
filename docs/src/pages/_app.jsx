@@ -71,7 +71,7 @@ const navigation = [
       { title: 'AVM', href: '/docs/avm' },
       {
         title: 'Core Library',
-        href: 'https://docs.rs/safe-anchor-lang/latest/anchor_lang/',
+        href: 'https://docs.rs/safe-anchor-lang/latest/safe_anchor_lang/',
       },
       {
         title: 'Rust Client Library',
@@ -79,7 +79,7 @@ const navigation = [
       },
       // {
       //   title: 'TypeScript Client Library',
-      //   href: 'https://docs.rs/safe-anchor-lang/latest/anchor_lang/error/enum.ErrorCode.html',
+      //   href: 'https://docs.rs/safe-anchor-lang/latest/safe_anchor_lang/error/enum.ErrorCode.html',
       // },
       {
         title: 'JavaScript Anchor Types',

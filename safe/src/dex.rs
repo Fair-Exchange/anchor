@@ -1,7 +1,7 @@
-use anchor_lang::safecoin_program::account_info::AccountInfo;
-use anchor_lang::safecoin_program::program_error::ProgramError;
-use anchor_lang::safecoin_program::pubkey::Pubkey;
-use anchor_lang::{context::CpiContext, Accounts, Result, ToAccountInfos};
+use safe_anchor_lang::safecoin_program::account_info::AccountInfo;
+use safe_anchor_lang::safecoin_program::program_error::ProgramError;
+use safe_anchor_lang::safecoin_program::pubkey::Pubkey;
+use safe_anchor_lang::{context::CpiContext, Accounts, Result, ToAccountInfos};
 use serum_dex::instruction::SelfTradeBehavior;
 use serum_dex::matching::{OrderType, Side};
 use std::num::NonZeroU64;
@@ -9,10 +9,10 @@ use std::num::NonZeroU64;
 pub use serum_dex;
 
 #[cfg(not(feature = "devnet"))]
-anchor_lang::safecoin_program::declare_id!("srmqPvymJeFKQ4zGQed1GFppgkRHL9kaELCbyksJtPX");
+safe_anchor_lang::safecoin_program::declare_id!("srmqPvymJeFKQ4zGQed1GFppgkRHL9kaELCbyksJtPX");
 
 #[cfg(feature = "devnet")]
-anchor_lang::safecoin_program::declare_id!("EoTcMgcDRTJVZDMZWBoU6rhYHZfkNTVEAfz3uUJRcYGj");
+safe_anchor_lang::safecoin_program::declare_id!("EoTcMgcDRTJVZDMZWBoU6rhYHZfkNTVEAfz3uUJRcYGj");
 
 #[allow(clippy::too_many_arguments)]
 pub fn new_order_v3<'info>(
@@ -292,7 +292,7 @@ pub struct InitializeMarket<'info> {
 #[derive(Clone)]
 pub struct Dex;
 
-impl anchor_lang::Id for Dex {
+impl safe_anchor_lang::Id for Dex {
     fn id() -> Pubkey {
         ID
     }

@@ -46,13 +46,13 @@ impl AccountSerialize for ProgramData {
 
 impl Owner for ProgramData {
     fn owner() -> safecoin_program::pubkey::Pubkey {
-        anchor_lang::safecoin_program::bpf_loader_upgradeable::ID
+        safe_anchor_lang::safecoin_program::bpf_loader_upgradeable::ID
     }
 }
 
 impl Owner for UpgradeableLoaderState {
     fn owner() -> Pubkey {
-        anchor_lang::safecoin_program::bpf_loader_upgradeable::ID
+        safe_anchor_lang::safecoin_program::bpf_loader_upgradeable::ID
     }
 }
 

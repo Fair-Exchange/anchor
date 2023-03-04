@@ -1,8 +1,8 @@
-//! This example demonstrates the use of the `anchor_spl::token` CPI client.
+//! This example demonstrates the use of the `safe_anchor_spl::token` CPI client.
 
-use anchor_lang::prelude::*;
-use anchor_spl::associated_token::AssociatedToken;
-use anchor_spl::token_interface::{
+use safe_anchor_lang::prelude::*;
+use safe_anchor_spl::associated_token::AssociatedToken;
+use safe_anchor_spl::token_interface::{
     self, Burn, Mint, MintTo, SetAuthority, TokenAccount, TokenInterface, Transfer, TransferChecked,
 };
 

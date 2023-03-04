@@ -1,4 +1,4 @@
-use anchor_lang::safecoin_program::declare_id;
+use safe_anchor_lang::safecoin_program::declare_id;
 
 pub use srm::ID as SRM;
 mod srm {

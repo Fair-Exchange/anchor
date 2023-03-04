@@ -25,7 +25,7 @@ pub fn generate(accs: &AccountsStruct) -> proc_macro2::TokenStream {
                     quote! {
                         #[cfg(feature = "anchor-debug")]
                         ::safecoin_program::log::sol_log(stringify!(#name));
-                        let #name: #ty = anchor_lang::Accounts::try_accounts(program_id, accounts, ix_data, __bumps, __reallocs)?;
+                        let #name: #ty = safe_anchor_lang::Accounts::try_accounts(program_id, accounts, ix_data, __bumps, __reallocs)?;
                     }
                 }
                 AccountField::Field(f) => {
@@ -42,7 +42,7 @@ pub fn generate(accs: &AccountsStruct) -> proc_macro2::TokenStream {
                             let empty_behavior = if cfg!(feature = "allow-missing-optionals") {
                                 quote!{ None }
                             } else {
-                                quote!{ return Err(anchor_lang::error::ErrorCode::AccountNotEnoughKeys.into()); }
+                                quote!{ return Err(safe_anchor_lang::error::ErrorCode::AccountNotEnoughKeys.into()); }
                             };
                             quote! {
                                 let #name = if accounts.is_empty() {
@@ -59,7 +59,7 @@ pub fn generate(accs: &AccountsStruct) -> proc_macro2::TokenStream {
                         } else {
                             quote!{
                                 if accounts.is_empty() {
-                                    return Err(anchor_lang::error::ErrorCode::AccountNotEnoughKeys.into());
+                                    return Err(safe_anchor_lang::error::ErrorCode::AccountNotEnoughKeys.into());
                                 }
                                 let #name = &accounts[0];
                                 *accounts = &accounts[1..];
@@ -71,7 +71,7 @@ pub fn generate(accs: &AccountsStruct) -> proc_macro2::TokenStream {
                         quote! {
                             #[cfg(feature = "anchor-debug")]
                             ::safecoin_program::log::sol_log(stringify!(#typed_name));
-                            let #typed_name = anchor_lang::Accounts::try_accounts(program_id, accounts, ix_data, __bumps, __reallocs)
+                            let #typed_name = safe_anchor_lang::Accounts::try_accounts(program_id, accounts, ix_data, __bumps, __reallocs)
                                 .map_err(|e| e.with_account_name(#name))?;
                         }
                     }
@@ -101,29 +101,29 @@ pub fn generate(accs: &AccountsStruct) -> proc_macro2::TokenStream {
                 .collect();
             quote! {
                 let mut ix_data = ix_data;
-                #[derive(anchor_lang::AnchorSerialize, anchor_lang::AnchorDeserialize)]
+                #[derive(safe_anchor_lang::AnchorSerialize, safe_anchor_lang::AnchorDeserialize)]
                 struct __Args {
                     #strct_inner
                 }
                 let __Args {
                     #(#field_names),*
                 } = __Args::deserialize(&mut ix_data)
-                    .map_err(|_| anchor_lang::error::ErrorCode::InstructionDidNotDeserialize)?;
+                    .map_err(|_| safe_anchor_lang::error::ErrorCode::InstructionDidNotDeserialize)?;
             }
         }
     };
 
     quote! {
         #[automatically_derived]
-        impl<#combined_generics> anchor_lang::Accounts<#trait_generics> for #name<#struct_generics> #where_clause {
+        impl<#combined_generics> safe_anchor_lang::Accounts<#trait_generics> for #name<#struct_generics> #where_clause {
             #[inline(never)]
             fn try_accounts(
-                program_id: &anchor_lang::safecoin_program::pubkey::Pubkey,
-                accounts: &mut &[anchor_lang::safecoin_program::account_info::AccountInfo<'info>],
+                program_id: &safe_anchor_lang::safecoin_program::pubkey::Pubkey,
+                accounts: &mut &[safe_anchor_lang::safecoin_program::account_info::AccountInfo<'info>],
                 ix_data: &[u8],
                 __bumps: &mut std::collections::BTreeMap<String, u8>,
-                __reallocs: &mut std::collections::BTreeSet<anchor_lang::safecoin_program::pubkey::Pubkey>,
-            ) -> anchor_lang::Result<Self> {
+                __reallocs: &mut std::collections::BTreeSet<safe_anchor_lang::safecoin_program::pubkey::Pubkey>,
+            ) -> safe_anchor_lang::Result<Self> {
                 // Deserialize instruction, if declared.
                 #ix_de
                 // Deserialize each account.

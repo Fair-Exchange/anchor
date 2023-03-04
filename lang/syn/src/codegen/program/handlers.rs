@@ -20,15 +20,15 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
             // on chain.
             #[inline(never)]
             #[cfg(not(feature = "no-idl"))]
-            pub fn __idl_dispatch(program_id: &Pubkey, accounts: &[AccountInfo], idl_ix_data: &[u8]) -> anchor_lang::Result<()> {
+            pub fn __idl_dispatch(program_id: &Pubkey, accounts: &[AccountInfo], idl_ix_data: &[u8]) -> safe_anchor_lang::Result<()> {
                 let mut accounts = accounts;
                 let mut data: &[u8] = idl_ix_data;
 
-                let ix = anchor_lang::idl::IdlInstruction::deserialize(&mut data)
-                    .map_err(|_| anchor_lang::error::ErrorCode::InstructionDidNotDeserialize)?;
+                let ix = safe_anchor_lang::idl::IdlInstruction::deserialize(&mut data)
+                    .map_err(|_| safe_anchor_lang::error::ErrorCode::InstructionDidNotDeserialize)?;
 
                 match ix {
-                    anchor_lang::idl::IdlInstruction::Create { data_len } => {
+                    safe_anchor_lang::idl::IdlInstruction::Create { data_len } => {
                         let mut bumps = std::collections::BTreeMap::new();
                         let mut reallocs = std::collections::BTreeSet::new();
                         let mut accounts =
@@ -36,7 +36,7 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
                         __idl_create_account(program_id, &mut accounts, data_len)?;
                         accounts.exit(program_id)?;
                     },
-                    anchor_lang::idl::IdlInstruction::Resize { data_len } => {
+                    safe_anchor_lang::idl::IdlInstruction::Resize { data_len } => {
                         let mut bumps = std::collections::BTreeMap::new();
                         let mut reallocs = std::collections::BTreeSet::new();
                         let mut accounts =
@@ -44,7 +44,7 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
                         __idl_resize_account(program_id, &mut accounts, data_len)?;
                         accounts.exit(program_id)?;
                     },
-                    anchor_lang::idl::IdlInstruction::Close => {
+                    safe_anchor_lang::idl::IdlInstruction::Close => {
                         let mut bumps = std::collections::BTreeMap::new();
                         let mut reallocs = std::collections::BTreeSet::new();
                         let mut accounts =
@@ -52,7 +52,7 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
                         __idl_close_account(program_id, &mut accounts)?;
                         accounts.exit(program_id)?;
                     },
-                    anchor_lang::idl::IdlInstruction::CreateBuffer => {
+                    safe_anchor_lang::idl::IdlInstruction::CreateBuffer => {
                         let mut bumps = std::collections::BTreeMap::new();
                         let mut reallocs = std::collections::BTreeSet::new();
                         let mut accounts =
@@ -60,7 +60,7 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
                         __idl_create_buffer(program_id, &mut accounts)?;
                         accounts.exit(program_id)?;
                     },
-                    anchor_lang::idl::IdlInstruction::Write { data } => {
+                    safe_anchor_lang::idl::IdlInstruction::Write { data } => {
                         let mut bumps = std::collections::BTreeMap::new();
                         let mut reallocs = std::collections::BTreeSet::new();
                         let mut accounts =
@@ -68,7 +68,7 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
                         __idl_write(program_id, &mut accounts, data)?;
                         accounts.exit(program_id)?;
                     },
-                    anchor_lang::idl::IdlInstruction::SetAuthority { new_authority } => {
+                    safe_anchor_lang::idl::IdlInstruction::SetAuthority { new_authority } => {
                         let mut bumps = std::collections::BTreeMap::new();
                         let mut reallocs = std::collections::BTreeSet::new();
                         let mut accounts =
@@ -76,7 +76,7 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
                         __idl_set_authority(program_id, &mut accounts, new_authority)?;
                         accounts.exit(program_id)?;
                     },
-                    anchor_lang::idl::IdlInstruction::SetBuffer => {
+                    safe_anchor_lang::idl::IdlInstruction::SetBuffer => {
                         let mut bumps = std::collections::BTreeMap::new();
                         let mut reallocs = std::collections::BTreeSet::new();
                         let mut accounts =
@@ -105,7 +105,7 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
             let maybe_set_return_data = match ret_type.to_string().as_str() {
                 "()" => quote! {},
                 _ => quote! {
-                    anchor_lang::safecoin_program::program::set_return_data(&result.try_to_vec().unwrap());
+                    safe_anchor_lang::safecoin_program::program::set_return_data(&result.try_to_vec().unwrap());
                 },
             };
             quote! {
@@ -114,13 +114,13 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
                     program_id: &Pubkey,
                     accounts: &[AccountInfo],
                     ix_data: &[u8],
-                ) -> anchor_lang::Result<()> {
+                ) -> safe_anchor_lang::Result<()> {
                     #[cfg(not(feature = "no-log-ix-name"))]
-                    anchor_lang::prelude::msg!(#ix_name_log);
+                    safe_anchor_lang::prelude::msg!(#ix_name_log);
 
                     // Deserialize data.
                     let ix = instruction::#ix_name::deserialize(&mut &ix_data[..])
-                        .map_err(|_| anchor_lang::error::ErrorCode::InstructionDidNotDeserialize)?;
+                        .map_err(|_| safe_anchor_lang::error::ErrorCode::InstructionDidNotDeserialize)?;
                     let instruction::#variant_arm = ix;
 
                     // Bump collector.
@@ -140,7 +140,7 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
 
                     // Invoke user defined handler.
                     let result = #program_name::#ix_method_name(
-                        anchor_lang::context::Context::new(
+                        safe_anchor_lang::context::Context::new(
                             program_id,
                             &mut accounts,
                             remaining_accounts,

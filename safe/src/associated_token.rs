@@ -1,7 +1,7 @@
-use anchor_lang::safecoin_program::account_info::AccountInfo;
-use anchor_lang::safecoin_program::pubkey::Pubkey;
-use anchor_lang::Result;
-use anchor_lang::{context::CpiContext, Accounts};
+use safe_anchor_lang::safecoin_program::account_info::AccountInfo;
+use safe_anchor_lang::safecoin_program::pubkey::Pubkey;
+use safe_anchor_lang::Result;
+use safe_anchor_lang::{context::CpiContext, Accounts};
 
 pub use safe_associated_token_account::{
     get_associated_token_address, get_associated_token_address_with_program_id, ID,
@@ -68,7 +68,7 @@ type CreateIdempotent<'info> = Create<'info>;
 #[derive(Clone)]
 pub struct AssociatedToken;
 
-impl anchor_lang::Id for AssociatedToken {
+impl safe_anchor_lang::Id for AssociatedToken {
     fn id() -> Pubkey {
         ID
     }

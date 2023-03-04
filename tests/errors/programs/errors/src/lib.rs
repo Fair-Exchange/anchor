@@ -1,7 +1,7 @@
 //! This example demonstrates how custom errors and associated error messsages
 //! can be defined and transparently propagated to clients.
 
-use anchor_lang::prelude::*;
+use safe_anchor_lang::prelude::*;
 
 declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 

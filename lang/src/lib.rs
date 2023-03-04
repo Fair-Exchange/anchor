@@ -21,7 +21,7 @@
 //!
 //! Presented here are the Rust primitives for building on Safecoin.
 
-extern crate self as anchor_lang;
+extern crate self as safe_anchor_lang;
 
 use bytemuck::{Pod, Zeroable};
 use safecoin_program::account_info::AccountInfo;
@@ -284,7 +284,7 @@ impl Key for Pubkey {
 }
 
 /// The prelude contains all commonly used components of the crate.
-/// All programs should include it via `anchor_lang::prelude::*;`.
+/// All programs should include it via `safe_anchor_lang::prelude::*;`.
 pub mod prelude {
     pub use super::{
         access_control, account, accounts::account::Account,
@@ -397,12 +397,12 @@ pub mod __private {
 macro_rules! require {
     ($invariant:expr, $error:tt $(,)?) => {
         if !($invariant) {
-            return Err(anchor_lang::error!($crate::ErrorCode::$error));
+            return Err(safe_anchor_lang::error!($crate::ErrorCode::$error));
         }
     };
     ($invariant:expr, $error:expr $(,)?) => {
         if !($invariant) {
-            return Err(anchor_lang::error!($error));
+            return Err(safe_anchor_lang::error!($error));
         }
     };
 }
@@ -431,7 +431,7 @@ macro_rules! require_eq {
     };
     ($value1: expr, $value2: expr $(,)?) => {
         if $value1 != $value2 {
-            return Err(error!(anchor_lang::error::ErrorCode::RequireEqViolated)
+            return Err(error!(safe_anchor_lang::error::ErrorCode::RequireEqViolated)
                 .with_values(($value1, $value2)));
         }
     };
@@ -461,7 +461,7 @@ macro_rules! require_neq {
     };
     ($value1: expr, $value2: expr $(,)?) => {
         if $value1 == $value2 {
-            return Err(error!(anchor_lang::error::ErrorCode::RequireNeqViolated)
+            return Err(error!(safe_anchor_lang::error::ErrorCode::RequireNeqViolated)
                 .with_values(($value1, $value2)));
         }
     };
@@ -491,7 +491,7 @@ macro_rules! require_keys_eq {
     };
     ($value1: expr, $value2: expr $(,)?) => {
         if $value1 != $value2 {
-            return Err(error!(anchor_lang::error::ErrorCode::RequireKeysEqViolated)
+            return Err(error!(safe_anchor_lang::error::ErrorCode::RequireKeysEqViolated)
                 .with_pubkeys(($value1, $value2)));
         }
     };
@@ -522,7 +522,7 @@ macro_rules! require_keys_neq {
     ($value1: expr, $value2: expr $(,)?) => {
         if $value1 == $value2 {
             return Err(
-                error!(anchor_lang::error::ErrorCode::RequireKeysNeqViolated)
+                error!(safe_anchor_lang::error::ErrorCode::RequireKeysNeqViolated)
                     .with_pubkeys(($value1, $value2)),
             );
         }
@@ -553,7 +553,7 @@ macro_rules! require_gt {
     };
     ($value1: expr, $value2: expr $(,)?) => {
         if $value1 <= $value2 {
-            return Err(error!(anchor_lang::error::ErrorCode::RequireGtViolated)
+            return Err(error!(safe_anchor_lang::error::ErrorCode::RequireGtViolated)
                 .with_values(($value1, $value2)));
         }
     };
@@ -581,7 +581,7 @@ macro_rules! require_gte {
     };
     ($value1: expr, $value2: expr $(,)?) => {
         if $value1 < $value2 {
-            return Err(error!(anchor_lang::error::ErrorCode::RequireGteViolated)
+            return Err(error!(safe_anchor_lang::error::ErrorCode::RequireGteViolated)
                 .with_values(($value1, $value2)));
         }
     };
@@ -606,10 +606,10 @@ macro_rules! require_gte {
 #[macro_export]
 macro_rules! err {
     ($error:tt $(,)?) => {
-        Err(anchor_lang::error!($crate::ErrorCode::$error))
+        Err(safe_anchor_lang::error!($crate::ErrorCode::$error))
     };
     ($error:expr $(,)?) => {
-        Err(anchor_lang::error!($error))
+        Err(safe_anchor_lang::error!($error))
     };
 }
 
@@ -617,7 +617,7 @@ macro_rules! err {
 #[macro_export]
 macro_rules! source {
     () => {
-        anchor_lang::error::Source {
+        safe_anchor_lang::error::Source {
             filename: file!(),
             line: line!(),
         }

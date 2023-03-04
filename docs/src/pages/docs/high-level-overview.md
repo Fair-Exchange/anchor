@@ -9,7 +9,7 @@ When you start up a new Anchor project, you'll see the following:
 
 ```rust
 // use this import to gain access to common anchor features
-use anchor_lang::prelude::*;
+use safe_anchor_lang::prelude::*;
 
 // declare an id for your program
 declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");

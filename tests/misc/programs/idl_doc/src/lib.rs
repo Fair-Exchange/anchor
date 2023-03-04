@@ -1,6 +1,6 @@
 //! Testing the extraction of doc comments from the IDL.
 
-use anchor_lang::prelude::*;
+use safe_anchor_lang::prelude::*;
 
 
 declare_id!("BqmKjZGVa8fqyWuojJzG16zaKSV1GjAisZToNuvEaz6m");

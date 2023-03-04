@@ -62,12 +62,12 @@ pub fn generate(accs: &AccountsStruct) -> proc_macro2::TokenStream {
                 if f.is_optional {
                     quote! {
                         #docs
-                        pub #name: Option<anchor_lang::safecoin_program::pubkey::Pubkey>
+                        pub #name: Option<safe_anchor_lang::safecoin_program::pubkey::Pubkey>
                     }
                 } else {
                     quote! {
                         #docs
-                        pub #name: anchor_lang::safecoin_program::pubkey::Pubkey
+                        pub #name: safe_anchor_lang::safecoin_program::pubkey::Pubkey
                     }
                 }
             }
@@ -94,8 +94,8 @@ pub fn generate(accs: &AccountsStruct) -> proc_macro2::TokenStream {
                     true => quote! {true},
                 };
                 let meta = match f.constraints.is_mutable() {
-                    false => quote! { anchor_lang::safecoin_program::instruction::AccountMeta::new_readonly },
-                    true => quote! { anchor_lang::safecoin_program::instruction::AccountMeta::new },
+                    false => quote! { safe_anchor_lang::safecoin_program::instruction::AccountMeta::new_readonly },
+                    true => quote! { safe_anchor_lang::safecoin_program::instruction::AccountMeta::new },
                 };
                 let name = &f.ident;
                 if f.is_optional {
@@ -103,7 +103,7 @@ pub fn generate(accs: &AccountsStruct) -> proc_macro2::TokenStream {
                         if let Some(#name) = &self.#name {
                             account_metas.push(#meta(*#name, #is_signer));
                         } else {
-                            account_metas.push(anchor_lang::safecoin_program::instruction::AccountMeta::new_readonly(crate::ID, false));
+                            account_metas.push(safe_anchor_lang::safecoin_program::instruction::AccountMeta::new_readonly(crate::ID, false));
                         }
                     }
                 } else {
@@ -161,18 +161,18 @@ pub fn generate(accs: &AccountsStruct) -> proc_macro2::TokenStream {
         /// `accounts` module (also generated), which re-exports this.
         pub(crate) mod #account_mod_name {
             use super::*;
-            use anchor_lang::prelude::borsh;
+            use safe_anchor_lang::prelude::borsh;
             #(#re_exports)*
 
             #struct_doc
-            #[derive(anchor_lang::AnchorSerialize)]
+            #[derive(safe_anchor_lang::AnchorSerialize)]
             pub struct #name {
                 #(#account_struct_fields),*
             }
 
             #[automatically_derived]
-            impl anchor_lang::ToAccountMetas for #name {
-                fn to_account_metas(&self, is_signer: Option<bool>) -> Vec<anchor_lang::safecoin_program::instruction::AccountMeta> {
+            impl safe_anchor_lang::ToAccountMetas for #name {
+                fn to_account_metas(&self, is_signer: Option<bool>) -> Vec<safe_anchor_lang::safecoin_program::instruction::AccountMeta> {
                     let mut account_metas = vec![];
 
                     #(#account_struct_metas)*

@@ -176,7 +176,7 @@ features = []
 
 pub fn lib_rs(name: &str) -> String {
     format!(
-        r#"use anchor_lang::prelude::*;
+        r#"use safe_anchor_lang::prelude::*;
 
 declare_id!("{}");
 

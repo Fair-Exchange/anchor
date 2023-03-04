@@ -1,8 +1,8 @@
-use anchor_lang::safecoin_program::account_info::AccountInfo;
+use safe_anchor_lang::safecoin_program::account_info::AccountInfo;
 
-use anchor_lang::safecoin_program::pubkey::Pubkey;
-use anchor_lang::{context::CpiContext, Accounts};
-use anchor_lang::{safecoin_program, Result};
+use safe_anchor_lang::safecoin_program::pubkey::Pubkey;
+use safe_anchor_lang::{context::CpiContext, Accounts};
+use safe_anchor_lang::{safecoin_program, Result};
 
 pub use safe_token_2022;
 pub use safe_token_2022::ID;
@@ -536,7 +536,7 @@ pub struct UiAmountToAmount<'info> {
 #[derive(Clone)]
 pub struct Token2022;
 
-impl anchor_lang::Id for Token2022 {
+impl safe_anchor_lang::Id for Token2022 {
     fn id() -> Pubkey {
         ID
     }

@@ -112,7 +112,7 @@ anchor init game
 and copy the following code
 
 ```rust
-use anchor_lang::prelude::*;
+use safe_anchor_lang::prelude::*;
 
 declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 
@@ -261,7 +261,7 @@ Let's revisit the puppet workspace and add a PDA signature.
 First, adjust the puppet-master code:
 
 ```rust
-use anchor_lang::prelude::*;
+use safe_anchor_lang::prelude::*;
 use puppet::cpi::accounts::SetData;
 use puppet::program::Puppet;
 use puppet::{self, Data};

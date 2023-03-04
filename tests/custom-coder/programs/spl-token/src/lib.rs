@@ -1,6 +1,6 @@
 // See https://github.com/safely-project/anchor/blob/master/ts/packages/safe-token/program/lib.rs
 
-use anchor_lang::prelude::*;
+use safe_anchor_lang::prelude::*;
 
 declare_id!("FmpfPa1LHEYRbueNMnwNVd2JvyQ89GXGWdyZEXNNKV8w");
 

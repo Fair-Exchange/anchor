@@ -1,7 +1,7 @@
 //! This example enforces the missing documentation lint.
 #![deny(missing_docs)]
 
-use anchor_lang::prelude::*;
+use safe_anchor_lang::prelude::*;
 
 declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 

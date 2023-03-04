@@ -1,4 +1,4 @@
-use anchor_lang::{
+use safe_anchor_lang::{
     context::CpiContext,
     safecoin_program::{
         account_info::AccountInfo,
@@ -130,19 +130,19 @@ pub struct DeactivateStake<'info> {
 #[derive(Clone)]
 pub struct StakeAccount(StakeState);
 
-impl anchor_lang::AccountDeserialize for StakeAccount {
-    fn try_deserialize(buf: &mut &[u8]) -> anchor_lang::Result<Self> {
+impl safe_anchor_lang::AccountDeserialize for StakeAccount {
+    fn try_deserialize(buf: &mut &[u8]) -> safe_anchor_lang::Result<Self> {
         Self::try_deserialize_unchecked(buf)
     }
 
-    fn try_deserialize_unchecked(buf: &mut &[u8]) -> anchor_lang::Result<Self> {
+    fn try_deserialize_unchecked(buf: &mut &[u8]) -> safe_anchor_lang::Result<Self> {
         StakeState::deserialize(buf).map(Self).map_err(Into::into)
     }
 }
 
-impl anchor_lang::AccountSerialize for StakeAccount {}
+impl safe_anchor_lang::AccountSerialize for StakeAccount {}
 
-impl anchor_lang::Owner for StakeAccount {
+impl safe_anchor_lang::Owner for StakeAccount {
     fn owner() -> Pubkey {
         ID
     }
@@ -159,7 +159,7 @@ impl Deref for StakeAccount {
 #[derive(Clone)]
 pub struct Stake;
 
-impl anchor_lang::Id for Stake {
+impl safe_anchor_lang::Id for Stake {
     fn id() -> Pubkey {
         ID
     }

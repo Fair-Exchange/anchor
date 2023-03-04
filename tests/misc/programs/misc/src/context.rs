@@ -1,7 +1,7 @@
 use crate::account::*;
-use anchor_lang::prelude::*;
-use anchor_spl::associated_token::AssociatedToken;
-use anchor_spl::token::{Mint, Token, TokenAccount};
+use safe_anchor_lang::prelude::*;
+use safe_anchor_spl::associated_token::AssociatedToken;
+use safe_anchor_spl::token::{Mint, Token, TokenAccount};
 
 #[derive(Accounts)]
 pub struct TestTokenSeedsInit<'info> {
@@ -425,7 +425,7 @@ pub struct InitIfNeededChecksRentExemption<'info> {
 pub struct TestProgramIdConstraint<'info> {
     // not a real associated token account
     // just deriving like this for testing purposes
-    #[account(seeds = [b"seed"], bump = bump, seeds::program = anchor_spl::associated_token::ID)]
+    #[account(seeds = [b"seed"], bump = bump, seeds::program = safe_anchor_spl::associated_token::ID)]
     /// CHECK:
     first: AccountInfo<'info>,
 
@@ -438,7 +438,7 @@ pub struct TestProgramIdConstraint<'info> {
 pub struct TestProgramIdConstraintUsingFindPda<'info> {
     // not a real associated token account
     // just deriving like this for testing purposes
-    #[account(seeds = [b"seed"], bump, seeds::program = anchor_spl::associated_token::ID)]
+    #[account(seeds = [b"seed"], bump, seeds::program = safe_anchor_spl::associated_token::ID)]
     /// CHECK:
     first: AccountInfo<'info>,
 

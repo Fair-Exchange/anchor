@@ -3,7 +3,7 @@ title: Errors
 description: Anchor - Errors
 ---
 
-> [`AnchorError` Rust Reference](https://docs.rs/safe-anchor-lang/latest/anchor_lang/error/struct.AnchorError.html)
+> [`AnchorError` Rust Reference](https://docs.rs/safe-anchor-lang/latest/safe_anchor_lang/error/struct.AnchorError.html)
 
 > [`AnchorError` Typescript Reference](https://safely-project.github.io/anchor/ts/classes/AnchorError.html)
 
@@ -16,11 +16,11 @@ custom errors which the user (you!) can return.
   - Custom Errors
 - Non-anchor errors.
 
-[AnchorErrors](https://docs.rs/safe-anchor-lang/latest/anchor_lang/error/struct.AnchorError.html) provide a range of information like the error name and number or the location in the code where the anchor was thrown, or the account that violated a constraint (e.g. a `mut` constraint). Once thrown inside the program, [you can access the error information](https://safely-project.github.io/anchor/ts/classes/AnchorError.html) in the anchor clients like the typescript client. The typescript client also enriches the error with additional information about which program the error was thrown in and the CPI calls (which are explained [here](./cross-program-invocations) in the book) that led to the program from which the error was thrown from. [The milestone chapter](./milestone_project_tic-tac-toe.md) explores how all of this works together in practice. For now, let's look at how different errors can be returned from inside a program.
+[AnchorErrors](https://docs.rs/safe-anchor-lang/latest/safe_anchor_lang/error/struct.AnchorError.html) provide a range of information like the error name and number or the location in the code where the anchor was thrown, or the account that violated a constraint (e.g. a `mut` constraint). Once thrown inside the program, [you can access the error information](https://safely-project.github.io/anchor/ts/classes/AnchorError.html) in the anchor clients like the typescript client. The typescript client also enriches the error with additional information about which program the error was thrown in and the CPI calls (which are explained [here](./cross-program-invocations) in the book) that led to the program from which the error was thrown from. [The milestone chapter](./milestone_project_tic-tac-toe.md) explores how all of this works together in practice. For now, let's look at how different errors can be returned from inside a program.
 
 ## Anchor Internal Errors
 
-> [Anchor Internal Error Code Reference](https://docs.rs/safe-anchor-lang/latest/anchor_lang/error/enum.ErrorCode.html)
+> [Anchor Internal Error Code Reference](https://docs.rs/safe-anchor-lang/latest/safe_anchor_lang/error/enum.ErrorCode.html)
 
 Anchor has many different internal error codes. These are not meant to be used by users, but it's useful to study the reference to learn about the mappings between codes and their causes. They are, for example, thrown when a constraint has been violated, e.g. when an account is marked with `mut` but its `is_writable` property is `false`.
 
@@ -28,9 +28,9 @@ Anchor has many different internal error codes. These are not meant to be used b
 
 You can add errors that are unique to your program by using the `error_code` attribute.
 
-Simply add it to an enum with a name of your choice. You can then use the variants of the enum as errors in your program. Additionally, you can add a message attribute to the individual variants. Clients will then display this error message if the error occurs. Custom Error code numbers start at the [custom error offset](https://docs.rs/safe-anchor-lang/latest/anchor_lang/error/constant.ERROR_CODE_OFFSET.html).
+Simply add it to an enum with a name of your choice. You can then use the variants of the enum as errors in your program. Additionally, you can add a message attribute to the individual variants. Clients will then display this error message if the error occurs. Custom Error code numbers start at the [custom error offset](https://docs.rs/safe-anchor-lang/latest/safe_anchor_lang/error/constant.ERROR_CODE_OFFSET.html).
 
-To actually throw an error use the [`err!`](https://docs.rs/safe-anchor-lang/latest/anchor_lang/macro.err.html) or the [`error!`](https://docs.rs/safe-anchor-lang/latest/anchor_lang/prelude/macro.error.html) macro. These add file and line information to the error that is then logged by anchor.
+To actually throw an error use the [`err!`](https://docs.rs/safe-anchor-lang/latest/safe_anchor_lang/macro.err.html) or the [`error!`](https://docs.rs/safe-anchor-lang/latest/safe_anchor_lang/prelude/macro.error.html) macro. These add file and line information to the error that is then logged by anchor.
 
 ```rust
 #[program]
@@ -55,7 +55,7 @@ pub enum MyError {
 
 ### require!
 
-You can use the [`require`](https://docs.rs/safe-anchor-lang/latest/anchor_lang/macro.require.html) macro to simplify writing errors. The code above can be simplified to this (Note that the `>=` flips to `<`):
+You can use the [`require`](https://docs.rs/safe-anchor-lang/latest/safe_anchor_lang/macro.require.html) macro to simplify writing errors. The code above can be simplified to this (Note that the `>=` flips to `<`):
 
 ```rust
 #[program]
@@ -76,7 +76,7 @@ pub enum MyError {
 }
 ```
 
-There are a couple of `require` macros to choose from ([search for require in the docs](https://docs.rs/safe-anchor-lang/latest/anchor_lang/?search=require)). When comparing public keys, it's important to use the `keys` variants of the require statements like `require_keys_eq` instead of `require_eq` because comparing public keys with `require_eq` is very expensive.
+There are a couple of `require` macros to choose from ([search for require in the docs](https://docs.rs/safe-anchor-lang/latest/safe_anchor_lang/?search=require)). When comparing public keys, it's important to use the `keys` variants of the require statements like `require_keys_eq` instead of `require_eq` because comparing public keys with `require_eq` is very expensive.
 
 > (Ultimately, all programs return the same Error: The [`ProgramError`](https://docs.rs/safecoin-program/latest/safecoin_program/program_error/enum.ProgramError.html).
 

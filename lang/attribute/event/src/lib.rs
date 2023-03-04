@@ -28,10 +28,10 @@ pub fn event(
     };
 
     proc_macro::TokenStream::from(quote! {
-        #[derive(anchor_lang::__private::EventIndex, AnchorSerialize, AnchorDeserialize)]
+        #[derive(safe_anchor_lang::__private::EventIndex, AnchorSerialize, AnchorDeserialize)]
         #event_strct
 
-        impl anchor_lang::Event for #event_name {
+        impl safe_anchor_lang::Event for #event_name {
             fn data(&self) -> Vec<u8> {
                 let mut d = #discriminator.to_vec();
                 d.append(&mut self.try_to_vec().unwrap());
@@ -39,7 +39,7 @@ pub fn event(
             }
         }
 
-        impl anchor_lang::Discriminator for #event_name {
+        impl safe_anchor_lang::Discriminator for #event_name {
             const DISCRIMINATOR: [u8; 8] = #discriminator;
         }
     })
@@ -54,7 +54,7 @@ pub fn event(
 /// # Example
 ///
 /// ```rust,ignore
-/// use anchor_lang::prelude::*;
+/// use safe_anchor_lang::prelude::*;
 ///
 /// // handler function inside #[program]
 /// pub fn initialize(_ctx: Context<Initialize>) -> Result<()> {
@@ -76,7 +76,7 @@ pub fn emit(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
     let data: proc_macro2::TokenStream = input.into();
     proc_macro::TokenStream::from(quote! {
         {
-            anchor_lang::safecoin_program::log::sol_log_data(&[&anchor_lang::Event::data(&#data)]);
+            safe_anchor_lang::safecoin_program::log::sol_log_data(&[&safe_anchor_lang::Event::data(&#data)]);
         }
     })
 }

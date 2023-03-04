@@ -1,4 +1,4 @@
-use anchor_lang::prelude::*;
+use safe_anchor_lang::prelude::*;
 mod pc;
 use pc::Price;
 

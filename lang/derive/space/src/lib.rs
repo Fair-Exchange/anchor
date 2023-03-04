@@ -50,7 +50,7 @@ pub fn derive_anchor_deserialize(item: TokenStream) -> TokenStream {
 
                 quote! {
                     #[automatically_derived]
-                    impl #impl_generics anchor_lang::Space for #name #ty_generics #where_clause {
+                    impl #impl_generics safe_anchor_lang::Space for #name #ty_generics #where_clause {
                         const INIT_SPACE: usize = 0 #(+ #recurse)*;
                     }
                 }
@@ -73,7 +73,7 @@ pub fn derive_anchor_deserialize(item: TokenStream) -> TokenStream {
 
             quote! {
                 #[automatically_derived]
-                impl anchor_lang::Space for #name {
+                impl safe_anchor_lang::Space for #name {
                     const INIT_SPACE: usize = 1 + #max;
                 }
             }
@@ -87,7 +87,7 @@ pub fn derive_anchor_deserialize(item: TokenStream) -> TokenStream {
 fn gen_max<T: Iterator<Item = TokenStream2>>(mut iter: T) -> TokenStream2 {
     if let Some(item) = iter.next() {
         let next_item = gen_max(iter);
-        quote!(anchor_lang::__private::max(#item, #next_item))
+        quote!(safe_anchor_lang::__private::max(#item, #next_item))
     } else {
         quote!(0)
     }
@@ -138,7 +138,7 @@ fn len_from_type(ty: Type, attrs: &mut Option<IntoIter<LitInt>>) -> TokenStream2
                 }
                 _ => {
                     let ty = &ty_path.path;
-                    quote!(<#ty as anchor_lang::Space>::INIT_SPACE)
+                    quote!(<#ty as safe_anchor_lang::Space>::INIT_SPACE)
                 }
             }
         }

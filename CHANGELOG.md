@@ -101,7 +101,7 @@ The minor version will be incremented upon a breaking change and the patch versi
 ### Features
 
 - lang: Add `realloc`, `realloc::payer`, and `realloc::zero` as a new constraint group for program accounts ([#1986](https://github.com/safely-project/anchor/pull/1986)).
-- lang: Add `PartialEq` and `Eq` for `anchor_lang::Error` ([#1544](https://github.com/safely-project/anchor/pull/1544)).
+- lang: Add `PartialEq` and `Eq` for `safe_anchor_lang::Error` ([#1544](https://github.com/safely-project/anchor/pull/1544)).
 - cli: Add `--skip-build` to `anchor publish` ([#1786](https://github.com/safely-project/anchor/pull/1841)).
 - cli: Add `--program-keypair` to `anchor deploy` ([#1786](https://github.com/safely-project/anchor/pull/1786)).
 - cli: Add compilation optimizations to cli template ([#1807](https://github.com/safely-project/anchor/pull/1807)).
@@ -196,7 +196,7 @@ The minor version will be incremented upon a breaking change and the patch versi
 - spl: Update `spl/governance` to use new errors ([#1582](https://github.com/safely-project/anchor/pull/1582)).
 - client: Fix `Cluster`'s `FromStr` implementation ([#1362](https://github.com/safely-project/anchor/pull/1362)).
 - lang: Implement `Key` for `Pubkey` again, so `associated_token::*` constraints can use pubkey targets again ([#1601](https://github.com/safely-project/anchor/pull/1601)).
-- lang: Adjust error code so `#[error_code]` works with just importing `anchor_lang::error_code` ([#1610](https://github.com/safely-project/anchor/pull/1610)).
+- lang: Adjust error code so `#[error_code]` works with just importing `safe_anchor_lang::error_code` ([#1610](https://github.com/safely-project/anchor/pull/1610)).
 - ts: Fix `safe-token` coder account parsing ([#1604](https://github.com/safely-project/anchor/pull/1604)).
 - cli: Fix `npm install` fallback if `yarn` install doesn't work ([#1643](https://github.com/safely-project/anchor/pull/1643)).
 - lang: Fix bug where `owner = <target>` would not compile because of missing type annotation ([#1648](https://github.com/safely-project/anchor/pull/1648)).
@@ -237,7 +237,7 @@ The minor version will be incremented upon a breaking change and the patch versi
 - lang: Enforce that the payer for an init-ed account be marked `mut` ([#1271](https://github.com/safely-project/anchor/pull/1271)).
 - lang: All error-related code is now in the error module ([#1426](https://github.com/safely-project/anchor/pull/1426)).
 - lang: Require doc comments when using AccountInfo or UncheckedAccount types ([#1452](https://github.com/safely-project/anchor/pull/1452)).
-- lang: add [`error!`](https://docs.rs/safe-anchor-lang/latest/anchor_lang/prelude/macro.error.html) and [`err!`](https://docs.rs/safe-anchor-lang/latest/anchor_lang/prelude/macro.err.html) macro and `Result` type ([#1462](https://github.com/safely-project/anchor/pull/1462)).
+- lang: add [`error!`](https://docs.rs/safe-anchor-lang/latest/safe_anchor_lang/prelude/macro.error.html) and [`err!`](https://docs.rs/safe-anchor-lang/latest/safe_anchor_lang/prelude/macro.err.html) macro and `Result` type ([#1462](https://github.com/safely-project/anchor/pull/1462)).
   This change will break most programs. Do the following to upgrade:
   _ change all `ProgramResult`'s to `Result<()>`
   _ change `#[error]` to `#[error_code]`

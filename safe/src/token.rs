@@ -1,9 +1,9 @@
-use anchor_lang::safecoin_program::account_info::AccountInfo;
+use safe_anchor_lang::safecoin_program::account_info::AccountInfo;
 
-use anchor_lang::safecoin_program::program_pack::Pack;
-use anchor_lang::safecoin_program::pubkey::Pubkey;
-use anchor_lang::{context::CpiContext, Accounts};
-use anchor_lang::{safecoin_program, Result};
+use safe_anchor_lang::safecoin_program::program_pack::Pack;
+use safe_anchor_lang::safecoin_program::pubkey::Pubkey;
+use safe_anchor_lang::{context::CpiContext, Accounts};
+use safe_anchor_lang::{safecoin_program, Result};
 use std::ops::Deref;
 
 pub use safe_token;
@@ -462,17 +462,17 @@ impl TokenAccount {
     pub const LEN: usize = safe_token::state::Account::LEN;
 }
 
-impl anchor_lang::AccountDeserialize for TokenAccount {
-    fn try_deserialize_unchecked(buf: &mut &[u8]) -> anchor_lang::Result<Self> {
+impl safe_anchor_lang::AccountDeserialize for TokenAccount {
+    fn try_deserialize_unchecked(buf: &mut &[u8]) -> safe_anchor_lang::Result<Self> {
         safe_token::state::Account::unpack(buf)
             .map(TokenAccount)
             .map_err(Into::into)
     }
 }
 
-impl anchor_lang::AccountSerialize for TokenAccount {}
+impl safe_anchor_lang::AccountSerialize for TokenAccount {}
 
-impl anchor_lang::Owner for TokenAccount {
+impl safe_anchor_lang::Owner for TokenAccount {
     fn owner() -> Pubkey {
         ID
     }
@@ -493,17 +493,17 @@ impl Mint {
     pub const LEN: usize = safe_token::state::Mint::LEN;
 }
 
-impl anchor_lang::AccountDeserialize for Mint {
-    fn try_deserialize_unchecked(buf: &mut &[u8]) -> anchor_lang::Result<Self> {
+impl safe_anchor_lang::AccountDeserialize for Mint {
+    fn try_deserialize_unchecked(buf: &mut &[u8]) -> safe_anchor_lang::Result<Self> {
         safe_token::state::Mint::unpack(buf)
             .map(Mint)
             .map_err(Into::into)
     }
 }
 
-impl anchor_lang::AccountSerialize for Mint {}
+impl safe_anchor_lang::AccountSerialize for Mint {}
 
-impl anchor_lang::Owner for Mint {
+impl safe_anchor_lang::Owner for Mint {
     fn owner() -> Pubkey {
         ID
     }
@@ -520,7 +520,7 @@ impl Deref for Mint {
 #[derive(Clone)]
 pub struct Token;
 
-impl anchor_lang::Id for Token {
+impl safe_anchor_lang::Id for Token {
     fn id() -> Pubkey {
         ID
     }

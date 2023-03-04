@@ -4,8 +4,8 @@ use crate::config::{
     STARTUP_WAIT,
 };
 use anchor_client::Cluster;
-use anchor_lang::idl::{IdlAccount, IdlInstruction, ERASED_AUTHORITY};
-use anchor_lang::{AccountDeserialize, AnchorDeserialize, AnchorSerialize};
+use safe_anchor_lang::idl::{IdlAccount, IdlInstruction, ERASED_AUTHORITY};
+use safe_anchor_lang::{AccountDeserialize, AnchorDeserialize, AnchorSerialize};
 use anchor_syn::idl::{EnumFields, Idl, IdlType, IdlTypeDefinitionTy};
 use anyhow::{anyhow, Context, Result};
 use clap::Parser;
@@ -1748,7 +1748,7 @@ fn idl_set_buffer(cfg_override: &ConfigOverride, program_id: Pubkey, buffer: Pub
                 AccountMeta::new(IdlAccount::address(&program_id), false),
                 AccountMeta::new(keypair.pubkey(), true),
             ];
-            let mut data = anchor_lang::idl::IDL_IX_TAG.to_le_bytes().to_vec();
+            let mut data = safe_anchor_lang::idl::IDL_IX_TAG.to_le_bytes().to_vec();
             data.append(&mut IdlInstruction::SetBuffer.try_to_vec()?);
             Instruction {
                 program_id,
@@ -1834,7 +1834,7 @@ fn idl_set_authority(
 
         // Instruction data.
         let data =
-            serialize_idl_ix(anchor_lang::idl::IdlInstruction::SetAuthority { new_authority })?;
+            serialize_idl_ix(safe_anchor_lang::idl::IdlInstruction::SetAuthority { new_authority })?;
 
         // Instruction accounts.
         let accounts = vec![
@@ -1903,7 +1903,7 @@ fn idl_close_account(cfg: &Config, program_id: &Pubkey, idl_address: Pubkey) -> 
     let ix = Instruction {
         program_id: *program_id,
         accounts,
-        data: { serialize_idl_ix(anchor_lang::idl::IdlInstruction::Close {})? },
+        data: { serialize_idl_ix(safe_anchor_lang::idl::IdlInstruction::Close {})? },
     };
     // Send transaction.
     let latest_hash = client.get_latest_blockhash()?;
@@ -1954,7 +1954,7 @@ fn idl_write(cfg: &Config, program_id: &Pubkey, idl: &Idl, idl_address: Pubkey) 
         let data = {
             let start = offset;
             let end = std::cmp::min(offset + MAX_WRITE_SIZE, idl_data.len());
-            serialize_idl_ix(anchor_lang::idl::IdlInstruction::Write {
+            serialize_idl_ix(safe_anchor_lang::idl::IdlInstruction::Write {
                 data: idl_data[start..end].to_vec(),
             })?
         };
@@ -2964,7 +2964,7 @@ fn create_idl_account(
 
         let num_additional_instructions = data_len / 10000;
         let mut instructions = Vec::new();
-        let data = serialize_idl_ix(anchor_lang::idl::IdlInstruction::Create { data_len })?;
+        let data = serialize_idl_ix(safe_anchor_lang::idl::IdlInstruction::Create { data_len })?;
         let program_signer = Pubkey::find_program_address(&[], program_id).0;
         let accounts = vec![
             AccountMeta::new_readonly(keypair.pubkey(), true),
@@ -2981,7 +2981,7 @@ fn create_idl_account(
         });
 
         for _ in 0..num_additional_instructions {
-            let data = serialize_idl_ix(anchor_lang::idl::IdlInstruction::Resize { data_len })?;
+            let data = serialize_idl_ix(safe_anchor_lang::idl::IdlInstruction::Resize { data_len })?;
             instructions.push(Instruction {
                 program_id: *program_id,
                 accounts: vec![
@@ -3048,7 +3048,7 @@ fn create_idl_buffer(
             AccountMeta::new_readonly(keypair.pubkey(), true),
             AccountMeta::new_readonly(sysvar::rent::ID, false),
         ];
-        let mut data = anchor_lang::idl::IDL_IX_TAG.to_le_bytes().to_vec();
+        let mut data = safe_anchor_lang::idl::IDL_IX_TAG.to_le_bytes().to_vec();
         data.append(&mut IdlInstruction::CreateBuffer.try_to_vec()?);
         Instruction {
             program_id: *program_id,
@@ -3087,8 +3087,8 @@ fn serialize_idl(idl: &Idl) -> Result<Vec<u8>> {
     e.finish().map_err(Into::into)
 }
 
-fn serialize_idl_ix(ix_inner: anchor_lang::idl::IdlInstruction) -> Result<Vec<u8>> {
-    let mut data = anchor_lang::idl::IDL_IX_TAG.to_le_bytes().to_vec();
+fn serialize_idl_ix(ix_inner: safe_anchor_lang::idl::IdlInstruction) -> Result<Vec<u8>> {
+    let mut data = safe_anchor_lang::idl::IDL_IX_TAG.to_le_bytes().to_vec();
     data.append(&mut ix_inner.try_to_vec()?);
     Ok(data)
 }

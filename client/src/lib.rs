@@ -1,11 +1,11 @@
 //! `anchor_client` provides an RPC client to send transactions and fetch
-//! deserialized accounts from Safecoin programs written in `anchor_lang`.
+//! deserialized accounts from Safecoin programs written in `safe_anchor_lang`.
 
-use anchor_lang::safecoin_program::hash::Hash;
-use anchor_lang::safecoin_program::instruction::{AccountMeta, Instruction};
-use anchor_lang::safecoin_program::program_error::ProgramError;
-use anchor_lang::safecoin_program::pubkey::Pubkey;
-use anchor_lang::{AccountDeserialize, Discriminator, InstructionData, ToAccountMetas};
+use safe_anchor_lang::safecoin_program::hash::Hash;
+use safe_anchor_lang::safecoin_program::instruction::{AccountMeta, Instruction};
+use safe_anchor_lang::safecoin_program::program_error::ProgramError;
+use safe_anchor_lang::safecoin_program::pubkey::Pubkey;
+use safe_anchor_lang::{AccountDeserialize, Discriminator, InstructionData, ToAccountMetas};
 use regex::Regex;
 use safecoin_account_decoder::UiAccountEncoding;
 use safecoin_client::client_error::ClientError as SafecoinClientError;
@@ -28,7 +28,7 @@ use std::ops::Deref;
 use std::vec::IntoIter;
 use thiserror::Error;
 
-pub use anchor_lang;
+pub use safe_anchor_lang;
 pub use cluster::Cluster;
 pub use safecoin_client;
 pub use safecoin_sdk;
@@ -178,7 +178,7 @@ impl<C: Deref<Target = impl Signer> + Clone> Program<C> {
         self.program_id
     }
 
-    pub fn on<T: anchor_lang::Event + anchor_lang::AnchorDeserialize>(
+    pub fn on<T: safe_anchor_lang::Event + safe_anchor_lang::AnchorDeserialize>(
         &self,
         f: impl Fn(&EventContext, T) + Send + 'static,
     ) -> Result<EventHandle, ClientError> {
@@ -260,7 +260,7 @@ impl<T> Iterator for ProgramAccountsIterator<T> {
     }
 }
 
-fn handle_program_log<T: anchor_lang::Event + anchor_lang::AnchorDeserialize>(
+fn handle_program_log<T: safe_anchor_lang::Event + safe_anchor_lang::AnchorDeserialize>(
     self_program_str: &str,
     l: &str,
 ) -> Result<(Option<T>, Option<String>, bool), ClientError> {
@@ -269,7 +269,7 @@ fn handle_program_log<T: anchor_lang::Event + anchor_lang::AnchorDeserialize>(
         .strip_prefix(PROGRAM_LOG)
         .or_else(|| l.strip_prefix(PROGRAM_DATA))
     {
-        let borsh_bytes = match anchor_lang::__private::base64::decode(log) {
+        let borsh_bytes = match safe_anchor_lang::__private::base64::decode(log) {
             Ok(borsh_bytes) => borsh_bytes,
             _ => {
                 #[cfg(feature = "debug")]
@@ -287,7 +287,7 @@ fn handle_program_log<T: anchor_lang::Event + anchor_lang::AnchorDeserialize>(
         };
         let mut event = None;
         if disc == T::discriminator() {
-            let e: T = anchor_lang::AnchorDeserialize::deserialize(&mut slice)
+            let e: T = safe_anchor_lang::AnchorDeserialize::deserialize(&mut slice)
                 .map_err(|e| ClientError::LogParseError(e.to_string()))?;
             event = Some(e);
         }
@@ -364,7 +364,7 @@ pub enum ClientError {
     #[error("Account not found")]
     AccountNotFound,
     #[error("{0}")]
-    AnchorError(#[from] anchor_lang::error::Error),
+    AnchorError(#[from] safe_anchor_lang::error::Error),
     #[error("{0}")]
     ProgramError(#[from] ProgramError),
     #[error("{0}")]

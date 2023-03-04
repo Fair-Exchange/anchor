@@ -15,8 +15,8 @@
 //! 2. If no one has exchanged, the initializer can close the escrow account
 //! - Initializer will get back ownership of their token X account
 
-use anchor_lang::prelude::*;
-use anchor_spl::token_interface::{
+use safe_anchor_lang::prelude::*;
+use safe_anchor_spl::token_interface::{
     self, Mint, SetAuthority, TokenAccount, TokenInterface, TransferChecked,
 };
 use safe_token_2022::instruction::AuthorityType;

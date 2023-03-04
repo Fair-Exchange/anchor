@@ -20,7 +20,7 @@ anchor init puppet
 and copy the following code.
 
 ```rust
-use anchor_lang::prelude::*;
+use safe_anchor_lang::prelude::*;
 
 declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 
@@ -70,7 +70,7 @@ anchor new puppet-master
 inside the workspace and copy the following code:
 
 ```rust
-use anchor_lang::prelude::*;
+use safe_anchor_lang::prelude::*;
 use puppet::cpi::accounts::SetData;
 use puppet::program::Puppet;
 use puppet::{self, Data};
@@ -111,7 +111,7 @@ In the case of the puppet program, the puppet-master uses the `SetData` instruct
 Setting up a CPI can distract from the business logic of the program so it's recommended to move the CPI setup into the `impl` block of the instruction. The puppet-master program then looks like this:
 
 ```rust
-use anchor_lang::prelude::*;
+use safe_anchor_lang::prelude::*;
 use puppet::cpi::accounts::SetData;
 use puppet::program::Puppet;
 use puppet::{self, Data};
@@ -245,7 +245,7 @@ The `has_one` constraint checks that `puppet.authority = authority.key()`.
 The puppet-master program now also needs adjusting:
 
 ```rust
-use anchor_lang::prelude::*;
+use safe_anchor_lang::prelude::*;
 use puppet::cpi::accounts::SetData;
 use puppet::program::Puppet;
 use puppet::{self, Data};

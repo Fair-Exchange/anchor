@@ -20,33 +20,33 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
                     format!("{sighash_arr:?}").parse().unwrap();
                 let ret_type = &ix.returns.ty.to_token_stream();
                 let (method_ret, maybe_return) = match ret_type.to_string().as_str() {
-                    "()" => (quote! {anchor_lang::Result<()> }, quote! { Ok(()) }),
+                    "()" => (quote! {safe_anchor_lang::Result<()> }, quote! { Ok(()) }),
                     _ => (
-                        quote! { anchor_lang::Result<crate::cpi::Return::<#ret_type>> },
+                        quote! { safe_anchor_lang::Result<crate::cpi::Return::<#ret_type>> },
                         quote! { Ok(crate::cpi::Return::<#ret_type> { phantom: crate::cpi::PhantomData }) }
                     )
                 };
 
                 quote! {
                     pub fn #method_name<'a, 'b, 'c, 'info>(
-                        ctx: anchor_lang::context::CpiContext<'a, 'b, 'c, 'info, #accounts_ident<'info>>,
+                        ctx: safe_anchor_lang::context::CpiContext<'a, 'b, 'c, 'info, #accounts_ident<'info>>,
                         #(#args),*
                     ) -> #method_ret {
                         let ix = {
                             let ix = instruction::#ix_variant;
                             let mut ix_data = AnchorSerialize::try_to_vec(&ix)
-                                .map_err(|_| anchor_lang::error::ErrorCode::InstructionDidNotSerialize)?;
+                                .map_err(|_| safe_anchor_lang::error::ErrorCode::InstructionDidNotSerialize)?;
                             let mut data = #sighash_tts.to_vec();
                             data.append(&mut ix_data);
                             let accounts = ctx.to_account_metas(None);
-                            anchor_lang::safecoin_program::instruction::Instruction {
+                            safe_anchor_lang::safecoin_program::instruction::Instruction {
                                 program_id: crate::ID,
                                 accounts,
                                 data,
                             }
                         };
                         let mut acc_infos = ctx.to_account_infos();
-                        anchor_lang::safecoin_program::program::invoke_signed(
+                        safe_anchor_lang::safecoin_program::program::invoke_signed(
                             &ix,
                             &acc_infos,
                             ctx.signer_seeds,
@@ -78,7 +78,7 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
 
             impl<T: AnchorDeserialize> Return<T> {
                 pub fn get(&self) -> T {
-                    let (_key, data) = anchor_lang::safecoin_program::program::get_return_data().unwrap();
+                    let (_key, data) = safe_anchor_lang::safecoin_program::program::get_return_data().unwrap();
                     T::try_from_slice(&data).unwrap()
                 }
             }
