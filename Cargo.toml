@@ -12,7 +12,7 @@ members = [
     "lang/attribute/*",
     "lang/derive/*",
     "lang/syn",
-    "spl",
+    "safe",
 ]
 exclude = [
     "tests/swap/deps/openbook-dex",

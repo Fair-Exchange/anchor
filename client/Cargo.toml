@@ -15,7 +15,7 @@ safe-anchor-lang = { path = "../lang", version = "0.26.0" }
 anyhow = "1.0.32"
 regex = "1.4.5"
 serde = { version = "1.0.122", features = ["derive"] }
-safecoin-client = "1.14.7"
+safecoin-client = "1.14.3"
 safecoin-sdk = "1.14.3"
 safecoin-account-decoder = "1.14.3"
 thiserror = "1.0.20"
