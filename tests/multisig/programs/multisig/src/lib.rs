@@ -22,7 +22,7 @@ use safe_anchor_lang::safecoin_program;
 use safe_anchor_lang::safecoin_program::instruction::Instruction;
 use std::convert::Into;
 
-declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+declare_id!("ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3");
 
 #[program]
 pub mod multisig {

@@ -2,7 +2,7 @@
 seeds = false
 
 [programs.localnet]
-realloc = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
+realloc = "ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3"
 
 [registry]
 url = "https://anchor.projectserum.com"

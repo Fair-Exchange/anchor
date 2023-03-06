@@ -1,6 +1,6 @@
 [programs.localnet]
-unchecked_account = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
-account_info = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
+unchecked_account = "ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3"
+account_info = "ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3"
 
 [registry]
 url = "https://anchor.projectserum.com"

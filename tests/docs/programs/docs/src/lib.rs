@@ -3,7 +3,7 @@
 
 use safe_anchor_lang::prelude::*;
 
-declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+declare_id!("ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3");
 
 /// Program for testing that the `missing_docs` lint can be applied.
 #[program]

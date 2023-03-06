@@ -6,7 +6,7 @@ cluster = "localnet"
 wallet = "~/.config/safecoin/id.json"
 
 [programs.localnet]
-relations_derivation = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
+relations_derivation = "ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3"
 
 [workspace]
 members = ["programs/relations-derivation"]

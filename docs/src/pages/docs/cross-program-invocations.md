@@ -22,7 +22,7 @@ and copy the following code.
 ```rust
 use safe_anchor_lang::prelude::*;
 
-declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+declare_id!("ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3");
 
 #[program]
 pub mod puppet {
@@ -75,7 +75,7 @@ use puppet::cpi::accounts::SetData;
 use puppet::program::Puppet;
 use puppet::{self, Data};
 
-declare_id!("HmbTLCmaGvZhKnn1Zfa1JVnp7vkMV4DYVxPLWBVoN65L");
+declare_id!("ancNKFeSZ5Pv81moEh3nyzHpRu6WvFSs8Urzm4UhQaD");
 
 #[program]
 mod puppet_master {
@@ -98,7 +98,7 @@ pub struct PullStrings<'info> {
 }
 ```
 
-Also add the line `puppet_master = "HmbTLCmaGvZhKnn1Zfa1JVnp7vkMV4DYVxPLWBVoN65L"` in the `[programs.localnet]` section of your `Anchor.toml`. Finally, import the puppet program into the puppet-master program by adding the following line to the `[dependencies]` section of the `Cargo.toml` file inside the `puppet-master` program folder:
+Also add the line `puppet_master = "ancNKFeSZ5Pv81moEh3nyzHpRu6WvFSs8Urzm4UhQaD"` in the `[programs.localnet]` section of your `Anchor.toml`. Finally, import the puppet program into the puppet-master program by adding the following line to the `[dependencies]` section of the `Cargo.toml` file inside the `puppet-master` program folder:
 
 ```toml
 puppet = { path = "../puppet", features = ["cpi"]}
@@ -116,7 +116,7 @@ use puppet::cpi::accounts::SetData;
 use puppet::program::Puppet;
 use puppet::{self, Data};
 
-declare_id!("HmbTLCmaGvZhKnn1Zfa1JVnp7vkMV4DYVxPLWBVoN65L");
+declare_id!("ancNKFeSZ5Pv81moEh3nyzHpRu6WvFSs8Urzm4UhQaD");
 
 #[program]
 mod puppet_master {
@@ -250,7 +250,7 @@ use puppet::cpi::accounts::SetData;
 use puppet::program::Puppet;
 use puppet::{self, Data};
 
-declare_id!("HmbTLCmaGvZhKnn1Zfa1JVnp7vkMV4DYVxPLWBVoN65L");
+declare_id!("ancNKFeSZ5Pv81moEh3nyzHpRu6WvFSs8Urzm4UhQaD");
 
 #[program]
 mod puppet_master {

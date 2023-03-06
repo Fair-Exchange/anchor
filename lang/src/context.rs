@@ -71,7 +71,7 @@ impl<'a, 'b, 'c, 'info, T: Accounts<'info>> Context<'a, 'b, 'c, 'info, T> {
 ///
 /// use safe_anchor_lang::prelude::*;
 ///
-/// declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+/// declare_id!("ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3");
 ///
 /// #[program]
 /// pub mod callee {

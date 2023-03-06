@@ -797,11 +797,11 @@ describe("Lockup and Registry", () => {
         });
         assert.strictEqual(
           err.program.toString(),
-          "HmbTLCmaGvZhKnn1Zfa1JVnp7vkMV4DYVxPLWBVoN65L"
+          "ancNKFeSZ5Pv81moEh3nyzHpRu6WvFSs8Urzm4UhQaD"
         );
         expect(err.programErrorStack.map((pk) => pk.toString())).to.deep.equal([
-          "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS",
-          "HmbTLCmaGvZhKnn1Zfa1JVnp7vkMV4DYVxPLWBVoN65L",
+          "ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3",
+          "ancNKFeSZ5Pv81moEh3nyzHpRu6WvFSs8Urzm4UhQaD",
         ]);
         return true;
       }

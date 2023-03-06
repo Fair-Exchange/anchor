@@ -88,7 +88,7 @@ Example:
 
 ```toml
 [programs.localnet]
-my_program = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
+my_program = "ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3"
 ```
 
 The addresses of the programs in the workspace.

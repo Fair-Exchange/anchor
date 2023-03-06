@@ -93,7 +93,7 @@ async function genesis(provider) {
         withdrawalTimelock: 60 * 60 * 24 * 7, // 1 week.
         stakeRate: 500 * 10 ** 6, // 500 SRM.
         rewardQLen: 150,
-        mint: "SRMuApVNdxXokk5GT7XD5cUUgXMBCoAz2LHeuAoKWRt",
+        mint: "Safe111111111111111111111111111111111111111",
       },
       msrm: {
         withdrawalTimelock: 60 * 60 * 24 * 7, // 1 week.

@@ -165,7 +165,6 @@ dependencies = [
 name = "anchor-cli"
 version = "0.26.0"
 dependencies = [
- "safe-anchor-client",
  "anchor-syn",
  "anyhow",
  "cargo_toml",
@@ -177,6 +176,7 @@ dependencies = [
  "pathdiff",
  "portpicker",
  "reqwest",
+ "safe-anchor-client",
  "safe-anchor-lang",
  "safecoin-cli-config",
  "safecoin-client",
@@ -192,21 +192,6 @@ dependencies = [
  "tokio",
  "toml",
  "walkdir",
-]
-
-[[package]]
-name = "safe-anchor-client"
-version = "0.26.0"
-dependencies = [
- "anyhow",
- "regex",
- "safe-anchor-lang",
- "safecoin-account-decoder",
- "safecoin-client",
- "safecoin-sdk",
- "serde",
- "thiserror",
- "url",
 ]
 
 [[package]]
@@ -3089,6 +3074,21 @@ name = "ryu"
 version = "1.0.13"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f91339c0467de62360649f8d3e185ca8de4224ff281f66000de5eb2a77a79041"
+
+[[package]]
+name = "safe-anchor-client"
+version = "0.26.0"
+dependencies = [
+ "anyhow",
+ "regex",
+ "safe-anchor-lang",
+ "safecoin-account-decoder",
+ "safecoin-client",
+ "safecoin-sdk",
+ "serde",
+ "thiserror",
+ "url",
+]
 
 [[package]]
 name = "safe-anchor-lang"

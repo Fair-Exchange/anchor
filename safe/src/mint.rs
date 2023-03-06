@@ -3,7 +3,7 @@ use safe_anchor_lang::safecoin_program::declare_id;
 pub use srm::ID as SRM;
 mod srm {
     use super::*;
-    declare_id!("SRMuApVNdxXokk5GT7XD5cUUgXMBCoAz2LHeuAoKWRt");
+    declare_id!("Safe111111111111111111111111111111111111111");
 }
 
 pub use usdc::ID as USDC;

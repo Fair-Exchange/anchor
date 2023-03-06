@@ -6,7 +6,7 @@ use safe_anchor_spl::token_interface::{
     self, Burn, Mint, MintTo, SetAuthority, TokenAccount, TokenInterface, Transfer, TransferChecked,
 };
 
-declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+declare_id!("ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3");
 
 #[program]
 mod token_proxy {

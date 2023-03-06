@@ -1,7 +1,7 @@
 use safe_anchor_lang::prelude::*;
 
 // Intentionally different program id than the one defined in Anchor.toml.
-declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+declare_id!("ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3");
 
 #[program]
 mod declare_id {

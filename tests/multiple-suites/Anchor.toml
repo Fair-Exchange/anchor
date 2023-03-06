@@ -1,7 +1,7 @@
 [features]
 seeds = false
 [programs.localnet]
-multiple_suites = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
+multiple_suites = "ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3"
 
 [registry]
 url = "https://anchor.projectserum.com"

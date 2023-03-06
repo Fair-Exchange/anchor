@@ -9,7 +9,7 @@ use safe_anchor_spl::token::{self, Mint, TokenAccount, Transfer};
 use lockup::{CreateVesting, RealizeLock, Realizor, Vesting};
 use std::convert::Into;
 
-declare_id!("HmbTLCmaGvZhKnn1Zfa1JVnp7vkMV4DYVxPLWBVoN65L");
+declare_id!("ancNKFeSZ5Pv81moEh3nyzHpRu6WvFSs8Urzm4UhQaD");
 
 #[program]
 mod registry {

@@ -114,7 +114,7 @@ and copy the following code
 ```rust
 use safe_anchor_lang::prelude::*;
 
-declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+declare_id!("ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3");
 
 #[program]
 pub mod game {
@@ -266,7 +266,7 @@ use puppet::cpi::accounts::SetData;
 use puppet::program::Puppet;
 use puppet::{self, Data};
 
-declare_id!("HmbTLCmaGvZhKnn1Zfa1JVnp7vkMV4DYVxPLWBVoN65L");
+declare_id!("ancNKFeSZ5Pv81moEh3nyzHpRu6WvFSs8Urzm4UhQaD");
 
 #[program]
 mod puppet_master {

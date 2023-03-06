@@ -4,7 +4,7 @@ const BOARD_ITEM_FREE: u8 = 0; // Free slot
 const BOARD_ITEM_X: u8 = 1; // Player X
 const BOARD_ITEM_O: u8 = 2; // Player O
 
-declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+declare_id!("ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3");
 
 /// Game State
 /// 0 - Waiting

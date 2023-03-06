@@ -3,8 +3,8 @@ cluster = "localnet"
 wallet = "~/.config/safecoin/id.json"
 
 [programs.localnet]
-lockup = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
-registry = "HmbTLCmaGvZhKnn1Zfa1JVnp7vkMV4DYVxPLWBVoN65L"
+lockup = "ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3"
+registry = "ancNKFeSZ5Pv81moEh3nyzHpRu6WvFSs8Urzm4UhQaD"
 
 [scripts]
 test = "yarn run mocha -t 1000000 tests/"

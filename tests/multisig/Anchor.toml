@@ -3,7 +3,7 @@ cluster = "localnet"
 wallet = "~/.config/safecoin/id.json"
 
 [programs.localnet]
-multisig = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
+multisig = "ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3"
 
 [scripts]
 test = "yarn run mocha -t 1000000 tests/"

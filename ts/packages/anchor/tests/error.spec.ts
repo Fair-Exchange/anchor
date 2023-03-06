@@ -34,12 +34,12 @@ describe("ProgramErrorStack", () => {
 
   it("failed inner ix", () => {
     const logs = [
-      "Program Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS invoke [1]",
+      "Program ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3 invoke [1]",
       "Program log: Instruction: Create",
       "Program ERRM6YCMsccM22TEaPuu35KVU4iCY3GLCz4qMsKLYReE invoke [2]",
       "Program log: AnchorError thrown in programs/switchboard_v2/src/actions/aggregator_save_result_action.rs:235. Error Code: OracleMismatchError. Error Number: 6021. Error Message: An unexpected oracle account was provided for the transaction..",
-      "Program Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS consumed 12619 of 1400000 compute units",
-      "Program Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS failed: Program failed to complete",
+      "Program ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3 consumed 12619 of 1400000 compute units",
+      "Program ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3 failed: Program failed to complete",
     ];
 
     expect(
@@ -47,54 +47,54 @@ describe("ProgramErrorStack", () => {
         publicKey.toString()
       )
     ).toEqual([
-      "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS",
+      "ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3",
       "ERRM6YCMsccM22TEaPuu35KVU4iCY3GLCz4qMsKLYReE",
     ]);
   });
 
   it("ignore successful inner ix", () => {
     const logs = [
-      "Program Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS invoke [1]",
+      "Program ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3 invoke [1]",
       "Program log: Instruction: Create",
       "Program 11111111111111111111111111111111 invoke [2]",
       "Program 11111111111111111111111111111111 success",
       "Program log: panicked at programs/floats/src/lib.rs:17:9",
-      "Program Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS consumed 12619 of 1400000 compute units",
+      "Program ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3 consumed 12619 of 1400000 compute units",
       "Program failed to complete: BPF program panicked",
-      "Program Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS failed: Program failed to complete",
+      "Program ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3 failed: Program failed to complete",
     ];
     expect(
       ProgramErrorStack.parse(logs).stack.map((publicKey) =>
         publicKey.toString()
       )
-    ).toEqual(["Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"]);
+    ).toEqual(["ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3"]);
   });
 
   it("ignore successful inner ix but don't ignore failing inner ix", () => {
     const logs = [
-      "Program Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS invoke [1]",
+      "Program ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3 invoke [1]",
       "Program log: Instruction: Create",
       "Program 11111111111111111111111111111111 invoke [2]",
       "Program 11111111111111111111111111111111 success",
       "Program ERRM6YCMsccM22TEaPuu35KVU4iCY3GLCz4qMsKLYReE invoke [2]",
       "Program log: panicked at programs/floats/src/lib.rs:17:9",
-      "Program Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS consumed 12619 of 1400000 compute units",
+      "Program ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3 consumed 12619 of 1400000 compute units",
       "Program failed to complete: BPF program panicked",
-      "Program Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS failed: Program failed to complete",
+      "Program ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3 failed: Program failed to complete",
     ];
     expect(
       ProgramErrorStack.parse(logs).stack.map((publicKey) =>
         publicKey.toString()
       )
     ).toEqual([
-      "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS",
+      "ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3",
       "ERRM6YCMsccM22TEaPuu35KVU4iCY3GLCz4qMsKLYReE",
     ]);
   });
 
   it("ignore successful inner ix but don't ignore failing inner ix - big nested", () => {
     const logs = [
-      "Program Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS invoke [1]",
+      "Program ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3 invoke [1]",
       "Program log: Instruction: Create",
       "Program 11111111111111111111111111111111 invoke [2]",
       "Program 11111111111111111111111111111111 success",
@@ -119,9 +119,9 @@ describe("ProgramErrorStack", () => {
       "Program 999X95icuyGzfYoeP6SPMb8aMn6ahfCpAt9VPddSNPPi success",
       "Program ERRM6YCMsccM22TEaPuu35KVU4iCY3GLCz4qMsKLYReE invoke [4]",
       "Program log: panicked at programs/floats/src/lib.rs:17:9",
-      "Program Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS consumed 12619 of 1400000 compute units",
+      "Program ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3 consumed 12619 of 1400000 compute units",
       "Program failed to complete: BPF program panicked",
-      "Program Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS failed: Program failed to complete",
+      "Program ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3 failed: Program failed to complete",
     ];
 
     expect(
@@ -129,7 +129,7 @@ describe("ProgramErrorStack", () => {
         publicKey.toString()
       )
     ).toEqual([
-      "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS",
+      "ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3",
       "777UGK3pU4ygVWwnn7MDnetec1nSVg4Xi53DFSHu9D6A",
       "888E49S65VpyDmydi6juT7tsSwNyD3ZEVkV8te1rL3iH",
       "ERRM6YCMsccM22TEaPuu35KVU4iCY3GLCz4qMsKLYReE",
@@ -144,7 +144,7 @@ describe("AnchorError", () => {
       "Program log: Instruction: AggregatorSaveResult",
       "Program log: AnchorError thrown in programs/switchboard_v2/src/actions/aggregator_save_result_action.rs:235. Error Code: OracleMismatchError. Error Number: 6021. Error Message: An unexpected oracle account was provided for the transaction..",
       "Program log: Left:",
-      "Program log: Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS",
+      "Program log: ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3",
       "Program log: Right:",
       "Program log: SW1TCH7qEPTdLsDHRgPuMQjbQxKdH2aBStViMFnt64f",
       "Program SW1TCH7qEPTdLsDHRgPuMQjbQxKdH2aBStViMFnt64f consumed 28928 of 200000 compute units",
@@ -169,7 +169,7 @@ describe("AnchorError", () => {
     expect(
       anchorError.error.comparedValues!.map((pk) => pk.toString())
     ).toEqual([
-      "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS",
+      "ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3",
       "SW1TCH7qEPTdLsDHRgPuMQjbQxKdH2aBStViMFnt64f",
     ]);
     expect(
@@ -178,7 +178,7 @@ describe("AnchorError", () => {
     expect(anchorError.errorLogs).toEqual([
       "Program log: AnchorError thrown in programs/switchboard_v2/src/actions/aggregator_save_result_action.rs:235. Error Code: OracleMismatchError. Error Number: 6021. Error Message: An unexpected oracle account was provided for the transaction..",
       "Program log: Left:",
-      "Program log: Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS",
+      "Program log: ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3",
       "Program log: Right:",
       "Program log: SW1TCH7qEPTdLsDHRgPuMQjbQxKdH2aBStViMFnt64f",
     ]);
@@ -227,7 +227,7 @@ describe("AnchorError", () => {
       "Program log: Instruction: AggregatorSaveResult",
       "Program log: AnchorError caused by account: some_account. Error Code: OracleMismatchError. Error Number: 6021. Error Message: An unexpected oracle account was provided for the transaction..",
       "Program log: Left:",
-      "Program log: Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS",
+      "Program log: ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3",
       "Program log: Right:",
       "Program log: SW1TCH7qEPTdLsDHRgPuMQjbQxKdH2aBStViMFnt64f",
       "Program SW1TCH7qEPTdLsDHRgPuMQjbQxKdH2aBStViMFnt64f consumed 28928 of 200000 compute units",
@@ -249,7 +249,7 @@ describe("AnchorError", () => {
     expect(
       anchorError.error.comparedValues!.map((pk) => pk.toString())
     ).toEqual([
-      "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS",
+      "ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3",
       "SW1TCH7qEPTdLsDHRgPuMQjbQxKdH2aBStViMFnt64f",
     ]);
     expect(
@@ -258,7 +258,7 @@ describe("AnchorError", () => {
     expect(anchorError.errorLogs).toEqual([
       "Program log: AnchorError caused by account: some_account. Error Code: OracleMismatchError. Error Number: 6021. Error Message: An unexpected oracle account was provided for the transaction..",
       "Program log: Left:",
-      "Program log: Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS",
+      "Program log: ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3",
       "Program log: Right:",
       "Program log: SW1TCH7qEPTdLsDHRgPuMQjbQxKdH2aBStViMFnt64f",
     ]);

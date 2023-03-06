@@ -3,8 +3,8 @@ cluster = "localnet"
 wallet = "~/.config/safecoin/id.json"
 
 [programs.localnet]
-puppet = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
-puppet_master = "HmbTLCmaGvZhKnn1Zfa1JVnp7vkMV4DYVxPLWBVoN65L"
+puppet = "ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3"
+puppet_master = "ancNKFeSZ5Pv81moEh3nyzHpRu6WvFSs8Urzm4UhQaD"
 
 [scripts]
 test = "yarn run mocha -t 1000000 tests/"

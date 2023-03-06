@@ -5,7 +5,7 @@ mod other;
 
 use safe_anchor_lang::prelude::*;
 
-declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+declare_id!("ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3");
 
 pub const MY_SEED: [u8; 2] = *b"hi";
 pub const MY_SEED_STR: &str = "hi";

@@ -6,7 +6,7 @@ use borsh::{BorshDeserialize, BorshSerialize};
 use safecoin_program::pubkey::Pubkey;
 
 // Needed to declare accounts.
-declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+declare_id!("ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3");
 
 #[derive(Accounts)]
 pub struct GenericsTest<'info, T, U, const N: usize>
