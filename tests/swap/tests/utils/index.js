@@ -17,7 +17,7 @@ const Account = web3.Account;
 const Transaction = web3.Transaction;
 const PublicKey = web3.PublicKey;
 const SystemProgram = web3.SystemProgram;
-const DEX_PID = new PublicKey("srmqPvymJeFKQ4zGQed1GFppgkRHL9kaELCbyksJtPX");
+const DEX_PID = new PublicKey("safhmRNhffR7skWseXnptkaCm8XNTCZvZu9UCqMDnMD");
 
 async function setupTwoMarkets({ provider }) {
   // Setup mints with initial tokens owned by the provider.

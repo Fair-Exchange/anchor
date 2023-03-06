@@ -8,7 +8,7 @@ const { PublicKey, SystemProgram, Keypair, SYSVAR_RENT_PUBKEY } = anchor.web3;
 const utils = require("./utils");
 const { setupStakePool } = require("./utils/stake");
 
-const DEX_PID = new PublicKey("srmqPvymJeFKQ4zGQed1GFppgkRHL9kaELCbyksJtPX");
+const DEX_PID = new PublicKey("safhmRNhffR7skWseXnptkaCm8XNTCZvZu9UCqMDnMD");
 const SWAP_PID = new PublicKey("22Y43yTVxuUkoRKdm9thyRhQ3SdgQS7c7kB6UNCiaczD");
 const TOKEN_PID = new PublicKey("ToKLx75MGim1d1jRusuVX8xvdvvbSDESVaNXpRA9PHN");
 const REGISTRY_PID = new PublicKey(

@@ -11,7 +11,7 @@ use safecoin_program::program;
 
 // TODO: update this once the final shared memory program gets released.
 //       shmem4EWT2sPdVGvTZCzXXRAURL9G5vpPxNwSeKhHUL.
-declare_id!("DynWy94wrWp5RimU49creYMQ5py3Up8BBNS4VA73VCpi");
+declare_id!("smEFqz4hvyyJSypL8FvqYdasHTLHXTvNBtY9vVzLM5S");
 
 /// `ret` writes the given `data` field to the shared memory account
 /// acting as a return value that can be used across CPI.

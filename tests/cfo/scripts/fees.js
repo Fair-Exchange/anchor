@@ -11,7 +11,7 @@ const secret = JSON.parse(fs.readFileSync("./scripts/market-maker.json"));
 const MARKET_MAKER = new Account(secret);
 const PublicKey = anchor.web3.PublicKey;
 
-const DEX_PID = new PublicKey("srmqPvymJeFKQ4zGQed1GFppgkRHL9kaELCbyksJtPX");
+const DEX_PID = new PublicKey("safhmRNhffR7skWseXnptkaCm8XNTCZvZu9UCqMDnMD");
 
 async function main() {
   const market = new PublicKey(process.argv[2]);

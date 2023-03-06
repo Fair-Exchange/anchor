@@ -6,7 +6,7 @@ wallet = "~/.config/safecoin/id.json"
 swap = "ancAHhi4TqE5nwR29gPGhGV8CYLgHUFEDfE1q12nRK3"
 
 [[test.genesis]]
-address = "srmqPvymJeFKQ4zGQed1GFppgkRHL9kaELCbyksJtPX"
+address = "safhmRNhffR7skWseXnptkaCm8XNTCZvZu9UCqMDnMD"
 program = "./deps/openbook-dex/dex/target/deploy/serum_dex.so"
 
 [scripts]

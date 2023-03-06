@@ -9,5 +9,5 @@ mod srm {
 pub use usdc::ID as USDC;
 mod usdc {
     use super::*;
-    declare_id!("EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v");
+    declare_id!("Cs15wVAmfVBSNP7uWEQpAepuXoVpYU655HHSAftzKbn6");
 }

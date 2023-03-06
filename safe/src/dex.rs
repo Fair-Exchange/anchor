@@ -9,10 +9,10 @@ use std::num::NonZeroU64;
 pub use serum_dex;
 
 #[cfg(not(feature = "devnet"))]
-safe_anchor_lang::safecoin_program::declare_id!("srmqPvymJeFKQ4zGQed1GFppgkRHL9kaELCbyksJtPX");
+safe_anchor_lang::safecoin_program::declare_id!("safhmRNhffR7skWseXnptkaCm8XNTCZvZu9UCqMDnMD");
 
 #[cfg(feature = "devnet")]
-safe_anchor_lang::safecoin_program::declare_id!("EoTcMgcDRTJVZDMZWBoU6rhYHZfkNTVEAfz3uUJRcYGj");
+safe_anchor_lang::safecoin_program::declare_id!("safuQb9jex8zUVdBd6fh8iUWUEQbxGCbW4MVYVifADv");
 
 #[allow(clippy::too_many_arguments)]
 pub fn new_order_v3<'info>(
