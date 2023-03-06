@@ -3,7 +3,7 @@ use crate::config::{
     ProgramDeployment, ProgramWorkspace, ScriptsConfig, TestValidator, WithPath, SHUTDOWN_WAIT,
     STARTUP_WAIT,
 };
-use anchor_client::Cluster;
+use safe_anchor_client::Cluster;
 use safe_anchor_lang::idl::{IdlAccount, IdlInstruction, ERASED_AUTHORITY};
 use safe_anchor_lang::{AccountDeserialize, AnchorDeserialize, AnchorSerialize};
 use anchor_syn::idl::{EnumFields, Idl, IdlType, IdlTypeDefinitionTy};

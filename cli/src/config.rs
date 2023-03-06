@@ -1,5 +1,5 @@
 use crate::is_hidden;
-use anchor_client::Cluster;
+use safe_anchor_client::Cluster;
 use anchor_syn::idl::Idl;
 use anyhow::{anyhow, Context, Error, Result};
 use clap::{Parser, ValueEnum};

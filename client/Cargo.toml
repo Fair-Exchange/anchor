@@ -1,5 +1,5 @@
 [package]
-name = "anchor-client"
+name = "safe-anchor-client"
 version = "0.26.0"
 authors = ["Serum Foundation <foundation@projectserum.com>"]
 rust-version = "1.60"

@@ -75,7 +75,7 @@ const navigation = [
       },
       {
         title: 'Rust Client Library',
-        href: 'https://docs.rs/anchor-client/latest/anchor_client/',
+        href: 'https://docs.rs/safe-anchor-client/latest/safe_anchor_client/',
       },
       // {
       //   title: 'TypeScript Client Library',

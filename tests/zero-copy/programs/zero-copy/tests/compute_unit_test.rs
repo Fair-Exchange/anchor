@@ -1,7 +1,7 @@
 #![cfg(feature = "test-bpf")]
 
 use {
-    anchor_client::{
+    safe_anchor_client::{
         safe_anchor_lang::Discriminator,
         safecoin_sdk::{
             account::Account,

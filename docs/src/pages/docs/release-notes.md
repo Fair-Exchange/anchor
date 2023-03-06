@@ -687,6 +687,6 @@ Initial release.
 - lang/derive/accounts: Internal derive macro for defining deserialized account structs.
 - lang/syn: Internal crate for parsing the Anchor eDSL, generating code, and an IDL.
 - spl: `safe-anchor-spl` crate providing CPI clients for Anchor programs.
-- client: `anchor-client` crate providing Rust clients for Anchor programs.
+- client: `safe-anchor-client` crate providing Rust clients for Anchor programs.
 - ts: `@project-serum/anchor` package for generating TypeScript clients.
 - cli: Command line interface for managing Anchor programs.

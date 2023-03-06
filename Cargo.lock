@@ -165,7 +165,7 @@ dependencies = [
 name = "anchor-cli"
 version = "0.26.0"
 dependencies = [
- "anchor-client",
+ "safe-anchor-client",
  "anchor-syn",
  "anyhow",
  "cargo_toml",
@@ -195,7 +195,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "anchor-client"
+name = "safe-anchor-client"
 version = "0.26.0"
 dependencies = [
  "anyhow",

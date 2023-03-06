@@ -1,4 +1,4 @@
-//! `anchor_client` provides an RPC client to send transactions and fetch
+//! `safe_anchor_client` provides an RPC client to send transactions and fetch
 //! deserialized accounts from Safecoin programs written in `safe_anchor_lang`.
 
 use safe_anchor_lang::safecoin_program::hash::Hash;
